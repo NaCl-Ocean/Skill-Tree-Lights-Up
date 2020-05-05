@@ -234,3 +234,19 @@
   - 判断两集合是否相交  `set_a.isdisjoint(set_b)`，相交返回False，不相交返回True
   - 判断某集合是否是另一集合的子集   `set_a.issubset(set_b)`，set_a 是set_b 的子集返回True
   - 判断某集合是否是另一集合的父集   `set_a.issuperset(set_b)`，set_a 是set_b 的父集返回True
+
+# 深浅copy
+
+- 对于可变数据类型，存在深浅copy的问题
+
+- 首先说一下对于不可变数据类型
+
+  - ```python
+    >>> a = 'test'
+    >>> b = a
+    >>> a = 'test2'
+    >>> b
+    'test'
+    ```
+
+  - 这里符合

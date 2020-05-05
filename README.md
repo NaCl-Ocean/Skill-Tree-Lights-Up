@@ -13,8 +13,13 @@
 
 ### 网课学习
 
-- Part_1 主要内容为python 基础语法，如流程控制，文件操作等。
-- Part_2 主要内容为python中的六个基本数据结构
+[网课链接](https://www.bilibili.com/video/BV1j7411e7MD)
+
+[网课课件](https://book.apeland.cn/details/329/)
+
+- [Part_1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/part_1.md) 主要内容为python 基础语法，如流程控制，文件操作等。
+- [Part_2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/part_2.md) 主要内容为python中的六个基本数据结构
+- [day2_练习](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/day2_practice.ipynb)     [day2_作业](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/day2_homework.py)  
 
 ## Docker
 

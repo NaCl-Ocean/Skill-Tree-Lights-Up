@@ -178,15 +178,38 @@
   
     - 浅拷贝只会拷贝第一层数据
   
-  - **深拷贝**
-- 变量指向关系
+  - **深拷贝**  
   
-  - `a=b`	实际上是将a 和 b指向同一块内存空间（对象）
+    - ```python
+      import copy
+      obj_2 = copy.deepcopy(obj_1)
+      ```
+  
+    - ```python
+      >>> a = ['test1','test2',['test3']]
+      >>> a_copy = copy.copy(a)
+      >>> a_deepcopy = copy.deepcopy(a)
+      >>> a_deepcopy[2].append('test4')
+      >>> a
+      ['test1', 'test2', ['test3']]
+      >>> a_deepcopy
+      ['test1', 'test2', ['test3', 'test4']]
+      >>> a_copy[2].append('test5')
+      >>> a
+      ['test1', 'test2', ['test3', 'test5']]
+      >>> a_copy
+      ['test1', 'test2', ['test3', 'test5']]
+      ```
+  
+      
+  
+  - <img src="http://image.haiyang1218.cn/images/python_copy.png" width="400px" />
 
 ## 身份运算
 
 - `type(obj)`：查看变量数据类型
   - 判断变量是否是某种数据类型，例`type(a) is int`	`type(a) is not int`
+- `isinstance(obj,type)`   判断obj是否是某种数据类型   `isinstance('test',str)`
 - `is`：`a is b`	等同于	`id(a) == id(b)`
 
 - `is not` 同理
@@ -215,7 +238,7 @@
     - 英文字符占1个字节
     - 中文字符占3个字节
 
-- python 3 默认采用unicode编码
+- python 3 默认采用utf-8编码
 
 - python 2 采用ASCII编码
 
@@ -223,7 +246,9 @@
   - `# coding utf-8`
   - `-*- encoding:utf-8 -*—`
   
-- `obj.encode('utf-8/gbk')`   将数据编码为utf-8或者gbk，utf-8和gbk为bytes类型(16进制)
+- **字符的编解码**
+
+  - `str.encode('utf-8/gbk')`   将数据编码为utf-8或者gbk，utf-8和gbk为bytes类型(16进制)
 
   - ```python
     >>>a = '你好'
@@ -231,9 +256,20 @@
     <class 'bytes'>
     >>>type(a.encode('gbk'))
     <class 'bytes'>
+    >>>a_utf8 = a.encode('utf-8')
+    >>>a_utf8.decode('utf8')
+    '你好'
     ```
 
-- 注：编辑器的编码规范最好与Python的编码方案一致，当编码不一致时，会导致编辑器的代码乱码，但是仍然可以正常运行，但是在python3中不需要考虑这个问题
+  - `str.decode('utf-8 or gbk')`   解码为unicode
+
+  - ![编解码](http://image.haiyang1218.cn/images/python_coding.png)
+
+- python执行代码的过程：
+
+  - 解释器找到代码文件，把代码字符串按文件头定义的编码加载到内存，转成unicode
+  - 把代码字符串按照语法规则进行解释，
+  - 所有的变量字符都会以unicode编码声明
 
 # Hash
 

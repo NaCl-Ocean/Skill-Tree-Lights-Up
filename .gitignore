@@ -2,3 +2,6 @@
 *.vsdx
 *.xml
 *.iml
+*.txt
+.idea/
+.ipynb_checkpoints/

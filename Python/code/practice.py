@@ -25,5 +25,4 @@
 #     print('old_feature2')
 # old_feature()
 # old_feature2()
-
-print(type(range(100)))
+print(__file__)

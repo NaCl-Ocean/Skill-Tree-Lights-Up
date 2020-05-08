@@ -198,9 +198,9 @@
 
   - `dict[key]`   返回key对应的value ，若不存在key，则抛出error
   - `dict.get(key,default = None)`    返回key对应的value，若不存在key，则返回default的值
-  - `dict.keys()`  以列表的形式返回字典中的所有key
-  - `dict.values()`   以列表的形式返回字典中的所有value
-  - `dict.items()`   以列表的形式返回字典中的所有key-value
+  - `dict.keys()`  返回一个对象`dict_keys`，包含dicy的所有key  **不是列表**
+  - `dict.values()`   返回一个对象`dict_values`，包含dicy的所有value  **不是列表**
+  - `dict.items()`   返回一个对象`dict_items`，包含dicy的所有items   **不是列表**
 
 - **循环**
 

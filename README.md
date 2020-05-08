@@ -20,6 +20,9 @@
 - [Part_1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/part_1.md) 主要内容为python 基础语法，如流程控制，文件操作等。
 - [Part_2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/part_2.md) 主要内容为python中的六个基本数据结构
 - [day2_练习](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/day2_practice.ipynb)     [day2_作业](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/day2_homework.py)  
+- [Part_3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/part_3.md)   主要内容为函数相关
+- [day3_practice](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/code/day3_practice.ipynb)
+- [Part_4](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/part_4.md)   主要内容python中包，模块的使用以及常用模块的介绍
 
 ## Docker
 

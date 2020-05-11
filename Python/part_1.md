@@ -203,7 +203,10 @@
   
       
   
-  - <img src="http://image.haiyang1218.cn/images/python_copy.png" width="400px" />
+  - <img src="http://image.haiyang1218.cn/images/python_copy.png" width="300px" />
+
+- **引申到变量的删除**
+  - `del valiable`  删除的只是变量，也就是指针，不一定会释放指向的内存空间，只有当对内存空间（对象）的引用为0时，内存空间才会释放
 
 ## 身份运算
 

@@ -12,8 +12,8 @@
 
   - `import module_a,module_b....`    导入多个模块，但是不建议一次性导入多个模块，最好每次仅导入一个模块
   - `from module import xxx,xxx`    从模块中导入某个部分
-  - `from module.xxx.xxx  import xxx  as xxxx`        
-  - 导入一个模块相当于执行了该.py文件
+  - `from module/package.xxx.xxx  import xxx  as xxxx`        
+  - **导入一个模块相当于执行了该.py文件**
 
 - **路径查找**
 
@@ -34,6 +34,20 @@
   - `pip install package`  
 
     - `pip install  -i mirror_site package`   临时从镜像源下载
+  
+- `__name__`  是什么
+
+  - 在当前模块主动执行的情况下（不是被动导入），等于`__main__`
+
+  - 在当前模块被动导入的情况下，等于模块名
+
+  - ```python
+    if __name__ =='__main__':
+        # 在主动执行的情况下，执行
+        pass 
+    ```
+
+    
 
 # os模块
 
@@ -433,6 +447,6 @@ Foo/
 
     
 
-  - 官方推荐在项目根目录下放一个入口程序,类似于manage.py
+  - **官方推荐在项目根目录下放一个入口程序,类似于manage.py**
 
     - 这样views.py调用settings.py就不需要再更改环境变量了  

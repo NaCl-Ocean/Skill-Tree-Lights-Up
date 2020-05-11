@@ -13,9 +13,7 @@
 
 ### 网课学习
 
-[网课链接](https://www.bilibili.com/video/BV1j7411e7MD)
-
-[网课课件](https://book.apeland.cn/details/329/)
+- [网课链接](https://www.bilibili.com/video/BV1j7411e7MD)  [网课课件](https://book.apeland.cn/details/329/)
 
 - [Part_1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/part_1.md) 主要内容为python 基础语法，如流程控制，文件操作等。
 - [Part_2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/part_2.md) 主要内容为python中的六个基本数据结构
@@ -23,6 +21,14 @@
 - [Part_3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/part_3.md)   主要内容为函数相关
 - [day3_practice](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/code/day3_practice.ipynb)
 - [Part_4](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/part_4.md)   主要内容python中包，模块的使用以及常用模块的介绍
+- [Part_5](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/part_5.md)   主要内容为python中面向对象语法
+- [Part_6](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/part_6.md)    主要内容为python中异常处理
+
+### 模块学习
+
+- Argparse
+
+
 
 ## Docker
 

@@ -144,3 +144,12 @@
   - `draw = ImageDraw.Draw(im, mode=None)`    
 - [可以绘制的形状](https://pillow-cn.readthedocs.io/zh_CN/latest/reference/ImageDraw.html#example-draw-a-gray-cross-over-an-image)
 - 注意：draw对象调用绘制形状的方法会对image对象立即生效
+
+
+
+# ImageFont模块
+
+- 主要功能是加载字体文件，生成一个ImageFont对象，用于上面绘制text
+- 加载的字体文件有两种
+  - 位图字体  `ImageFont.load(filename)`
+  - TrueType or OpenType 字体   `ImageFont.truetype(file_path,size)`

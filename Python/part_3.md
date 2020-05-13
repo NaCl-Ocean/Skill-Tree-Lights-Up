@@ -324,7 +324,9 @@ half_search(a,9)
 
 - **可迭代对象（Iterable)**
   - 可以利用`for`循环的对象
+  - 提供了`__iter__` 方法或者`__getitem__`方法的对象都是可迭代对象
 - **迭代器（Iterator)**
   - 可以调用next方法
   - Iterator都是Iterbale
+  - 实现了`__iter__`和`__next__`都是迭代器
 - `iter(Iterable)`   将Iterable转换为Iterator

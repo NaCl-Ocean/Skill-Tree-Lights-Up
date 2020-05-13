@@ -348,7 +348,7 @@
   
 - **del**
   
-- `__del__` 当`del obj`调用时，执行该方法，一般没有明确调用`del obj`时，在程序末尾执行`del obj`
+  - `__del__` 当`del obj`调用时，执行该方法，一般没有明确调用`del obj`时，在程序末尾执行`del obj`
   
 - **new**
 

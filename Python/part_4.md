@@ -143,6 +143,7 @@
 `datetime.datetime`
 
 - `datetime.datetime.now() `  返回一个`datetime.datetime` 对象，用于表示当前时间
+- `datetime.datatime.striptime(str,format)`   将字符串时间转换为`datetime.datetime` 对象
 
 ------
 
@@ -167,7 +168,9 @@
   datetime.datetime(2020, 2, 7, 19, 46, 24, 60378)
   ```
 
-  
+- 比较时间
+
+  - `datetime.datetime`以及`datetime.date`  可以直接进行时间大小的比较
 
 # random模块
 
@@ -195,22 +198,25 @@
   - `pickle.loads(bytes)`   将通过`dumps`的bytes反序列化
   - `pickle.load(file)`     从文件中加载经过`pickle.dump`的数据并进行反序列化
     - 先进先出，当同一个文件中先后存入了不同的数据，那么load时不会第一次就同时取出来，也是分次取出
-
+  - 在打开文件时，同样需要以二进制模式打开
+  
   
 
 # json模块
 
 - 同样用于序列化
 
+- 不需要以二进制模式打开
+
 - 序列化
 
-  - `pickle.dumps(obj)`   
-  - `pickle.dump(obj,file)`  
+  - `json.dumps(obj)`   
+  - `json.dump(obj,file)`  
 
 - 反序列化
 
-  - `pickle.loads(bytes)`   
-  - `pickle.load(file)`    
+  - `json.loads(bytes)`   
+  - `json.load(file)`    
 
   - 用法与pickle模块相同
 

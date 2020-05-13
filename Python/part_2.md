@@ -8,7 +8,7 @@
   - 合并：`list.extend(seq)`，插入多个元素，当插入seq是list时，每个元素分开插入，当seq是str时，每个字符分开插入，当seq是dict时，只插入key。
 - 删
   - `del list[i]`	删除指定索引
-  - `list.pop()` 	删除最后一个元素，返回删除的值，当列表为空时，抛出error
+  - `list.pop(i)` 	当`i`不指定时，删除最后一个元素，返回删除的值，当列表为空时，抛出error，`i`指定时，删除`list[i]`
   - `list.clear()`    清空列表
   - `list.remove(obj)`    删除某个元素（第一个匹配项）
 - 查
@@ -23,6 +23,11 @@
 - 反转（逆序）
   - `list.reverse()`：直接在原对象上进行反转，不同于切片创造了一个新的列表副本
 - `range(start,stop,step)`：创建整数列表，start默认为0，stop需指定，step默认为1
+
+# array
+
+- array与list类似，但是array更像C语言中的数组，只能存放相同类型的数据，通过类型字节码指定存放的数据类型
+- [参考](https://blog.csdn.net/xc_zhou/article/details/88538793)
 
 
 

@@ -328,9 +328,13 @@
 # 类的双下划线方法
 
 - `__len__(self)`    定义了该方法后，可以调用`len(obj)`  ,返回必须是整数
+  
   - 常见的是pytorch中dataset定义的`__len__`
+  
 - `__hash__(self)`  定义了该方法后，可以调用`hash(obj)`  ，返回必须为整数
+
 - `__equal__(self,other)`  定义了该方法后，可以调用`obj_a == obj_b`，obj_b即为传入的参数other
+
 - **item系列：将对象变成dict**
   - `__getitem__(self,item)`   定义了该方法后，可以通过`obj[item]` 调用该方法（pytorch中的dataset）
   - `__setitem__(self,key,value)`    定义了该方法后，可以通过`obj[key] = value`调用该方法
@@ -341,9 +345,11 @@
   - `__str__`   当str函数调用`str(obj)`或者print函数调用时，调用`obj.__str__`
   - `__repr__`   当repr函数调用`repr(obj)`或者交互解释器中调用时，调用`obj.__repr__`
   - 上述两方法返回字符串
+  
 - **del**
-  - `__del__` 当`del obj`调用时，执行该方法，一般没有明确调用`del obj`时，在程序末尾执行`del obj`
-
+  
+- `__del__` 当`del obj`调用时，执行该方法，一般没有明确调用`del obj`时，在程序末尾执行`del obj`
+  
 - **new**
 
   - `__new__`  在`__init__`之前执行，作用是创建实例
@@ -389,6 +395,7 @@
 
 - **call**
 
+  - `__call__`
   - 通过`obj()`或者`cls()`调用
 
 

@@ -27,7 +27,8 @@
 ### 模块学习
 
 - [Argparse](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/argparse.md)
-- [Pillow](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pil.md)
+- [Pillow](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/Pillow.md)
+- [Matplotlib](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib.md)
 
 ## Docker
 

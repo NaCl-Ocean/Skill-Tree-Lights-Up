@@ -120,7 +120,7 @@
 - **查看图像的属性**
   
   - `Image_obj.size`  返回2-tuple 的size
-  - `Image.format`   查看原图像文件的格式 'jpg',....
+  - `Image_obj.format`   查看原图像文件的格式 'jpg',....等
   - `Image_obj.mode`   查看图像的mode
   
 - **获得像素点的像素值**

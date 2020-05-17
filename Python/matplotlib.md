@@ -108,9 +108,279 @@
 - ![image-20200515202014508](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200515202014508.png)
 - 这里的tick1line，tick2line以及label1，label2也就是每个axis对应的两条边
 
+```python
+fig = plt.figure()
+# figure->axes
+ax = fig.add_axes([0.2,0.2,0.5,0.5])
+# axes->line
+line_1, = ax.plot([1,2,3],[4,5,6],linestyle = '-',visible = 'False',marker='.',
+                    markeredgecolor = 'g',markeredgewidth = 4)
+line_1.set_label('test')
+# axes->axis
+yaxis = ax.yaxis
+xaxis = ax.xaxis
+# axis->tick
+for tick in yaxis.get_major_ticks():
+    tick.label1.set_visible(True)
+    tick.label2.set_visible(True)
+    tick.tick1line.set_visible(True)
+    tick.tick2line.set_visible(True)
+
+for tick in xaxis.get_major_ticks():
+    tick.label1.set_visible(True)
+    tick.label2.set_visible(True)
+    tick.tick1line.set_visible(True)
+    tick.tick2line.set_visible(True)
+plt.show()
+```
+
 
 
 # Legend对象
+
+- 基本概念
+
+  - **legend entry**  ：也就是图例条目，一个图例中可以包含多个图例条目，每个图例条目由**legend key**和**legend label**组成
+
+  - **legend handle**：可以用来生成legend entry的artist对象，也就是说会自动根据legend handle的属性生成对应的lengend entry
+
+  - ```python
+    line_1, = ax.plot([1,2,3],[4,5,6],linestyle = '-',visible = 'False',marker='.',
+                        markeredgecolor = 'g',markeredgewidth = 4)
+    line_2, = ax.plot([1,2,3],[6,5,4],linestyle='--')
+    # line_1,line_2即为legend handle
+    ax.legend([line_1,line_2],['test_1','test_2'])
+    ```
+
+  - <img src="F:\about study\07其他\Skill-Tree-Lights-Up\Python\legend_object.png" width="400px" />
+
+- **创建Legend对象的方法**
+
+  - `ax.legend()` 不传参数，会寻找axes中可以生成legend entry的所有handler（需要有label），并转为legend entry进行显示
+
+  - 指定要显示的handler，如上所示
+
+  - 自定义artist对象，可以不在axes中
+
+  - 通过handler map
+
+    - 根据handler创建legend entry实际上是将handler映射为对应的handlerbase对象。
+
+    - 那么也就引申出了handler map，可以将某个handler映射为某个handlerbase对象，也可以将某一类handler映射为某个handlerbase对象，映射为的handlerbase对象继承到handler的属性
+
+    - ```python
+      from matplotlib.legend_handler import HandlerLine2D
+      # 将某一个handler映射为Handlerbase
+      ax.legend(handler_map={line_1:Handlerline2D(numpoints=4)})
+      # 将某一类handler映射为Handlerbase
+      ax.legend(handler_map={type(line_1):Handlerline2D(numpoints=4)})
+      ```
+
+  - 通过handler tuple
+
+    - 将多个handler合并为一个handler，lable需指定，这些handler的key一层层地绘制，成为新的handler的key。
+
+    - ```python
+      legend = ax.legend([(line_1,line_2)],['test'],loc='upper right',bbox_to_anchor=(0.6,1))
+      ```
+
+    - <img src="C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200516124811048.png" alt="image-20200516124811048" style="zoom:70%;" />
+
+- Legend的位置
+
+  - loc：在bbox中的位置，有'upper right'，'lower left'，'best'（选择legend不被axes中artist对象遮挡的最佳位置，也就是IOU最小的位置）等等
+
+  - bbox_to_anchor：默认为axes.bbox，也就是整个axes的背景，2-tuple为(x,y)，4-tuple为(x,y,width,height)
+
+  - ```python
+    legend = ax.legend([line_1,line_2],['test_1','test_2'],
+                       loc='upperright',bbox_to_anchor=(0.6,1))
+    ```
+
+- 创建多个Legend
+
+  - ```python
+    legend_1 = ax.legend([(line_1,line_2)],['test'],loc='upper right',bbox_to_anchor=(0.6,1))
+    legend_1.set_label('legend_1')
+    # 手动将legend添加到axes的artist中
+    ax.add_artist(legend_1)
+    legend_2 = ax.legend([line_2],['test_2'])
+    ```
+
+  - **需要将legend手动添加到axes中**，否则只会显示最后的legend
+
+
+
+# Figure layout
+
+- 布局Figure中的axes
+
+- 在这里focus到**gridspec**
+
+- **创建跨越行和列的子图**
+
+  - **先通过`add_gridspec`创建gridspec对象**
+
+  - **之后通过`add_subplot`传入gridspec切片，创建subplot**
+
+  - ```python
+    gs = fig3.add_gridspec(3, 3)
+    f3_ax1 = fig3.add_subplot(gs[0, :]) # 切片操作
+    f3_ax1.set_title('gs[0, :]')
+    f3_ax2 = fig3.add_subplot(gs[1, :-1])
+    f3_ax2.set_title('gs[1, :-1]')
+    f3_ax3 = fig3.add_subplot(gs[1:, -1])
+    f3_ax3.set_title('gs[1:, -1]')
+    f3_ax4 = fig3.add_subplot(gs[-1, 0])
+    f3_ax4.set_title('gs[-1, 0]')
+    f3_ax5 = fig3.add_subplot(gs[-1, -2])
+    f3_ax5.set_title('gs[-1, -2]')
+    ```
+
+  - <img src="https://matplotlib.org/3.2.1/_images/sphx_glr_gridspec_003.png" style="zoom:67%;" />
+
+- **创建定制宽高比的子图**
+
+  - 这里主要讲的是比例，因此成比例扩大widths与heights中的值是不会影响布局的
+
+  - ```python
+    widths = [2, 3, 1.5]
+    heights = [1, 3, 2]
+    spec5 = fig5.add_gridspec(ncols=3, nrows=3, width_ratios=widths,
+                            height_ratios=heights)
+    ```
+
+  - <img src="https://matplotlib.org/3.2.1/_images/sphx_glr_gridspec_005.png" style="zoom: 67%;" />
+
+
+
+- 结合subplots
+
+  - ```python
+    fig7, f7_axs = plt.subplots(ncols=3, nrows=3)
+    # 获取当前figure中的gridspec对象
+    # 通过任何一个子图获取到的gridspec对象都是相同的
+    gs = f7_axs[1, 2].get_gridspec()
+    # remove the underlying axes
+    for ax in f7_axs[1:, -1]:
+        ax.remove()
+    axbig = fig7.add_subplot(gs[1:, -1])
+    ```
+
+- **subgridspec**
+
+  - ```python
+    fig10 = plt.figure(constrained_layout=True)
+    gs0 = fig10.add_gridspec(1, 2)
+    
+    gs00 = gs0[0].subgridspec(2, 3)
+    gs01 = gs0[1].subgridspec(3, 2)
+    ```
+
+    
+
+# Image
+
+# Color
+
+##  颜色格式
+
+- an RGB or RGBA (red, green, blue, alpha) **tuple** of **float** values in closed interval `[0, 1]`，eg:`(0.5,0.5,0.5)`
+- a hex RGB or RGBA **string** ，eg：'0f0f0f'
+- one of {'b'(blue), 'g'(gray), 'r'(red), 'c'(cyan), 'm'(magenta), 'y'(yellow), 'k'(black), 'w'(white)}
+- css4/x11 color name（**string**)
+- xkcd color name（**string**)  eg：'xkcd:gold'
+  - 上述两种实际上是对于颜色的一个命名
+  - [颜色差异对比or查表](https://matplotlib.org/3.2.1/_images/sphx_glr_colors_003.png)
+
+
+
+## colormap
+
+- colormap实际上是一个table（or array），大小为N*4（or N\*3)，也就是通过索引将数值映射为颜色
+
+- colormap要做的事是输入一个[0,1]的值，然后插值为索引，找到对应的颜色
+
+- **Listedcolormap对象**
+
+  - 创建listedcolormap
+
+    - `ListedColormap(list,name)`  name为colormap的名字，list中的元素为matolotlib中的颜色格式，自定义listcolormap，这样的colormap有`len(list)`种颜色
+
+    - `cm.get_cmap(name,len)`   matplotlib中内置的colormap，name为colormap的名字，将原colormap压缩为len长，比如原colormap的len为512，传入256，下采样为256长。
+
+    - 从已有的colormap中创建 
+
+      - ```python
+        cmap = cm.get_cmap('viridis',512)
+        # 实际上可以看作缩小了色彩的动态范围
+        new_cmap = ListedColormap(cmap(np.linspace(0.25,0.75,256)))
+        ```
+
+  - 操作listedcolormap
+
+    - 推荐通过numpy.array来操作
+
+    - ```python
+      (new_cmap(np.linspace(0,0.5,128)))   -->输出为list
+      ```
+
+- **linear segmented colormap对象**
+
+  - listedcolormap均匀地将一个[0,1]的数映射为index，linear segmented colormaps 非均匀映射
+
+  - 格式：
+
+    - ```
+                          x     y0   y1
+      cdict = {'red':   [(0.0,  0.0, 0.0),
+                         (0.5,  1.0, 0.5),
+                         (1.0,  1.0, 1.0)],
+      
+               'green': [(0.0,  0.0, 0.0),
+                         (0.25, 0.0, 0.5),
+                         (0.75, 1.0, 1.0),
+                         (1.0,  1.0, 1.0)],
+      
+               'blue':  [(0.0,  0.0, 0.0),
+                         (0.5,  0.0, 0.3),
+                         (1.0,  1.0, 1.0)]}
+      'red','green','blue'以及'alpha'(optional),也就对应着RGB or RGBA                   每一列的格式为(x,y0,y1),其中每个分量的x必须布满[0,1]，每个分量的值单独进行寻找
+      算法步骤：
+      	input z
+      	for channel in ['red','green','blue']:
+      		if x[i] < z < x[i+1]:
+      			channel = linearly interpolated between y1[i] and y0[i+1]
+      eg: if z = 0.4,则'red'分量映射到[0.0,1.0],'green'分量映射到[0.5,1.0],'blue'分量映射到[0.0,0.0]
+      ```
+
+  - 创建linear segmented colormap
+
+    - `LinearSegmentedColormap(name, segmentdata)` ，segmentdata也就是上述的cdict，必须要'red'，'green'，'blue'字段，可选'alpha'字段。
+
+    - `LinearSegmentedColormap.from_list(name,colors,N=256)` Make a linear segmented colormap with *name* from a sequence of *colors* which evenly transitions from colors[0] at val=0 to colors[-1] at val=1. *N* is the number of rgb quantization levels.
+
+    - ```python
+      LinearSegmentedColormap.from_list(['black','cyan','ivory'])
+      ```
+
+##  Normalize
+
+  - 从上面可以知道，colormap只接收[0,1]的值，小于0取0，大于1取1，那么如何取到更大的范围？  Normalize
+  - Normalize将[vmin,vmax]的值映射到[0,1]（归一化），之后colormap用这个[0,1]的值取得相应的颜色
+  - **LinearNormalize对象**
+    - $x^* = \frac{x-x_{min}}{x_{max}-x_{min}}$ 
+    - `colors.Normalize(vmin,vmax,clip=False)` ，若clip为True，则超出范围的取0或者1，取决于哪个距离更近
+  - **LogNormalize对象**
+    - $x^* = \frac{log(x)-log{x_{min}}}{log(x_{max})-log(x_{min})}$
+    - `colors.LogNorm(vmin,vmax,clip)`，默认采用$log_{10}$
+  - **BoundayNorm对象**
+    - `colors.BoundaryNorm(boundaris,ncolors)`  映射到[0，ncolors-1]
+  - **symmetric log对象**
+
+# Text
+
+![image-20200517150908662](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200517150908662.png)
 
 
 

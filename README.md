@@ -6,12 +6,12 @@
 
 笔记来源于网课学习
 
-- Part_1 主要内容为Linux的文件系统以及基础命令的讲解
-- Part_2 主要内容为Ubuntu下的命令以及与DL相关的一些命令
+- [Part_1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Linux/notes_base.md) 主要内容为Linux的文件系统以及基础命令的讲解
+- [Part_2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Linux/notes_deeplearning.md) 主要内容为Ubuntu下的命令以及与DL相关的一些命令
 
 ## Python
 
-### 网课学习
+### 基础
 
 - [网课链接](https://www.bilibili.com/video/BV1j7411e7MD)  [网课课件](https://book.apeland.cn/details/329/)
 
@@ -28,12 +28,15 @@
 
 - [Argparse](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/argparse.md)
 - [Pillow](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/Pillow.md)
-- [Matplotlib](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib.md)
+- Matplotlib：笔记来源于官方文档
+  - [基础部分](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib/matplotlib_base.md)，主要内容为matplotlib中的基本对象，Figure，Axes，Axis，Legend以及Text等。
 
 ## Docker
+
+- [Docker 基本概念以及基础命令](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Docker/notes.md)
 
 ## C++
 
 # Git
 
-- Git中基本概念以及基础命令
+- [Git中基本概念以及基础命令](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Git/notes.md)

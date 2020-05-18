@@ -16,7 +16,7 @@
 - 画图有两种方式
   - 创建figure对象和axes对象，进行面向对象的操作(prefer)
   - 直接使用`pyplot.plot`
-- ![](https://matplotlib.org/3.2.1/_images/anatomy.png)
+- ![matplotlib基本概念图示](https://matplotlib.org/3.2.1/_images/anatomy.png)
 - **matplotlib的两种模式**
   - 交互模式
     - `plt.ion()`  打开交互模式
@@ -32,16 +32,16 @@
   - 前端就是我们写的代码，后端就是负责显示图形的底层代码
   - **non-interactive backends**
     - 负责如何存储绘图文件，如png，pdf
-    - ![image-20200515151620251](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200515151620251.png)
+    - ![render list](http://image.haiyang1218.cn/images/matplotlib_render.png)
     - **vector graphics**   矢量图
     - **raster graphics**  栅格图，以像素进行渲染
   - **interactive backends**
     - 如何显示图形到屏幕
-    - ![image-20200515151633250](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200515151633250.png)
+    - ![backend list](http://image.haiyang1218.cn/images/matplotlib_backend.png)
 
 
 
-# Artist对象总览
+# Artist基本对象
 
 上述Artist对象是我们绘图时所重点关注的，分为两种
 
@@ -55,7 +55,7 @@
 
   - 所有的Primitives对象都有以下属性
 
-    - ![image-20200515184835931](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200515184835931.png)
+    - ![](http://image.haiyang1218.cn/images/matplotlib_artist_pro.png)
 
     - 这些属性一般是私有属性，不建议直接`object.__property`来修改，一般通过getter来查看，通过setter来设置
 
@@ -71,14 +71,14 @@
 
 - **总体来说matplotlib中基本对象存在着层级关系。**
 
-  ![matplotlib_object](F:\about study\07其他\Skill-Tree-Lights-Up\Python\matplotlib_object.png)
+  ![container object](http://image.haiyang1218.cn/images/matplotlib_container.png)
 
 ## Figure
 
 - **Top level container**
 - **更加focus的是用来存放Axes，通过Figure的help function来建立Axes或者删除Axes**
   - 一个Figure可以有多个Axes
-- ![image-20200515193504043](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200515193504043.png)
+- ![Figure attribute](http://image.haiyang1218.cn/images/matplotlib_figure_pro.png)
 - 背景是Rectangle对象
 
 ## Axes
@@ -89,23 +89,85 @@
 
 - 通常更关注的是通过helper function来创建Artist对象，之后通过该Artist对象来具体设置该对象的一些性质
 
-- ![image-20200515195056408](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200515195056408.png)
+- $$\begin{array}{lll}
+  \hline
+   \text { Helper method } & \text { Artist } & \text { Container } \\
+    \hline \text { ax.annotate - text annotations } & \text { Annotate } & \text { ax.texts } \\
+    \hline \text { ax.bar - bar charts } & \text { Rectangle } & \text { ax.patches } \\
+    \hline \text { ax.errorbar - error bar plots } & \text { Line2D and } & \text { ax.lines and ax.patches } \\
+    & \text { Rectangle } & \\
+    \hline \text { ax.fill - shared area } & \text { Polygon } & \text { ax.patches } \\
+    \hline \text { ax.hist - histograms } & \text { Rectangle } & \text { ax.patches } \\
+    \hline \text { ax.imshow - image data } & \text { Axesimage } & \text { ax.images } \\
+    \hline \text { ax.legend - axes legends } & \text { Legend } & \text { ax.legends } \\
+    \hline \text { ax.plot - xy plots } & \text { Line2D } & \text { ax.lines } \\
+    \text { ax.scatter - scatter charts } & \text { PolygonCollection } & \text { ax.collections } \\
+    \hline \text { ax.text - text } & \text { Text } & \text { ax.texts } \\
+    \hline
+    \end{array}$$
 
-- ![image-20200515195115410](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200515195115410.png)
+  
 
+- $$\begin{array}{ll}
+\hline
+  \text { Axes attribute } & \text { Description } \\
+  \hline \text { artists } & \text { A list of Artist instances } \\
+  \hline \text { patch } & \text { Rectangle instance for Axes background } \\
+  \hline \text { collections } & \text { A list of Collection instances } \\
+  \hline \text { images } & \text { A list of Axesimage } \\
+  \hline \text { legends } & \text { A list of Legend instances } \\
+  \hline \text { lines } & \text { A list of Line2D instances } \\
+  \hline \text { patches } & \text { A list of Patch instances } \\
+  \hline \text { texts } & \text { A list of Text instances } \\
+  \hline \text { xaxis } & \text { matplotlib.axis. XAxis instance } \\
+  \hline \text { yaxis } & \text { matplotilib.axis. YAxis instance } \\
+  \hline
+  \end{array}$$
+  
   
 
 ## Axis
 
 - 用来设置axis label，tick line，tick label，grid lines
-- ![image-20200515200953759](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200515200953759.png)
+
+- $$\begin{array}{ll}
+  \hline
+  \text { Accessor method } & \text { Description } \\
+  \hline \text { get_scale } & \text { The scale of the axis, e.g., "log' or "linear' } \\
+  \hline \text { get_view_interval } & \text { The interval instance of the axis view limits } \\
+  \hline \text { get_data_interval } & \text { The interval instance of the axis data limits } \\
+  \hline \text { get_gridlines } & \text { A list of grid lines for the Axis } \\
+  \hline \text { get_label } & \text { The axis label - a Text instance } \\
+  \hline \text { get_ticklabels } & \text { A list of Text instances - keyword minor=True|False } \\
+  \hline \text { get_ticklines } & \text { A list of Line2D instances - keyword minor=True|False } \\
+  \hline \text { get_ticklocs } & \text { A list of Tick locations - keyword minor=True|False } \\
+  \hline \text { get_major_locator } & \text { The matplotlib.ticker.Locator instance for major ticks } \\
+  \hline \text { get_major_formatter } & \text { The matplotlib.ticker.Formatter instance for major ticks } \\
+  \hline \text { get_minor_locator } & \text { The matplotlib.ticker.Locator instance for minor ticks } \\
+  \hline \text { get_minor_formatter } & \text { The matplotlib.ticker.Formatter instance for minor ticks } \\
+  \hline \text { get_major_ticks } & \text { A list of Tick instances for major ticks } \\
+  \hline \text { get_minor_ticks } & \text { A list of Tick instances for minor ticks } \\
+  \hline \text { grid } & \text { Turn the grid on or off for the major or minor ticks }\\
+  \hline
+  \end{array}$$
+
+  
 
 - 从上面看，可以看到一个层级关系，每一层都相当于为一层提供一个接口，用来返回相应的对象。
 
 ## Tick
 
 - 注意：axis只有xaxis和yaxis，但是tick是四条边都算在内的
-- ![image-20200515202014508](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200515202014508.png)
+- $$\begin{array}{ll}
+  \hline \text { Tick attribute } & \text { Description } \\
+  \hline \text { tick1line } & \text { Line2D instance } \\
+  \hline \text { tick2line } & \text { Line2D instance } \\
+  \hline \text { gridline } & \text { Line2D instance } \\
+  \hline \text { label1 } & \text { Text instance } \\
+  \hline \text { label2 } & \text { Text instance } \\
+  \hline
+  \end{array}$$
+- 
 - 这里的tick1line，tick2line以及label1，label2也就是每个axis对应的两条边
 
 ```python
@@ -136,7 +198,7 @@ plt.show()
 
 
 
-# Legend对象
+# Legend
 
 - 基本概念
 
@@ -156,7 +218,7 @@ plt.show()
 
 - **创建Legend对象的方法**
 
-  - `ax.legend()` 不传参数，会寻找axes中可以生成legend entry的所有handler（需要有label），并转为legend entry进行显示
+  - `axes.legend()` 不传参数，会寻找axes中可以生成legend entry的所有handler（需要有label），并转为legend entry进行显示
 
   - 指定要显示的handler，如上所示
 
@@ -279,7 +341,53 @@ plt.show()
 
     
 
-# Image
+# Transform
+
+- ![Transform](http://image.haiyang1218.cn/images/matplotlib_transform.png)
+
+- Transform实际上是一种坐标系的映射，将一个坐标系上的点映射到另一个坐标系（display)上。不论怎样，画图我们是要显示在屏幕上的，如何决定一个元素在屏幕上(display)的位置也就是transform要做的事。我们也可以把transform当作一个函数（实际上它们都是对象），比如`fig,transAxes`  ，`ax.transAxes.transform((0.5,0.5))->[328.  237.6]`，也就是输入本坐标系下点的坐标，返回其在'display'坐标系下的坐标，也就是最根本的坐标系（屏幕显示）是'display'坐标系，但是该坐标系我们通常不需要关注。
+
+- `xaxis`  我们都知道在二维坐标系下，表示一个点的位置用(x,y)来表示。对于`ax.get_xaxis_transform()`来说，x对应着`ax.transData`，而y对应着`ax.transAxes`。`yaxis`相反。
+
+  - ```python
+    from matplotlib import transforms
+    fig,ax = plt.subplots(1,1)
+    x = np.random.randn(1000)
+    ax.hist(x, 30)
+    # x=1,width=1，y=0.height=1
+    rect = mpatches.Rectangle((1, 0), width=1, height=1,
+                             transform=ax.get_xaxis_transform(), color='yellow',
+                             alpha=0.5)
+    
+    ax.add_patch(rect)
+    ```
+
+  - ![image-20200518152331916](https://matplotlib.org/3.2.1/_images/sphx_glr_transforms_tutorial_005.png)
+
+- 一种transform pipeline
+
+  - `transofrm_a+transform.ScaledTranslation(x_offset,y_offfset,transoform_b)` 
+
+  - 首先在transform_a中绘制相应元素，之后根据x_offset 与 y_offset在transoform_b中进行偏移
+
+  - ```python
+    xdata, ydata = (0.2, 0.7), (0.5, 0.5)
+    ax.plot(xdata, ydata, "o")
+    ax.set_xlim((0, 1))
+    
+    trans = (fig.dpi_scale_trans +
+             transforms.ScaledTranslation(0.2, 0.5, ax.transData))
+    
+    # 首先在dpi_scale_trans中绘制一个圆心位于(0,0)，150*130 points大小的圆，之后将该圆平移到ax.transData下(0.2,0.5)圆心的位置  --》(0+0.2,0+0.5)=(0.2,0.5)
+    circle = mpatches.Ellipse((0, 0), 150/72, 130/72, angle=40,
+                              fill=None, transform=trans)
+    ax.add_patch(circle)
+    plt.show()
+    ```
+
+    
+
+
 
 # Color
 
@@ -380,9 +488,89 @@ plt.show()
 
 # Text
 
-![image-20200517150908662](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200517150908662.png)
+![Text 总览](http://image.haiyang1218.cn/images/matplotlib_text.png)
 
+ 
 
+## Text的属性
+
+- | font 属性   | 可用参数                                                     |
+  | ----------- | ------------------------------------------------------------ |
+  | fontsize    | { 'xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large' }或者数字（整数大于0） |
+  | fontstyle   | {'normal', 'italic' , 'oblique'} 正常or斜体                  |
+  | fontfamily  | ['serif', 'sans-serif', 'cursive', 'fantasy', 'monospace']，一个列表，[参考释义](https://baike.baidu.com/item/font-family/7529050?fr=aladdin) |
+  | fontweight  | {'ultralight', 'light', 'normal', 'regular', 'book', 'medium', 'roman', 'semibold', 'demibold', 'demi', 'bold', 'heavy', 'extra bold', 'black'}或者大于的整数 |
+  | fontvariant | {'normal','small-caps'}，'small-caps'所有字母为大写字母，'normal'设置首字母大写 |
+
+  - **注意：设置字体的familt或者name时，需要先将字体添加到rcParams中**
+
+  - ![Font](http://image.haiyang1218.cn/images/matplotlib_font.png)
+
+  - ```python
+    matplotlib.rcParams['font.family'].append('serif')
+    ```
+
+  - 上述字体属性同样可以通过 **FontProperties** 来完成，[fontproperites](https://matplotlib.org/3.2.1/api/font_manager_api.html#matplotlib.font_manager.FontProperties)
+
+- | location 属性       | 含义                                                         |
+  | ------------------- | ------------------------------------------------------------ |
+  | x，y                | float 标记boundingbox的位置（在axes中的位置）                |
+  | verticalalignment   | {'center','top','bottom','baeline'}，标记text与boundingbox竖直对齐方式 |
+  | horizontalalignment | {'center','right','left'}，标记text与boundingbox水平对齐方式 |
+  | multialignment      | {'left','right','center'}，标记text各行的对齐方式            |
+  | rotation            | {'vertical','horizontal'}或者旋转角度                        |
+
+- | 其他  | 含义                                   |
+  | ----- | -------------------------------------- |
+  | text  | string                                 |
+  | color | 符合color格式要求的任意string 或者其他 |
+
+- `text(x,y,str,*kwargs)`可以在axes的任何地方加上text，kwargs接收任意text的属性
+
+## xlabel/ylabel
+
+- `axes.set_xlabel(string,**kwargs)`   `axes.set_ylabel(string,**kwargs)`
+
+- 可以接收上述text中的任何属性（以关键字参数的形式传入）,但是注意一些属性不会按照你想要的方式奏效
+
+- `labelpad`  label特有的关键字参数，改变label到axis的距离
+
+- ```
+  axes.set_xlabel('time',color='b',)
+  ```
+
+## Titles
+
+- `axes.set_title(string,**kwargs)`  
+- 可选的关键字参数
+  - `loc`  ['center','left','right']，[loc参考](https://matplotlib.org/3.2.1/_images/sphx_glr_text_intro_008.png)
+  - `pad` 大于0的整数，改变title到axis的距离
+
+## Tick
+
+-  一些基本概念：
+  - Tick locator：tick label的内容
+  - Tick formatter：tick label(str)的格式
+  - 也就是说formatter 将locator的内容按照定义的格式进行显示
+  - Tick  有major tick和 minor tick
+  - nbins ：axes显示多少个间隔，相邻两Tick间为一个bin
+-  **Tick locator**
+   -  FixedLocator  `FixedLocator(locs,nbins=None) `  ，locs为array格式/list格式	
+      - axis上的major tick是一个list，每个元素也就是一个tick，但是不一定会将这些tick都显示出来，若nbins为None，则会选择适合的tick进行显示，比如前6个tick已经包含了要显示的内容，那么就只会显示前6个tick
+   -  MaxNLocator   `MaxNLocator(nbins='auto',steps=[1,2,2.5,5,10])`  
+      - nbins='auto'，会根据axis的长度与绘图的元素自动选择合适步长，nbins指定时，通过steps选择步长，步长的值为steps中元素的$10^n$倍
+   -  设置Locator
+      -    `axis.set_major_locator(locator)` 
+      -  `axis.set_ticks(array/list)` array中所有的元素（tick）都强制显示
+-  **Tick formatter**
+   - `matplotlib.ticker.StrMethodFormatter({x:...})`  str.format的格式化用法相似，注意必须有**x**
+   - `matplotlib.ticker.FormatStrFormatter(str)`  与`%`格式化用法相似
+   -  设置Formatter
+      - `axis.set_major_formatter(formatter)`
+
+## annotations
+
+- annotations与text方法不同，会多一个箭头，用以指向要标记的地方
 
 # 参考
 

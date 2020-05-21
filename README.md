@@ -47,5 +47,5 @@
 
 笔记来源于选修课程
 
-- [lecture 0 ](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating System/lecture_0.md)：主要内容为操作系统的概念，功能，目标以及发展
-- [lecture 1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating System/lecture_1.md)：主要内容为进程
+- [lecture_0](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating System/lecture_0.md)：主要内容为操作系统的概念，功能，目标以及发展
+- [lecture_1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating System/lecture_1.md)：主要内容为进程

@@ -57,7 +57,7 @@
 - **两状态进程模型**
   - 运行状态（running）：使用处理器
   - 非运行状态（not running）：不使用处理器
-  - ![两](F:\about study\06大三下\操作系统\notes\两.png)
+  - ![两状态模型](http://image.haiyang1218.cn/images/os_twostatus.png)
 - **五状态进程模型**
   - New：申请资源，也就是申请主存空间用于存放进程
   - Ready：进程已经创建好，分配到相应的空间，分配到处理器即可运行
@@ -65,7 +65,7 @@
   - Blocked：由于I/O请求等事件，需要等待事件的响应才可以执行下一步
   - Exit：进程结束
   - *注：只有进程从Running到Blocked这一步是程序可以控制的，其余都是操作系统在控制*
-  - ![五状态模型](F:\about study\06大三下\操作系统\notes\五状态模型.png)
+  - ![五状态模型](http://image.haiyang1218.cn/images/os_fivestatus.png)
   - **可以引申为队列**
     - Ready Queue：所有处于Ready状态的进程组成Ready Queue，由操作系统通过调度算法选择一个进程转为Running
     - Blocked Queue：所有处于Blocked状态的进程组成Blocked Queue
@@ -79,7 +79,7 @@
     - 就绪挂起
   - 唤醒：将进程从外存移动到主存
     - 优先唤醒就绪挂起
-  - ![七状态模型](F:\about study\06大三下\操作系统\notes\七状态模型.png)
+  - ![七状态模型](http://image.haiyang1218.cn/images/os_sevenstatus.png)
 
 
 

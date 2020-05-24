@@ -50,4 +50,7 @@
 - [lecture 0](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating_System/lecture_0.md)：主要内容为操作系统的概念，功能，目标以及发展
 - [lecture_1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating_System/lecture_1.md)：主要内容为进程的概念，状态转换
 - [lecture  2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating_System/lecture_2.md)：主要内容为线程的概念与分类（较浅）
-- [lecture  3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating_System/lecture_3.md)：主要内容为并发，进程的互斥等
+- [lecture  3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating_System/lecture_3.md)：主要内容为并发，进程的互斥
+- [lecture  4](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating_System/lecture_4.md)：主要内容为死锁
+- [lecture  5](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating_System/lecture_5.md)：主要内容为内存管理，分页，分区，分段
+- [lecture  6](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating_System/lecture_6.md)：主要内容为虚拟内存

@@ -89,85 +89,68 @@
 
 - 通常更关注的是通过helper function来创建Artist对象，之后通过该Artist对象来具体设置该对象的一些性质
 
-- $$\begin{array}{lll}
-  \hline
-   \text { Helper method } & \text { Artist } & \text { Container } \\
-    \hline \text { ax.annotate - text annotations } & \text { Annotate } & \text { ax.texts } \\
-    \hline \text { ax.bar - bar charts } & \text { Rectangle } & \text { ax.patches } \\
-    \hline \text { ax.errorbar - error bar plots } & \text { Line2D and } & \text { ax.lines and ax.patches } \\
-    & \text { Rectangle } & \\
-    \hline \text { ax.fill - shared area } & \text { Polygon } & \text { ax.patches } \\
-    \hline \text { ax.hist - histograms } & \text { Rectangle } & \text { ax.patches } \\
-    \hline \text { ax.imshow - image data } & \text { Axesimage } & \text { ax.images } \\
-    \hline \text { ax.legend - axes legends } & \text { Legend } & \text { ax.legends } \\
-    \hline \text { ax.plot - xy plots } & \text { Line2D } & \text { ax.lines } \\
-    \text { ax.scatter - scatter charts } & \text { PolygonCollection } & \text { ax.collections } \\
-    \hline \text { ax.text - text } & \text { Text } & \text { ax.texts } \\
-    \hline
-    \end{array}$$
+- | Helper method                    | Artist               | Container                 |
+  | -------------------------------- | -------------------- | ------------------------- |
+  | ax\.annotate \- text annotations | Annotate             | ax\.texts                 |
+  | ax\.bar \- bar charts            | Rectangle            | ax\.patches               |
+  | ax\.errorbar\-error bar plots    | Line2D and Rectangle | ax\.lines and ax\.patches |
+  | ax\.fill \- shared area          | Polygon              | ax\.patches               |
+  | ax\.hist \- histograms           | Rectangle            | ax\.patches               |
+  | ax\.imshow \- image data         | Axesimage            | ax\.images                |
+  | ax\.legend \- axes legends       | Legend               | ax\.legends               |
+  | ax\.plot \- xy plots             | Line2D               | ax\.lines                 |
+  | ax\.scatter \- scatter charts    | PolygonCollection    | ax\.collections           |
+  | ax\.text \- text                 | Text                 | ax\.texts                 |
 
-  
-
-- $$\begin{array}{ll}
-\hline
-  \text { Axes attribute } & \text { Description } \\
-  \hline \text { artists } & \text { A list of Artist instances } \\
-  \hline \text { patch } & \text { Rectangle instance for Axes background } \\
-  \hline \text { collections } & \text { A list of Collection instances } \\
-  \hline \text { images } & \text { A list of Axesimage } \\
-  \hline \text { legends } & \text { A list of Legend instances } \\
-  \hline \text { lines } & \text { A list of Line2D instances } \\
-  \hline \text { patches } & \text { A list of Patch instances } \\
-  \hline \text { texts } & \text { A list of Text instances } \\
-  \hline \text { xaxis } & \text { matplotlib.axis. XAxis instance } \\
-  \hline \text { yaxis } & \text { matplotilib.axis. YAxis instance } \\
-  \hline
-  \end{array}$$
-  
-  
+- | Axes attribute | Description                            |
+  | -------------- | -------------------------------------- |
+  | artists        | A list of Artist instances             |
+  | patch          | Rectangle instance for Axes background |
+  | collections    | A list of Collection instances         |
+  | images         | A list of Axesimage                    |
+  | legends        | A list of Legend instances             |
+  | lines          | A list of Line2D instances             |
+  | patches        | A list of Patch instances              |
+  | texts          | A list of Text instances               |
+  | xaxis          | matplotlib\.axis\. XAxis instance      |
+  | yaxis          | matplotilib\.axis\. YAxis instance     |
 
 ## Axis
 
 - 用来设置axis label，tick line，tick label，grid lines
 
-- $$\begin{array}{ll}
-  \hline
-  \text { Accessor method } & \text { Description } \\
-  \hline \text { get_scale } & \text { The scale of the axis, e.g., "log' or "linear' } \\
-  \hline \text { get_view_interval } & \text { The interval instance of the axis view limits } \\
-  \hline \text { get_data_interval } & \text { The interval instance of the axis data limits } \\
-  \hline \text { get_gridlines } & \text { A list of grid lines for the Axis } \\
-  \hline \text { get_label } & \text { The axis label - a Text instance } \\
-  \hline \text { get_ticklabels } & \text { A list of Text instances - keyword minor=True|False } \\
-  \hline \text { get_ticklines } & \text { A list of Line2D instances - keyword minor=True|False } \\
-  \hline \text { get_ticklocs } & \text { A list of Tick locations - keyword minor=True|False } \\
-  \hline \text { get_major_locator } & \text { The matplotlib.ticker.Locator instance for major ticks } \\
-  \hline \text { get_major_formatter } & \text { The matplotlib.ticker.Formatter instance for major ticks } \\
-  \hline \text { get_minor_locator } & \text { The matplotlib.ticker.Locator instance for minor ticks } \\
-  \hline \text { get_minor_formatter } & \text { The matplotlib.ticker.Formatter instance for minor ticks } \\
-  \hline \text { get_major_ticks } & \text { A list of Tick instances for major ticks } \\
-  \hline \text { get_minor_ticks } & \text { A list of Tick instances for minor ticks } \\
-  \hline \text { grid } & \text { Turn the grid on or off for the major or minor ticks }\\
-  \hline
-  \end{array}$$
-
-  
+- | Accessor method       | Description                                                |
+  | --------------------- | ---------------------------------------------------------- |
+  | get\_scale            | The scale of the axis, e\.g\., "log' or "linear'           |
+  | get\_view\_interval   | The interval instance of the axis view limits              |
+  | get\_data interval    | The interval instance of the axis data limits              |
+  | get\_gridlines        | A list of grid lines for the Axis                          |
+  | get\_label            | The axis label \- a Text instance                          |
+  | get\_ticklabels       | A list of Text instances \- keyword minor=True\|False      |
+  | get\_ticklines        | A list of Line2D instances \- keyword minor=True\|False    |
+  | get\_ticklocs         | A list of Tick locations \- keyword minor=True\|False      |
+  | get\_major\_locator   | The matplotlib\.ticker\.Locator instance for major ticks   |
+  | get\_major\_formatter | The matplotlib\.ticker\.Formatter instance for major ticks |
+  | get\_minor\_locator   | The matplotlib\.ticker\.Locator instance for minor ticks   |
+  | get\_minor\_formatter | The matplotlib\.ticker\.Formatter instance for minor ticks |
+  | get\_major\_ticks     | A list of Tick instances for major ticks                   |
+  | get\_minor\_ticks     | A list of Tick instances for minor ticks                   |
+  | grid                  | Turn the grid on or off for the major or minor ticks       |
 
 - 从上面看，可以看到一个层级关系，每一层都相当于为一层提供一个接口，用来返回相应的对象。
 
 ## Tick
 
 - 注意：axis只有xaxis和yaxis，但是tick是四条边都算在内的
-- $$\begin{array}{ll}
-  \hline \text { Tick attribute } & \text { Description } \\
-  \hline \text { tick1line } & \text { Line2D instance } \\
-  \hline \text { tick2line } & \text { Line2D instance } \\
-  \hline \text { gridline } & \text { Line2D instance } \\
-  \hline \text { label1 } & \text { Text instance } \\
-  \hline \text { label2 } & \text { Text instance } \\
-  \hline
-  \end{array}$$
-- 
+
+- | Tick attribute | Description     |
+  | -------------- | --------------- |
+  | tick1line      | Line2D instance |
+  | tick2line      | Line2D instance |
+  | gridline       | Line2D instance |
+  | label1         | Text instance   |
+  | label2         | Text instance   |
+
 - 这里的tick1line，tick2line以及label1，label2也就是每个axis对应的两条边
 
 ```python

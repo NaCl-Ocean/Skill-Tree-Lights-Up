@@ -109,7 +109,7 @@
     2. 若没有找到U=0,M=0的页，则再查找U=0,M=1的页，如果找到，则将该页作为替换页
     3. 若没有找到U=0,M=1的页，则表明当前循环队列中的页都被使用，则将循环队列中所有的U标记由1改为0。
     4. 指针回到初始位置，重复步骤1~3
-- <img src="C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200525085541019.png" alt="image-20200525085541019" style="zoom:80%;" />
+- <img src="C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200525085541019.png" alt="image-20200525085541019" style="zoom: 60%;" />
 
 ## 驻留集管理：管理分配给一个进程的主存容量大小（页的多少）
 

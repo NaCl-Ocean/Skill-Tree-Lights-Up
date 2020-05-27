@@ -12,7 +12,7 @@
   - medium-term scheduler : selects which process should be **brought into the ready queue**
   - long-term scheduler : **removes processes from memory** (and from active contention for the CPU)
 
-  - <img src="C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200525113432224.png" alt="image-20200525113432224" style="zoom:50%;" />    
+  - <img src="http://image.haiyang1218.cn/images/os_schdeule_1.png" style="zoom:50%;" />    
 
 
 
@@ -61,7 +61,7 @@
   - 轮转策略中的就绪队列分为就绪队列和附加就绪队列
   - 附加就绪队列的优先级高于就绪队列
   - 附加就绪队列进程的执行时间时该进程上次时间片的剩余时间
-- ![image-20200525145551778](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200525145551778.png)
+- ![](http://image.haiyang1218.cn/images/os_schedule_2.png)
 
 
 
@@ -113,7 +113,7 @@
   - 设置了多个不同优先级的就绪队列，并赋予各个队列大小不同的时间片，使优先级越高的时间片越小。
   - **新就绪的进程总是进入最高优先级队列的队尾**，并按 FCFS 原则等待调度；**当轮到该进程执行时，若它能在规定的时间片内完成，便可准备撤离系统，否则将他转入第二级队列末尾，再同样按 FCFS 原则等待调度；如果它在第二级队列上运行一个时间片后仍未完成，再依次将它转入第三级队列**，……，如此下去，当一个长作业从第一级队列降到最后一级队列时，便在该队列（最后一级队列）中采取 RR （轮转）算法运行。
   - **系统总是调度第一级队列中的进程执行，仅当第一级队列空时，才调度第二级上队列上的进程执行。**以此类推，仅当第 1~（i - 1）级队列空时，才调度第 i 级队列上的程序执行。
-- <img src="C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200525155237332.png" alt="image-20200525155237332" style="zoom:67%;" />
+- ![](http://image.haiyang1218.cn/images/os_schedule_3.png)
 
 
 

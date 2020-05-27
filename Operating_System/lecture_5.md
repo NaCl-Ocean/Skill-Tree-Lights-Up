@@ -41,8 +41,7 @@
 - OS为每个进程维护一个页表
 - 有效减少内部碎片：帧和页的大小都很小
 - 有效减少外部碎片：采用类似于固定分区的方式，没有外部碎片
-- <img src="F:\about study\07其他\Skill-Tree-Lights-Up\Operating_System\分页.png" alt="分页" style="zoom:22%;" />
-
+- <img src="F:\about study\07其他\Skill-Tree-Lights-Up\Operating_System\分页.png" alt="分页" style="zoom: 30%;" >
 - 分页的逻辑地址
   - **\[页号\][偏移量\]** 
   - 偏移量指在页内的偏移量

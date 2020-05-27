@@ -129,7 +129,7 @@
   - 条件变量 condition
     - `cwait(c)`：将调用wait操作的进程**阻塞**在该条件变量对应的队列里
     - `csignal(c)`：从该条件变量对应的队列里**释放一个阻塞进程**
-- <img src="C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200524084613193.png" alt="image-20200524084613193" style="zoom:50%;" />
+- <img src="http://image.haiyang1218.cn/images/os_monitor.png" style="zoom:50%;" />
   - 紧急队列：执行`csignal(cn)`操作后，从`condiction cn` 队列中取出一个阻塞进程转为就绪态存放于紧急队列中
     - 之后根据调度算法决定紧急队列中的进程使用管程还是正在使用管程的进程继续使用管程
     - 紧急队列的优先级更高
@@ -269,8 +269,5 @@
   }
   ```
 
-- ```
   
-  ```
-
   

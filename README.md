@@ -2,13 +2,6 @@
 
 本仓库主要内容为Deep learning相关的技能树学习记录。
 
-## Linux
-
-笔记来源于网课学习
-
-- [Part_1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Linux/notes_base.md) 主要内容为Linux的文件系统以及基础命令的讲解
-- [Part_2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Linux/notes_deeplearning.md) 主要内容为Ubuntu下的命令以及与DL相关的一些命令
-
 ## Python
 
 ### 基础
@@ -41,8 +34,6 @@
 
 - [Git中基本概念以及基础命令](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Git/notes.md)
 
-
-
 ## 操作系统
 
 ### 操作系统基础
@@ -68,4 +59,4 @@
 - [lecture 1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating_System/Linux/notes_theory.md) ：主要内容为Linux的介绍
 
 - [lecture 2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating_System/Linux/notes_base.md) ：主要内容为Linux中的基础命令
-- [lecture 3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Linux/notes_deeplearning.md) ：主要内容为Ubuntu下的命令以及与DL相关的一些命令
+- [lecture 3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating_System/Linux/notes_deeplearning.md) ：主要内容为Ubuntu下的命令以及与DL相关的一些命令

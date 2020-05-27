@@ -1,26 +1,3 @@
-# linux 基础
-
-- **linux 文件目录**
-
-  - 只有一个根目录，根目录下存在不同的目录，不存在windows下的c盘，D盘等分区。
-
-  - 级层式的树状目录结构，最上层的是根目录，同时各目录存放的内容都是具体含义的。
-
-  - **Linux世界里，一切皆为文件**
-
-    ![img](https://www.runoob.com/wp-content/uploads/2014/06/003vPl7Rty6E8kZRlAEdc690.jpg)
-
-    
-
-- shell terminal的区别
-
-  - shell 负责与kernel（也就是linux内核）交互，terminal 接收用户的输入，交给shell，shell解析后交给系统内核，执行结果返回给terminal，terminal显示结果。
-
-- 远程操控
-
-  - x shell   ssh 协议，linux机器开启sshd服务，默认端口22，主机地址为ifconfig命令输出的ip 地址。
-  - Xftp 传输文件
-
 # vi vim 使用
 
 - vi 文本编辑器  vim  程序编辑
@@ -220,7 +197,7 @@
   
 - 权限基本介绍
 
-  - 文件类型：- 普通文件，d：目录，l：软链接，c：字符设备[键盘，鼠标]，b：块文件
+  - 文件类型：- 普通文件，d：目录，l：软链接，c：字符设备[键盘，鼠标]，b：块设备
 - ls -l 显示内容解读：`-rwxrw-r-- 1 root root 1213 Feb 2 09:39 abc`
 
 | 位数 |                          含义                           |

@@ -12,7 +12,7 @@
 - Artist
   - 所有可以在axes上画的都是Artist，比如line，point，text等，实际上figure，axes也是Artist对象，但是比较特殊，单列出来
 
-- 输入最好的`numpy.array`
+- 输入最好为`numpy.array`
 - 画图有两种方式
   - 创建figure对象和axes对象，进行面向对象的操作(prefer)
   - 直接使用`pyplot.plot`
@@ -211,7 +211,7 @@ plt.show()
 
     - 根据handler创建legend entry实际上是将handler映射为对应的handlerbase对象。
 
-    - 那么也就引申出了handler map，可以将某个handler映射为某个handlerbase对象，也可以将某一类handler映射为某个handlerbase对象，映射为的handlerbase对象继承到handler的属性
+    - 那么也就引申出了handler map，可以将某个handler map 为某个handlerbase对象，也可以将某一类handler map 为某个handlerbase对象，映射为的handlerbase对象继承到handler的属性
 
     - ```python
       from matplotlib.legend_handler import HandlerLine2D
@@ -328,7 +328,7 @@ plt.show()
 
 - ![Transform](http://image.haiyang1218.cn/images/matplotlib_transform.png)
 
-- Transform实际上是一种坐标系的映射，将一个坐标系上的点映射到另一个坐标系（display)上。不论怎样，画图我们是要显示在屏幕上的，如何决定一个元素在屏幕上(display)的位置也就是transform要做的事。我们也可以把transform当作一个函数（实际上它们都是对象），比如`fig,transAxes`  ，`ax.transAxes.transform((0.5,0.5))->[328.  237.6]`，也就是输入本坐标系下点的坐标，返回其在'display'坐标系下的坐标，也就是最根本的坐标系（屏幕显示）是'display'坐标系，但是该坐标系我们通常不需要关注。
+- Transform实际上是一种坐标系的映射，将一个坐标系上的点映射到另一个坐标系（display)上。不论怎样，画图我们是要显示在屏幕上的，如何决定一个元素在屏幕上(display)的位置也就是transform要做的事。我们也可以把transform当作一个函数（实际上它们都是对象），比如`fig,transAxes`  ，`ax.transAxes.transform((0.5,0.5))->[328.  237.6]`，也就是输入本坐标系下点的坐标，返回其在'display'坐标系下的坐标，也就是最根本的坐标系。（屏幕显示）是'display'坐标系，但是该坐标系我们通常不需要关注。
 
 - `xaxis`  我们都知道在二维坐标系下，表示一个点的位置用(x,y)来表示。对于`ax.get_xaxis_transform()`来说，x对应着`ax.transData`，而y对应着`ax.transAxes`。`yaxis`相反。
 
@@ -423,7 +423,7 @@ plt.show()
   - 格式：
 
     - ```
-                          x     y0   y1
+                                          x     y0   y1
       cdict = {'red':   [(0.0,  0.0, 0.0),
                          (0.5,  1.0, 0.5),
                          (1.0,  1.0, 1.0)],
@@ -436,7 +436,8 @@ plt.show()
                'blue':  [(0.0,  0.0, 0.0),
                          (0.5,  0.0, 0.3),
                          (1.0,  1.0, 1.0)]}
-      'red','green','blue'以及'alpha'(optional),也就对应着RGB or RGBA                   每一列的格式为(x,y0,y1),其中每个分量的x必须布满[0,1]，每个分量的值单独进行寻找
+      'red','green','blue'以及'alpha'(optional),也就对应着RGB or RGBA                   
+      每一列的格式为(x,y0,y1),其中每个分量的x必须布满[0,1]，每个分量的值单独进行寻找
       算法步骤：
       	input z
       	for channel in ['red','green','blue']:
@@ -444,20 +445,23 @@ plt.show()
       			channel = linearly interpolated between y1[i] and y0[i+1]
       eg: if z = 0.4,则'red'分量映射到[0.0,1.0],'green'分量映射到[0.5,1.0],'blue'分量映射到[0.0,0.0]
       ```
-
-  - 创建linear segmented colormap
-
-    - `LinearSegmentedColormap(name, segmentdata)` ，segmentdata也就是上述的cdict，必须要'red'，'green'，'blue'字段，可选'alpha'字段。
-
-    - `LinearSegmentedColormap.from_list(name,colors,N=256)` Make a linear segmented colormap with *name* from a sequence of *colors* which evenly transitions from colors[0] at val=0 to colors[-1] at val=1. *N* is the number of rgb quantization levels.
-
-    - ```python
-      LinearSegmentedColormap.from_list(['black','cyan','ivory'])
-      ```
+    ```
+    
+    ```
+  
+- 创建linear segmented colormap
+  
+  - `LinearSegmentedColormap(name, segmentdata)` ，segmentdata也就是上述的cdict，必须要'red'，'green'，'blue'字段，可选'alpha'字段。
+  
+  - `LinearSegmentedColormap.from_list(name,colors,N=256)` Make a linear segmented colormap with *name* from a sequence of *colors* which evenly transitions from colors[0] at val=0 to colors[-1] at val=1. *N* is the number of rgb quantization levels.
+  
+      - ```
+        LinearSegmentedColormap.from_list(['black','cyan','ivory'])
+        ```
 
 ##  Normalize
 
-  - 从上面可以知道，colormap只接收[0,1]的值，小于0取0，大于1取1，那么如何取到更大的范围？  Normalize
+  - 从上面可以知道，colormap只接收[0,1]的值，小于0取0，大于1取1，那么如何取到更大的范围？----》  **Normalize**
   - Normalize将[vmin,vmax]的值映射到[0,1]（归一化），之后colormap用这个[0,1]的值取得相应的颜色
   - **LinearNormalize对象**
     - $x^* = \frac{x-x_{min}}{x_{max}-x_{min}}$ 
@@ -514,12 +518,12 @@ plt.show()
 
 - `axes.set_xlabel(string,**kwargs)`   `axes.set_ylabel(string,**kwargs)`
 
-- 可以接收上述text中的任何属性（以关键字参数的形式传入）,但是注意一些属性不会按照你想要的方式奏效
+- 可以接收上述text中的任何属性（以关键字参数的形式传入）,但是注意一些属性可能不会按照你想要的方式奏效
 
-- `labelpad`  label特有的关键字参数，改变label到axis的距离
+- `labelpad`  label特有的关键字参数，改变label到axis的距离，整数，以1/72为单位（72ppi）
 
 - ```
-  axes.set_xlabel('time',color='b',)
+  axes.set_xlabel('time',color='b',labelpad=0.1)
   ```
 
 ## Titles
@@ -536,7 +540,7 @@ plt.show()
   - Tick formatter：tick label(str)的格式
   - 也就是说formatter 将locator的内容按照定义的格式进行显示
   - Tick  有major tick和 minor tick
-  - nbins ：axes显示多少个间隔，相邻两Tick间为一个bin
+  - nbins ：axis显示多少个间隔，相邻两Tick间为一个bin
 -  **Tick locator**
    -  FixedLocator  `FixedLocator(locs,nbins=None) `  ，locs为array格式/list格式	
       - axis上的major tick是一个list，每个元素也就是一个tick，但是不一定会将这些tick都显示出来，若nbins为None，则会选择适合的tick进行显示，比如前6个tick已经包含了要显示的内容，那么就只会显示前6个tick
@@ -544,9 +548,10 @@ plt.show()
       - nbins='auto'，会根据axis的长度与绘图的元素自动选择合适步长，nbins指定时，通过steps选择步长，步长的值为steps中元素的$10^n$倍
    -  设置Locator
       -    `axis.set_major_locator(locator)` 
-      -  `axis.set_ticks(array/list)` array中所有的元素（tick）都强制显示
+      -  `axis.set_ticks(array or list)` array中所有的元素（tick）都强制显示
 -  **Tick formatter**
    - `matplotlib.ticker.StrMethodFormatter({x:...})`  str.format的格式化用法相似，注意必须有**x**
+     - [format格式化](https://www.runoob.com/python/att-string-format.html)
    - `matplotlib.ticker.FormatStrFormatter(str)`  与`%`格式化用法相似
    -  设置Formatter
       - `axis.set_major_formatter(formatter)`

@@ -23,6 +23,8 @@
 - 反转（逆序）
   - `list.reverse()`：直接在原对象上进行反转，不同于切片创造了一个新的列表副本
 - `range(start,stop,step)`：创建整数列表，start默认为0，stop需指定，step默认为1
+- 列表拼接：`+`
+- 列表重复：`*`
 
 # array
 

@@ -127,7 +127,7 @@
 
   - arg也就是传入的参数，可以有多个参数
   - code也就是具体的运算，运算的结果即为return，也就是只能return一个值
-  - 这也就决定了运算不能太复杂，**可以写的最复杂运算是三元运算**
+  - 这也就决定了运算不能太复杂，**可以写的最复杂运算是三元运算或者列表生成式**
 
 - 调用：与正常函数调用没有区别，同样是传入参数，return结果
 
@@ -323,10 +323,47 @@ half_search(a,9)
 # 迭代器
 
 - **可迭代对象（Iterable)**
-  - 可以利用`for`循环的对象
+  - 可以利用`for`循环的对象，实际上在for循环时，隐式调用了`__iter__`方法，返回一个迭代器
+  
+    - ```python
+      a = [1,2,3]
+      for i in a:  ===> for i in iter(a)
+      ```
+  
+    - 通过for循环对一个可迭代对象进行迭代时，for循环内部机制会自动通过调用iter()方法执行可迭代对象内部定义的__iter__()方法来获取一个迭代器，然后一次又一次得迭代过程中通过调用next()方法执行迭代器内部定义的__next__()方法获取下一个元素，在抛出StopIteration之前停止循环
+  
   - 提供了`__iter__` 方法或者`__getitem__`方法的对象都是可迭代对象
+  
+    - `__iter__`返回一个实现了`__next__`方法的对象，可以是本身
+  
+    - ```python
+      class A(object):
+          def __init__(self,num):
+              self.num = num
+              self.start_num = -1
+      
+          def __iter__(self):
+              return self
+      
+          def __next__(self):
+              self.start_num += 1
+              if self.start_num > self.num:
+                  raise StopIteration
+              return  self.start_num
+      
+      a = A(10)
+      b = iter(a)
+      next(b)
+      # 实际上，直接iter(a)也可以
+      ```
+  
+      
+  
 - **迭代器（Iterator)**
   - 可以调用next方法
   - Iterator都是Iterbale
   - 实现了`__iter__`和`__next__`都是迭代器
+  
 - `iter(Iterable)`   将Iterable转换为Iterator
+
+  - 实际上调用了`__iter__`方法

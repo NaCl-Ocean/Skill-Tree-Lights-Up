@@ -84,7 +84,7 @@
   
 - 图像保存
   
-- `image_obj.save(file_path,format)`    format为'jpg'，'png'等
+  - `image_obj.save(file_path,format)`    format为'jpg'，'png'等
   
 - **图像处理**
 
@@ -127,6 +127,10 @@
   
   - `Image_obj.getdata(band=None)` 以sequence的形式返回每个像素点的像素值，默认返回所有的通道。
   - `Image_obj.getpixel(xy)` 返回坐标为(x,y)出像素点的像素值
+
+- **mode转换**
+  - `Image.convert(mode)` 
+    - RGB - > Gray $L = R * 0.299 + G * 0.587 + B * 0.114$
 
 
 

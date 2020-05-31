@@ -23,11 +23,15 @@
 - [Pillow](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/Pillow.md)
 - Matplotlib：笔记来源于官方文档
   - [基础部分](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib/matplotlib_base.md)，主要内容为matplotlib中的基本对象，Figure，Axes，Axis，Legend以及Text等。
-- Pytorch：笔记来源于官方文档
-  - [lecture 0](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_0.md)：张量的概念，创建，操作(切分，合并)
-  - [lecture 1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_1.md)：计算图的概念与autograd
-  - [lecture 2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_2.md)：读取数据，Dataset与Dataloader
-  - [lecture 3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_3.md)：搭建模型，`torch.nn.Module`
+
+## Pytorch
+
+笔记来源于官方文档
+
+- [lecture 0](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_0.md)：张量的概念，创建，操作(切分，合并)
+- [lecture 1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_1.md)：计算图的概念与autograd
+- [lecture 2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_2.md)：读取数据，Dataset与Dataloader
+- [lecture 3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_3.md)：搭建模型，`torch.nn.Module`
 
 ## Docker
 

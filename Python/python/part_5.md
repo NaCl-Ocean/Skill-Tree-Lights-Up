@@ -397,6 +397,18 @@
 
   - `__call__`
   - 通过`obj()`或者`cls()`调用
+  
+- **attr**
+
+  - `__setattr__`  当调用`obj.xx= xxxx`时，调用该方法，也就是给属性赋值时
+
+  - `__getattribute__(self,item)`  当调用`obj.xxx` 时，调用该方法，也就是获取属性的值时
+
+  - `__getattr__(self,item)`  
+
+    - 若没有重写`__getattribute__`时，先去查询对象是否有此属性，若有，则不调用该方法，若没有，则调用该方法
+
+    - 当重写了`__getattribute__`时，不调用该方法
 
 
 

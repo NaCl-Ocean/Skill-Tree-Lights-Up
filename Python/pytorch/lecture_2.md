@@ -4,18 +4,6 @@
 - Iteration：一个batch输入到模型中
 - Batchsize：决定了一个Epoch中有几个Iteration
 
-# DataLoader
-
-- `torch.utils.data.Dataloader`
-- `DataLoader(dataset,batch_size=1,shuffle=False,sample=None,batch_sampler=None,num_workers=0,collate_fn=None,pin_memory=False,drop_last=False,timeout=0,worker_init_fn=None,multiprocessing_context=None)`
-  - Dataset：决定数据从哪里读取以及如何读取，Dataset类
-  - batchsize：批大小
-  - num_workers：多进程读取数据
-  - shuffle：每个epoch是否乱序
-  - drop_last：当样本数不能被batchsize整除时，是否舍弃最后一批数据
-    - 每次for 循环dataloader 返回一个batch
-  - dataloader 内部重写了`__next__`和`__iter__`方法，是一个迭代器
-
 # Dataset
 
 ```
@@ -29,9 +17,89 @@ class Dataset(object):
 - Dataset需要重写上述两个方法
   - Python中的双下划线方法
 
+# DataLoader
+
+- `torch.utils.data.Dataloader`
+
+- `DataLoader(dataset,batch_size=1,shuffle=False,sampler=None,batch_sampler=None,num_workers=0,collate_fn=None,pin_memory=False,drop_last=False,timeout=0,worker_init_fn=None,multiprocessing_context=None)`
+  
+  - Dataset：决定数据从哪里读取以及如何读取，Dataset类
+  - batchsize：批大小
+  - num_workers：多进程读取数据
+  - shuffle：每个epoch是否乱序
+  - drop_last：当样本数不能被batchsize整除时，是否舍弃最后一批数据
+    - 每次for 循环dataloader 返回一个batch
+  - dataloader 内部重写了`__next__`和`__iter__`方法，是一个迭代器
+  
+- **Dataloader 的 执行过程**：以`i,data in enumerate(train_dataloader)`为例:
+
+  - Python 语法 首先 执行`iter(dataloader)` ,根据单线程 or 多线程返回一个迭代器（实现了__next__方法）
+
+    - ```python
+      def __iter__(self):
+          if self.num_workers == 0:
+              return _SingleProcessDataLoaderIter(self)
+          else:
+              return _MultiProcessingDataLoaderIter(self)
+      ```
+
+  - 调用迭代器的next方法
+
+    - 在这里执行的是迭代器对象父类的`__next_`方法，`__next__`中关键的是下面这个方法
+
+    - ```python
+      def _next_data(self):
+      	index = self._next_index()  # may raise StopIteration
+      	data = self._dataset_fetcher.fetch(index)  
+      	# may raise StopIteration
+      	if self._pin_memory:
+      		data = _utils.pin_memory.pin_memory(data)
+      	return data
+      ```
+
+    - next_index 进入sampler
+
+      - sampler_iter是一个生成器
+
+      - ```python
+        def _next_index(self):
+            return next(self._sampler_iter) 
+        ```
+
+      - ```python
+        # 在生成sampler_iter的时候执行下面的iter方法，iter中定义了yield，此时也就是初始化一个generator，返回该generator
+        self._sampler_iter = iter(self._index_sampler)
+        ........
+        # sampler 的 __iter__方法
+        def __iter__(self):
+            batch = []
+            for idx in self.sampler:
+                batch.append(idx)
+                if len(batch) == self.batch_size:
+                    yield batch
+                    batch = []
+                if len(batch) > 0 and not self.drop_last:
+                    yield batch
+        ```
+
+        
+
+    - 得到index，通过fetch获取数据
+
+      - ```python
+        def fetch(self, possibly_batched_index):
+            if self.auto_collation:
+                data = [self.dataset[idx] for idx in possibly_batched_index]
+             else:
+                data = self.dataset[possibly_batched_index]
+             return self.collate_fn(data)
+        ```
+
+      - 获取数据时利用dataset实现的getitem直接调用dataset[index]方法
+
 # Transforms
 
-- Torchvision中自带了一些Transforms方法
+- Torchvision中自带了一些Transforms方法,下面没有特殊说明的都是对pillow  image对象进行操作  
 
 ## 定义Transform pipeline
 
@@ -68,6 +136,12 @@ class Dataset(object):
   
 
 ## Crop
+
+- **CenterCrop**
+
+  - `CenterCrop(size)`
+- 从图像的中心裁剪下来指定size的区域
+  - size：（h,w）or int，int的话size为(int,int)
 
 - **RandomCrop**
 
@@ -137,6 +211,9 @@ class Dataset(object):
 
 ##   图像变换
 
+- **Resize**
+  - `Resize(size,interpolation)`
+    - size：(h,w) or int，int的话：短边扩到int，长边等比例扩大
 - **Normalize**
   - `Normalize(mean,std)`
 - **Pad**
@@ -209,5 +286,3 @@ class user_define_transform(object):
         ...
         return img
 ```
-
-- 

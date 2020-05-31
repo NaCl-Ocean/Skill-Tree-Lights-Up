@@ -311,6 +311,7 @@ half_search(a,9)
               a = b
               b = n
           	yield n
+      
       g = fib(20) # 此时g就是generator对象
       next(g) # 程序停止到yield,下一次next 从yield下一行开始，到yield结束
       ```

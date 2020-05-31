@@ -1,7 +1,12 @@
+class test():
+    def __init__(self,age):
+        self.age = age
+    def __getattr__(self, item):
+        print(type(item))
+        return 100
+    def __getattribute__(self, item):
+        return 1000
 
-import numpy as np
+test_1  = test(10)
 
-a = np.array([[1,2,3,4],
-              [4,5,6,7]])
-print(a.size)
-np.
+breakpoint = 1

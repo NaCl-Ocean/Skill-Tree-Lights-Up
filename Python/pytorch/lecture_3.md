@@ -21,7 +21,7 @@ class net(torch.nn.Module):
 
 
 
-# Module
+# nn.Module
 
 **八大属性，全部为OrderDict**
 
@@ -77,15 +77,15 @@ class net(torch.nn.Module):
 
     
 
-# Parameter
+# nn.Parameter
 
 - 可学习的参数
 
-# functional
+# nn.functional
 
 - 函数的具体实现，如卷积，池化等
 
-# init
+# nn.init
 
 - 参数初始化方法
 

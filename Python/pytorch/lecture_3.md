@@ -26,6 +26,7 @@ class net(torch.nn.Module):
 **八大属性，全部为OrderDict**
 
 - parameters：存储管理`nn.Parameter`类
+  - **注意：Module类有一个方法`parametrs()`，返回module中所有可学习的parameters，与module.parameters的值可能不一样**
 - modules：存储管理`nn.Module`类
 - buffers：存储管理缓冲属性
 - ***__hooks：存储管理钩子属性

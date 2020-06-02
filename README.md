@@ -33,7 +33,8 @@
 - [lecture 2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_2.md)：读取数据，Dataset与Dataloader
 - [lecture 3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_3.md)：搭建模型，`torch.nn.Module`
 - [lecture 4](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_3.md)：模型初始化
-- [lecture 5](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_5.md)：Pytorch中的18个loss函数
+- [lecture 5](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_5.md)：Pytorch中的18个loss function
+- [lecture 6](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_6.md)：Pytorch中的optimizer
 
 ## Docker
 

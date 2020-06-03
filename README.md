@@ -2,6 +2,12 @@
 
 本仓库主要内容为Deep learning相关的技能树学习记录。
 
+## To do
+
+- [ ] C++
+- [ ] 数据结构与算法
+- [ ] 统计学习方法
+
 ## Python
 
 ### 基础
@@ -42,9 +48,7 @@
 
 - [Docker 基本概念以及基础命令](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Docker/notes.md)
 
-## C++
-
-# Git
+## Git
 
 - [Git中基本概念以及基础命令](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Git/notes.md)
 

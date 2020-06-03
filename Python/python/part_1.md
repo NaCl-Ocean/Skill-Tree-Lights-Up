@@ -56,6 +56,7 @@
 - Tuple（不可变数据类型）
 - Set（可变数据类型）
 - Dictionary（可变数据类型）
+- object/对象（可变数据类型）
 
 ## 流程控制
 
@@ -175,8 +176,12 @@
     >>> b[0]='test3'
     >>> a
     ['test3', 'test2']
+    >>>for i in a:
+      i [0] = 'm'
+    >>> a
+    >>>['mest1','mest2']
     ```
-  
+    
   - **浅拷贝**  `obj.copy()`
   
     - 浅拷贝只会拷贝第一层数据
@@ -203,11 +208,11 @@
       >>> a_copy
       ['test1', 'test2', ['test3', 'test5']]
       ```
-  
+
       
   
   - <img src="http://image.haiyang1218.cn/images/python_copy.png" width="300px" />
-
+  
 - **引申到变量的删除**
   
   - `del valiable`  删除的只是变量，也就是指针，不一定会释放指向的内存空间，只有当对内存空间（对象）的引用为0时，内存空间才会释放

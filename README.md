@@ -35,6 +35,8 @@
 - [lecture 4](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_3.md)：模型初始化
 - [lecture 5](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_5.md)：Pytorch中的18个loss function
 - [lecture 6](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_6.md)：Pytorch中的optimizer
+- [lecture 7](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_7.md)：Pyotrch中的scheduler
+- [lecture 8](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_8.md)：Tensorboard使用
 
 ## Docker
 

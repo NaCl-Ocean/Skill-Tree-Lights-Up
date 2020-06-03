@@ -10,7 +10,7 @@
 - state
   - 参数的缓存，如momentum的缓存
 - param_groups
-  - 管理的参数组，`list[{'params':param_groups}]`，Tensor
+  - 管理的参数组，`list[{'params':param_groups,'lr':lr,...}]`，Tensor
   - 每一组参数对应一组超参数
   - 根据python的语法，在这里存放的实质上是地址，因此与模型中的参数共享内存
 - \_step\_count

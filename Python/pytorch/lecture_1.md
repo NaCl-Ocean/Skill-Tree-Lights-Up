@@ -8,12 +8,25 @@
 # 叶节点
 
 - 用户创建的Tensor(通过lecture 0 中创建Tensor方法创建的Tensor)，叶节点的grad_fn为None
+  
   - 对应来说，就是我们输入的input data，权重参数
+  
 - 非叶节点：运算过程中产生的Tensor
+  
   - 拿CNN举例，就是运算过程中产生的heatmap，这部分众所周知，是不需要去更新参数的
+  
 - 非叶节点在反向传播`loss.backward`后会释放掉梯度，也就是无法进行更新，而叶节点的梯度在反向传播后会保存下来，进而可以更新参数
+  
   - `tensor.retain_grad()`  保存非叶节点的梯度
+  
 - 注意：is_leaf 与 requires_gd 本质上是两个东西，叶子节点可以requires_gd，也可以不requires_gd，但是grad_fn为None
+
+- **叶节点与requires_grad的区别与关联**
+
+  - 叶节点当requires_grad为False时，不会对其进行自动求导，backward之后，grad自然为None
+
+  - 叶节点requires_grad为True时，会对其进行自动求导，backward之后，grad为Tensor，也就是对应的梯度
+  - 非叶节点requires_grad必然为True，但是反向传播后，grad为None
 
 
 

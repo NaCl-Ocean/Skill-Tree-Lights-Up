@@ -29,6 +29,7 @@ class net(torch.nn.Module):
   - **注意：Module类有一个方法`parametrs()`，返回module中所有可学习的parameters，与module.parameters的值可能不一样**
 - modules：存储管理`nn.Module`类
 - buffers：存储管理缓冲属性
+  - 
 - ***__hooks：存储管理钩子属性
 
 ## Container
@@ -76,7 +77,69 @@ class net(torch.nn.Module):
     Moduledict_1['conv'](input)
     ```
 
-    
+## Method
+
+- `module.paramters()`
+  
+  - 返回module中可学习的参数
+  
+- `module.named_parameters()`
+  
+  - 返回module中可学习的参数及其名字（tuple）
+  
+- `module.modules()`
+  
+  - 返回module中所有的子module
+  
+- `module.named_modules()`
+  
+  - 返回module中所有的子module以及子module的子module，子module的子module的子module等等....及其名字（tuple）
+  
+- `module.named_children()`
+
+  - 返回module中所有的子module及其名字（tuple）
+
+- ```python
+  class net_test(nn.Module):
+      def __init__(self):
+          super(net_test, self).__init__()
+          self.conv1=nn.Conv2d(3,3,3,1)
+          self.relu = nn.ReLU()
+          self.block1=nn.Sequential(nn.Conv2d(3,3,3,1),nn.ReLU())
+  
+      def forward(self,input):
+          output_1 = self.conv1(input)
+          output_2 = self.relu(output_1)
+          output = self.block1(output_2)
+          return output
+  net = net_test()
+  
+  net.named_modules()
+  >>>[('', net_test(  --》总的module
+    (conv1): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1))
+    (relu): ReLU()
+    (block1): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1))
+      (1): ReLU()))), 
+      ('conv1', Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1))), --》子模型
+      ('relu', ReLU()), --》子模型
+      ('block1', Sequential((0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1))  (1): ReLU())), --》子模型
+      ('block1.0', Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1))), --》子模型的子模型
+      ('block1.1', ReLU())]  --》子模型
+  
+  net.named_modules()
+  >>> ('conv1', Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1))), --》子模型
+      ('relu', ReLU()), --》子模型
+      ('block1', Sequential((0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1))  (1): ReLU())), --》子模型
+  ```
+
+- `module.train()`
+  
+  - 设置module为train模式
+  
+- `module.eval()`
+  - 设置module为eval模式，对于Dropout，BatchNorm等有影响
+  - 对于Dropout，BatchNormalization等，在训练时和测试时采取的策略不同
 
 # nn.Parameter
 
@@ -161,3 +224,6 @@ class net(torch.nn.Module):
 - `RReLU(lower,upper)`
   - 随机在[lower,upper]中选择一个数作为负半轴的斜率
 - <img src="C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200531190003191.png" alt="image-20200531190003191" style="zoom:50%;" />
+
+
+

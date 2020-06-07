@@ -8,6 +8,14 @@
 - [ ] 数据结构与算法
 - [ ] 统计学习方法
 
+## Git
+
+- [Git中基本概念以及基础命令](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Git/notes.md)
+
+## Docker
+
+- [Docker 基本概念以及基础命令](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Docker/notes.md)
+
 ## Python
 
 ### 基础
@@ -29,30 +37,6 @@
 - [Pillow](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/Pillow.md)
 - Matplotlib：笔记来源于官方文档
   - [基础部分](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib/matplotlib_base.md)，主要内容为matplotlib中的基本对象，Figure，Axes，Axis，Legend以及Text等。
-
-## Pytorch
-
-笔记来源于官方文档
-
-- [lecture 0](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_0.md)：张量的概念，创建，操作(切分，合并)
-- [lecture 1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_1.md)：计算图的概念与autograd
-- [lecture 2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_2.md)：读取数据，Dataset与Dataloader
-- [lecture 3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_3.md)：搭建模型，`torch.nn.Module`
-- [lecture 4](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_3.md)：模型初始化，`torch.nn.init`
-- [lecture 5](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_5.md)：Pytorch中的18个loss function，`torch.nn`
-- [lecture 6](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_6.md)：Pytorch中的optimizer，`torch.optim`
-- [lecture 7](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_7.md)：Pyotrch中的scheduler，`torch.optim.lr_schedule`
-- [lecture 8](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_8.md)：Tensorboard使用，`torch.utils.tensorboard`
-- [lecture 9](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_9.md)：Pytorch中的hook函数
-- [lecture 10](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_10.md)：pytorch中的正则化策略
-
-## Docker
-
-- [Docker 基本概念以及基础命令](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Docker/notes.md)
-
-## Git
-
-- [Git中基本概念以及基础命令](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Git/notes.md)
 
 ## 操作系统
 
@@ -77,6 +61,30 @@
 笔记来源于网课学习
 
 - [lecture 1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating_System/Linux/notes_theory.md) ：主要内容为Linux的介绍
-
 - [lecture 2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating_System/Linux/notes_base.md) ：主要内容为Linux中的基础命令
 - [lecture 3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Operating_System/Linux/notes_deeplearning.md) ：主要内容为Ubuntu下的命令以及与DL相关的一些命令
+
+## Pytorch
+
+笔记来源于官方文档
+
+- [lecture 0](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_0.md)：张量的概念，创建，操作(切分，合并)
+- [lecture 1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_1.md)：计算图的概念与autograd
+- [lecture 2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_2.md)：读取数据，Dataset与Dataloader
+- [lecture 3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_3.md)：搭建模型，`torch.nn.Module`
+- [lecture 4](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_3.md)：模型初始化，`torch.nn.init`
+- [lecture 5](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_5.md)：Pytorch中的18个loss function，`torch.nn`
+- [lecture 6](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_6.md)：Pytorch中的optimizer，`torch.optim`
+- [lecture 7](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_7.md)：Pyotrch中的scheduler，`torch.optim.lr_schedule`
+- [lecture 8](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_8.md)：Tensorboard使用，`torch.utils.tensorboard`
+- [lecture 9](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_9.md)：Pytorch中的hook函数
+- [lecture 10](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_10.md)：pytorch中的正则化策略
+
+## Docker
+
+## C++
+
+- [lecture 0](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_0.md) ：基础语法，类似C，数组，指针，数据类型，程序流程等
+
+## 数据结构与算法
+

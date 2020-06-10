@@ -85,6 +85,7 @@
 ## C++
 
 - [lecture 0](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_0.md) ：基础语法，类似C，数组，指针，数据类型，程序流程等
+- [lecture 0](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_0.md)：C++核心编程，面向对象
 
 ## 数据结构与算法
 

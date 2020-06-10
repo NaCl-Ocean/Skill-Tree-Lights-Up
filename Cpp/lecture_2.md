@@ -1,6 +1,4 @@
-# 类和对象
-
-## 封装
+# 封装
 
 - 定义类
 
@@ -64,7 +62,7 @@
 
     
 
-## 对象的初始化和清理
+# 对象的初始化和清理
 
 - **构造函数**
 
@@ -96,7 +94,7 @@
   }
   ```
 
-### 构造函数的分类
+## 构造函数的分类
 
 - 按照参数类型
 
@@ -121,7 +119,7 @@
 
   - 普通构造
 
-### 调用构造函数
+## 调用构造函数
 
 - 括号法
   - `Person p`  无参构造
@@ -134,7 +132,7 @@
 - 隐式转换法
   - `Person p = arg`  等价于 `Person p = Person(arg)`
 
-### 拷贝构造函数调用时机
+## 拷贝构造函数调用时机
 
 - 使用一个已经创建的对象来初始化一个新的对象
 
@@ -212,7 +210,7 @@
 
   
 
-### 构造函数调用规则
+## 构造函数调用规则
 
 - 默认情况下，C++编译器至少给一个类添加3个函数
   - 默认构造函数（无参，函数体为空）
@@ -222,13 +220,13 @@
   - 如果用户定义了有参构造函数，c++不再提供默认无参构造，但是会提供默认拷贝构造
   - 如果用户定义拷贝构造函数，c++不再提供其他构造函数
 
-### 对象作为函数参数
+## 对象作为函数参数
 
 - **可以值传递**
   - **值传递的情况下，会调用类的拷贝构造函数，通过实参，实例化一个新的对象，该对象作为形参**
 - **也可以地址传递（引用传递）**
 
-### 深拷贝 与 浅拷贝
+## 深拷贝 与 浅拷贝
 
 - **c++ 提供的默认构造函数是浅拷贝，**也就是仅做一个简单的赋值操作
 
@@ -279,7 +277,7 @@
 
     
 
-### 初始化列表
+## 初始化列表
 
 - 用于初始化多个属性
 
@@ -325,9 +323,11 @@
     }
     ```
 
-    
 
-### 静态成员
+
+# C++ 对象模型
+
+## 静态成员
 
 - **静态属性**
 
@@ -383,7 +383,7 @@
 
 
 
-### 属性和方法存储
+## 属性和方法存储
 
 - 属性和方法 分开存储
 - 每个空对象占1个字节
@@ -408,11 +408,15 @@
 
   
 
-### this 指针
+## this 指针
 
-- this 指针本质上是一个指针常量
+- this 指针本质上是**一个指针常量**
 
 - **this 指针指向被调用的方法所属的对象**
+
+- **通过this 指针访问对象的属性**
+
+  - `this ->属性名`
 
 - 在类的非静态成员函数中返回对象本身，可使用`return *this`
 
@@ -453,9 +457,113 @@
 
     
 
-### const 修饰
+## const 修饰
 
 - **常函数**
   - 方法后加const称为常函数
-  - 被调用方法所属的对象不可以进行修改
-- 常对象
+  - 被调用方法所属的对象不可以进行修改属性
+  - 本质上是让this 指针 成为**指针常量+常量指针**
+    - 也就是使得所属的对象的属性无法修改
+- **常对象**
+  - 在对象前加const关键字修饰，成为常对象
+  - **常对象只能调用常函数**
+  - 常对象的 属性 无法修改
+- 关键字`mutable`
+  - 属性在声明时利用`mutable`修饰，则该属性可以在常函数中修改，常对象也可以进行修改
+
+# 友元
+
+- **让一个函数或者类，访问另一个类中的私有成员（属性或者方法）**
+
+## 全局函数做友元
+
+- **在类的定义中进行声明函数，并且加上`firend`关键字**
+
+
+
+## 类做友元
+
+- 在被访问类的定义中声明访问类，并且加上`firend`关键字
+
+## 成员函数做友元
+
+- 在被访问类的定义中声明访问成员函数，并且加入`firend`关键字
+- **访问成员函数所在的类在被访问的类之前定义，访问成员函数需要在被访问类之后单独定义**
+  - *why? I don't know*
+
+```C++
+class Visit_friend;
+class Room;
+class roommate;
+/*成员函数做友元，访问成员函数所在的类在被访问的类之前定义*/
+class roommate {
+public:
+	void visit(Room &room);
+};
+class Room {
+	/*类做友元*/
+	friend class Visit_friend;
+	/*全局函数做友元*/
+	friend void visit(Room &room);
+	/*成员函数做友元*/
+	friend void roommate::visit(Room &room);
+public:
+	string sittingroom;
+	Room(string sittingroom_name, string bedroom_name) :sittingroom(sittingroom_name), bedroom(bedroom_name) {}
+private:
+	string bedroom;
+};
+
+/*成员函数做友元，访问成员函数需要在被访问类之后单独定义*/
+void roommate::visit(Room &room) {
+	cout << "i am visting " << room.sittingroom << endl;
+	cout << "i am visting " << room.bedroom << endl;
+}
+class Visit_friend {
+public:
+	void vist(Room &firendroom) {
+		cout << "i am visting " << firendroom.sittingroom << endl;
+		cout << "i am visting " << firendroom.bedroom << endl;
+	}
+};
+
+void visit(Room &room) {
+	cout << "i am visting " << room.sittingroom << endl;
+	cout << "i am visting " << room.bedroom << endl;
+}
+
+int main() {
+	Room room = Room("sittingroom", "bedroom");
+	Visit_friend visit_friend;
+	cout << "---类做友元----" << endl;
+	visit_friend.vist(room);
+	cout << "---全局函数做友元----" << endl;
+	visit(room);
+	cout << "---成员做友元----" << endl;
+	roommate roommate_1;
+	roommate_1.visit(room);
+}
+```
+
+
+
+# 运算符重载
+
+- 对已有的运算符进行重新定义，赋予其另一种功能，以适应不同的数据类型
+- **相当于python中的魔法方法**
+
+## 加号重载
+
+- `operator*`：具体函数定义形式根据数据类型不同而不同，可以返回也可以不返回
+- 类方法重载
+  - `obj_a + obj_b`  等价于调用`obj_a.operator+(obj_b)`
+
+- 全局函数重载
+  - `obj_a + obj_b` 等价于调用`operator(obj_1,obj_b)`
+- **运算符重载同样可以发生函数重载**
+- **对于内置的数据类型的表达式不可以进行运算符重载**
+
+
+
+## 左移运算符重载
+

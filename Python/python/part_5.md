@@ -407,8 +407,11 @@
   - `__getattr__(self,item)`  
 
     - 若没有重写`__getattribute__`时，先去查询对象是否有此属性，若有，则不调用该方法，若没有，则调用该方法
+- 当重写了`__getattribute__`时，不调用该方法
+  
+- **运算符相关**
 
-    - 当重写了`__getattribute__`时，不调用该方法
+  - [魔法方法大汇总](https://www.cnblogs.com/zhouyixian/p/11129347.html#_label6)
 
 
 

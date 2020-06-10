@@ -2,21 +2,51 @@
 using namespace std;
 #include <string>
 
-class man{
+class Visit_friend;
+class roommate{
 public:
-    int name;
-    /*类内声明*/
-    static int sex;
+    void visit(Room &room);
+};
+class Room {
+    /*类做友元*/
+	friend class Visit_friend;
+    /*全局函数做友元*/
+	friend void visit(Room &room);
+    /*成员函数做友元*/
+    friend void roommate::visit(Room &room);
+public:
+	string sittingroom;
+
+	Room(string sittingroom_name, string bedroom_name) :sittingroom(sittingroom_name), bedroom(bedroom_name) {}
+private:
+	string bedroom;
 
 };
-/* 类外初始化 */
-int man::sex = 1;
 
+/*成员函数做友元*/
+void roommate::visit(Room &room){
+    cout << "i am visting " << room.sittingroom << endl;
+	cout << "i am visting " << room.bedroom << endl;
+}
+class Visit_friend {
+public:
+	void vist(Room &firendroom) {
+		cout << "i am visting " << firendroom.sittingroom << endl;
+		cout << "i am visting " << firendroom.bedroom << endl;
+	}
+};
 
-int main(){
-    int *p = NULL;
-    // cout<<*p<<endl;
-    man jack = man();
-    cout<<sizeof(jack)<<endl;
+void visit(Room &room) {
+	cout << "i am visting " << room.sittingroom << endl;
+	cout << "i am visting " << room.bedroom << endl;
+}
+
+int main() {
+	Room room = Room("sittingroom", "bedroom");
+	Visit_friend visit_friend;
+	cout << "---类做友元----" << endl;
+	visit_friend.vist(room);
+	cout << "---全局函数做友元----" << endl;
+	visit(room);
 
 }

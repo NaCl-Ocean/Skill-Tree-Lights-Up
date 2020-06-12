@@ -8,5 +8,6 @@
 __pycache__
 *.ttf
 Cpp/reference/
+Cpp/code/
 *.xmind
 *.exe

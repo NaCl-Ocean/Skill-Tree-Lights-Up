@@ -127,7 +127,7 @@
 - **显示法---》prefer**
   - `Person p = person(arg)` 有参构造
     - `person (arg)` 匿名对象
-    - 不能利用拷贝构造函数初始化匿名对象 `Person (obj)` 等价于  `Person obj`
+    - 不能利用拷贝构造函数初始化匿名对象    `Person (obj)` 等价于  `Person obj`
   - `person p `  无参构造
 - 隐式转换法
   - `Person p = arg`  等价于 `Person p = Person(arg)`
@@ -138,7 +138,10 @@
 
 - 值传递的方式给函数参数传值
 
-- 值方式返回局部对象--》**编译器不同，可能不会 调用拷贝构造函数**
+- 值方式返回局部对象
+
+  - **编译器不同，可能不会 调用拷贝构造函数**
+  - 不调用拷贝构造函数会返回一个匿名对象
 
 - ```C++
   class Cube
@@ -171,10 +174,7 @@
       cube_2.set_l(50);
   	return cube_2;
   }
-  Cube test() {
-  	Cube cube_3;
-  	return cube_3;
-  }
+  
   int main() {
   	cout << "----init cube_1----" << endl;
   	Cube cube_1;
@@ -207,15 +207,16 @@
   ----exit function----
   50
   ```
-
+  
   
 
 ## 构造函数调用规则
 
-- 默认情况下，C++编译器至少给一个类添加3个函数
+- 默认情况下，C++编译器至少给一个类添加4个函数
   - 默认构造函数（无参，函数体为空）
   - 默认析构函数（无参，函数体为空）
   - 默认拷贝构造函数，对属性值进行拷贝
+  - 赋值运算符，`operator=` 对属性进行值拷贝
 - 调用规则：
   - 如果用户定义了有参构造函数，c++不再提供默认无参构造，但是会提供默认拷贝构造
   - 如果用户定义拷贝构造函数，c++不再提供其他构造函数
@@ -337,7 +338,7 @@
 
   - 编译阶段分配内存
 
-  - 可以通过对象进行访问，可以通过类名进行访问
+  - **可以通过对象进行访问，可以通过类名进行访问**
 
   - ```C++
     class man{
@@ -567,3 +568,375 @@ int main() {
 
 ## 左移运算符重载
 
+- 可以输出自定义数据类型
+
+- **利用全局函数来重载**
+
+- `operator<<(Class_a &class_a,Class_b &class_b)` 
+
+  - 当调用`class _a<<class_b` 时，相当于调用上述函数
+
+- `cout` 是`ostream`对象
+
+- 相当于python中的`__str__`
+
+- ```C++
+  void operator<<(ostream &cout,Person &p){
+      cout<<p.name<<endl;
+  }
+  
+  int main(){
+      Person p;
+      cout<<p;   --》等价于 operator<<(cout,p)
+  }
+  /* 当然也可以这样重载*/
+  void operator<<(Person &p,ostream &cout){
+      cout<<p.name<<endl;
+  }
+  /*调用的话这样调用, */
+  p<<cout;
+  ```
+
+## 链式编程
+
+- `cout << "test_1"<<"test_2"<<endl`
+
+- 本质上链式操作的可行是因为调用 `cout<<"test_1"`  时（也就是重载的operator<<)时，又返回了一个`cout`对象，这样就可以重复下去
+
+- 所以实现链式操作的核心是一定要返回对应的类型，不能返回void
+
+- ```C++
+  ostream & operator<<(ostream &cout,Person &p){  --》当返回void时，无法链式编程
+      cout<<p.name<<endl;
+      return cout;
+  }
+  int main(){
+      Person p;
+      cout<<p<<endl;   
+  }
+  ```
+
+  
+
+## 递增运算符重载
+
+- `operator++`
+
+- 前置递增
+
+  - `operator()`
+
+- 后置递增
+
+  - `operator++(int)`   传入一个占位符
+
+- ```C++
+  class MyInteger {
+  public:
+  	int data = 0;
+  	/*前置递增*/
+  	MyInteger & operator++() {
+  		data++;
+  		return *this;
+  	}
+      /*后置递增*/
+  	MyInteger& operator++(int) {
+  		MyInteger temp = *this;
+  		data++;
+  		return temp;
+  	}
+  };
+  
+  int main() {
+  	MyInteger integer;
+  	++integer;
+  	MyInteger temp = integer++;
+  	cout << integer.data << endl;
+  	cout << temp.data << endl;
+  }
+  输出：
+  2
+  1
+  ```
+
+- 递减运算符`operator--`同理
+
+## 赋值运算符重载
+
+- **c++默认提供的赋值运算符 是对属性值的拷贝**
+- 主要用于深拷贝
+- `operator=`
+
+## 关系运算符重载
+
+- `operator==`   == 运算符重载
+- `operator!=`    != 运算符重载
+
+
+
+## 函数调用运算符重载
+
+- `()` 运算符重载，仿函数
+- `operator()`
+- **重载之后，通过`obj()` 调用，相当于python的`__call__`方法**
+- 可以通过**匿名函数对象**直接调用  `class()()`调用
+
+# 继承
+
+- `class 子类: 继承方式 父类`
+
+## 继承方式
+
+-  公共继承 public
+  - 父类中公共权限子类仍然是公共权限
+  - 父类中保护权限子类仍然是保护权限
+- 保护继承 protected
+  - 父类中公共权限与保护权限在子类中都变为保护权限
+- 私有继承 private
+  - 父类中公共权限与保护权限在子类中都变为私有权限
+- 父类私有权限 无论哪种继承方式都不可以访问，自然也就继承不了
+
+
+
+## 继承中的对象模型
+
+- **父类中所有非静态成员属性都会被子类继承下去**
+- **但是父类中私有属性会被编译器隐藏**
+- 子类的成员会区分出哪个是继承下来的，哪个是自己又创建的
+
+
+
+
+
+## 继承中构造和析构顺序
+
+- 先构造父类，后构造子类，默认执行的是父类的无参构造函数
+- 先析构子类，后析构父类
+- [子类调用父类构造函数规则](https://www.cnblogs.com/fenghuan/p/4800199.html)
+
+## 继承中同名成员
+
+- 继承同名属性
+  - 子类访问子类属性 直接利用`.` 操作符即可
+  - 子类访问父类属性：需要加作用域 `子类.父类::属性`
+- 继承同名方法
+  - 子类调用子类方法 直接利用`.` 操作符即可
+  - 子类调用父类方法：需要加作用域 `子类.父类::方法`
+- 当子类通过`.` 调用方法时，所有父类同名方法被隐藏（所有重载的方法）
+
+## 继承中同名静态成员
+
+```C++
+class Base {
+public:
+	static int m_A;
+};
+
+int Base::m_A = 100;
+
+class Son : public Base {
+public:
+	static int m_A;
+};
+
+int Son::m_A = 200;
+
+//同名成员属性
+void test01()
+{
+	//通过对象访问
+	cout << "通过对象访问： " << endl;
+	Son s;
+	cout << "Son  下 m_A = " << s.m_A << endl;
+	cout << "Base 下 m_A = " << s.Base::m_A << endl;
+
+	//通过类名访问
+	cout << "通过类名访问： " << endl;
+	cout << "Son  下 m_A = " << Son::m_A << endl;
+	cout << "Base 下 m_A = " << Son::Base::m_A << endl;
+}
+
+int main() {
+
+	test01();
+	system("pause");
+	return 0;
+}
+```
+
+
+
+
+
+## 多继承
+
+`class 子类:继承方式 父类1 ,继承方式 父类2`
+
+- 不建议使用多继承
+
+## 菱形继承
+
+- 两个派生类继承同一个基类，又有某个类同时继承者两个派生类
+
+- 导致的问题是子类继承两份相同的数据，导致资源浪费以及毫无意义
+
+- 利用虚继承可以解决菱形继承问题
+
+- ```C++
+  class Animal
+  {
+  public:
+  	int m_Age;
+  };
+  
+  //继承前加virtual关键字后，变为虚继承
+  //此时公共的父类Animal称为虚基类
+  class Sheep : virtual public Animal {};
+  class Tuo   : virtual public Animal {};
+  class SheepTuo : public Sheep, public Tuo {};
+  
+  void test01()
+  {
+  	SheepTuo st;
+  	st.Sheep::m_Age = 100;
+  	st.Tuo::m_Age = 200;
+  	cout << "st.Sheep::m_Age = " << st.Sheep::m_Age << endl;
+  	cout << "st.Tuo::m_Age = " <<  st.Tuo::m_Age << endl;
+  	cout << "st.m_Age = " << st.m_Age << endl;
+  }
+  
+  
+  int main() {
+  	test01();
+  	system("pause");
+  	return 0;
+  }
+  ```
+
+  
+
+
+
+# 多态
+
+两类
+
+- 静态多态：函数重载 运算符重载
+- 动态多态：派生类 和 虚函数
+
+动态多态条件：
+
+- 有继承关系
+- 子类重写父类的虚函数
+  - 重写：函数返回值类型  函数名 参数列表 完全一致称为重写
+
+动态多态使用条件
+
+- 父类指针或引用指向子类对象
+
+```C++
+class father{
+public:
+    string name;
+    void virtual test01(){
+        cout << "father function"<<endl;
+    }
+};
+
+class son:public father{
+
+public:
+    string n_class;
+    void test01(){
+        cout<<"son function"<<endl;
+    }
+};
+
+
+int main(){
+    son son_1;
+    father & father_1 = son_1;
+    father_1.test01();
+}
+输出:
+son function
+```
+
+## 纯虚函数和抽象类
+
+- **纯虚函数**
+
+  - `virtual 返回类型 函数名(参数列表)=0`
+
+- **抽象类**
+
+  - 只要定义了纯虚函数，即为抽象类
+  - **无法实例化对象**
+  - **抽象类的子类，必须要重写父类中的纯虚函数**
+
+- 理解
+
+  - 在实际工程实现中，往往会先抽象出一个基类，这个基类会定义一些子类会用到的通用函数
+  - 但是不会在基类中实现这些函数，而是要在子类中根据每个子类的具体特点进行实现
+  - 这样的好处是 抽象化，便于理解
+  - 对于python 来说 ，往往在基类的这些函数中加一个`raise "not implement "` 
+  - 而在C++中，更为强大，通过虚函数，抽象类调用所有的这些子类接口
+
+- ```C++
+  // 计算器实现
+  /* 抽象类 */
+  class abstract_elevator{
+  public:
+      virtual int get_result(int ele_1,int ele_2)=0;
+  };
+  
+  /* 子类实现具体的功能*/
+  class addelevator:public abstract_elevator{
+  public:
+      /* 重写虚函数*/
+      int get_result(int ele_1,int ele_2){
+          return (ele_1+ele_2);
+      }
+  };
+  /* 子类实现具体的功能*/
+  class subelevator:public abstract_elevator{
+  public:
+      /* 重写虚函数*/
+      int get_result(int ele_1,int ele_2){
+          return (ele_1-ele_2);
+      }
+  };
+  int main(){
+      /* 通过一个 抽象类 来访问所有的子类接口 */
+      abstract_elevator * base =new addelevator;
+      cout<<base->get_result(10,20)<<endl;
+      delete base;
+      base = new subelevator;
+      cout <<base->get_result(20,10)<<endl;
+      delete base;
+  }
+  ```
+
+  
+
+## 虚析构 和 纯虚析构
+
+- 父类指针指向子类，在析构的时候，不会调用子类中的 析构函数，导致如果子类在堆区开辟了数据，则不会释放
+
+- 虚析构
+
+  - 析构函数前用`virtual` 关键字修饰
+
+- 纯虚析构
+
+  - 类内声明：` virtual ~类名() = 0;`
+  - 类外定义：`类名::~类名(){}`
+
+- 虚析构和纯虚析构共性：
+
+  * 可以解决父类指针释放子类对象
+  * 都需要有具体的函数实现
+
+  虚析构和纯虚析构区别：
+
+  * 如果是纯虚析构，该类属于抽象类，无法实例化对象

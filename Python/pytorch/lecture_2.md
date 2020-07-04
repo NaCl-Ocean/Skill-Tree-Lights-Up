@@ -30,6 +30,7 @@ class Dataset(object):
   - drop_last：当样本数不能被batchsize整除时，是否舍弃最后一批数据
     - 每次for 循环dataloader 返回一个batch
   - dataloader 内部重写了`__next__`和`__iter__`方法，是一个迭代器
+  - collate_fn：默认情况下，将同样shape的data进行stack。
   
 - **Dataloader 的 执行过程**：以`i,data in enumerate(train_dataloader)`为例:
 
@@ -96,6 +97,20 @@ class Dataset(object):
         ```
 
       - 获取数据时利用dataset实现的getitem直接调用dataset[index]方法
+      
+      - 例：data 包含image和target，batch为3，在未调用colate_fn之前，data布局如下
+      
+        - ```
+          [(image_1,target_1),(image_2,target_2),(image_3,target_3)]
+          ```
+      
+        - collate_fn的作用就是分别拼接(stack)image_1,image_2,image_3和target_1,target_2,target_3,最终输出如下(也就是dataloader iter一次最终的输出)
+      
+          - ```
+            ([image_1+image_2+image_3]('+'代表stack),[target_1+target_2+target_3])
+            ```
+      
+            
 
 # Transforms
 
@@ -141,8 +156,9 @@ class Dataset(object):
 
   - `CenterCrop(size)`
 - 从图像的中心裁剪下来指定size的区域
-  - size：（h,w）or int，int的话size为(int,int)
-
+  
+- size：（h,w）or int，int的话size为(int,int)
+  
 - **RandomCrop**
 
   - `RandomCrop(size,padding=None,pad_if_needed=False,fill=0,padding_mode='constant')`

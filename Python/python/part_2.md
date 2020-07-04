@@ -45,19 +45,25 @@
 
 - 重复字符串：` * `
 
-- **格式化字符串**：有类似于c语言中的`%s，%d`等，但是更常用的是`str.format()`
+- **格式化字符串**
 
-- ```python
-  # 用法一
-  >>>'{},{}'.format('hello','I am test')
-  >>>'hello,I am test'
-  # 用法二
-  >>>'{0},{0},{1}'.format('hello','I am test')
-  >>>'hello,hello,I am test'
-  # 用法三
-  >>>'hello,I am {name}'.format(name='test')
-  >>>'hello,I am test'
-  ```
+  - `str.format()`
+
+    - ```python
+      # 用法一
+      >>>'{},{}'.format('hello','I am test')
+      >>>'hello,I am test'
+      # 用法二
+      >>>'{0},{0},{1}'.format('hello','I am test')
+      >>>'hello,hello,I am test'
+      # 用法三
+      >>>'hello,I am {name}'.format(name='test')
+      >>>'hello,I am test'
+      ```
+
+    
+
+  - `f-string`
 
 - 转义字符不再转义，在字符串前+r，例`r"test\n"`，此时\n不再转义，打印时会打出\n
 

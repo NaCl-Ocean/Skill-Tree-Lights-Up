@@ -175,10 +175,44 @@
 # random模块
 
 - `random.randint(a,b)`  返回一个位于[a,b]区间的随机整数
+
 - `random.randrange(start,stop,step=1)`  相当于利用range产生一个列表，在这个列表里随机选一个数
+
 - `random.choice(iterable)`  从给定的序列中随机采样一个元素
+
 - `random.sample(iterable,num)`  从给定的序列中随机采样num个元素  
+
 - `random.shuffle(list)`  将列表随机打乱
+
+- `random.choices(population,weights=None,cum_weights=None,k=1)`
+
+  - population：集群，采样样本的集合
+
+  - weights：相对权重，也就是每个元素被采样的概率
+
+  - cum_weights：累加权重
+
+  - k：采样次数，每次采样1个元素
+
+  - ```python
+    import random
+    a = [1,2,3,4,5]
+    #1
+    print(random.choices(a,k=5))
+    #2
+    print(random.choices(a,weights=[0,0,1,0,0],k=5))
+    #3
+    print(random.choices(a,weights=[1,1,1,1,1],k=5))
+    #4
+    print(random.choices(a,cum_weights=[1,1,1,1,1],k=5))
+    
+    #1 ： 重复输出10次列表a中的各个成员出现概率基本持平。
+    #2 ： 重复输出10次每次输出均得到[3,3,3,3,3]结果。
+    #3 ： 重复输出10次列表a中的各个成员出现概率基本持平。
+    #4 ： 重复输出10次每次输出均得到[1,1,1,1,1]结果。
+    ```
+
+    
 
 
 

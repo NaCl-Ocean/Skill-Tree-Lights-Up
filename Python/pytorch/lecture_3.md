@@ -26,10 +26,40 @@ class net(torch.nn.Module):
 **八大属性，全部为OrderDict**
 
 - parameters：存储管理`nn.Parameter`类
+  
   - **注意：Module类有一个方法`parametrs()`，返回module中所有可学习的parameters，与module.parameters的值可能不一样**
+  
 - modules：存储管理`nn.Module`类
+
 - buffers：存储管理缓冲属性
+
+  - buffer 和 parameter 的区别是 parameter 是可以进行学习的，而buffer是无法进行更新学习的，但是buffer仍然属于参数，比如batchnorm中的running_mean。
+  - [参考](https://zhuanlan.zhihu.com/p/89442276)
+
 - ***__hooks：存储管理钩子属性
+
+- ```python
+  class Module(object):
+      dump_patches = False
+      _version = 1
+  
+      def __init__(self):
+          """
+          Initializes internal Module state, shared by both nn.Module and ScriptModule.
+          """
+          torch._C._log_api_usage_once("python.nn_module")
+          self.training = True
+          self._parameters = OrderedDict()
+          self._buffers = OrderedDict()
+          self._backward_hooks = OrderedDict()
+          self._forward_hooks = OrderedDict()
+          self._forward_pre_hooks = OrderedDict()
+          self._state_dict_hooks = OrderedDict()
+          self._load_state_dict_pre_hooks = OrderedDict()
+          self._modules = OrderedDict()
+  ```
+
+  
 
 ## Container
 
@@ -92,7 +122,7 @@ class net(torch.nn.Module):
   
 - `module.named_modules()`
   
-  - 返回module中所有的子module以及子module的子module，子module的子module的子module等等....及其名字（tuple）
+  - 返回module中所有的module（子module，子module的子module等等....）及其名字（tuple）
   
 - `module.named_children()`
 
@@ -139,6 +169,11 @@ class net(torch.nn.Module):
 - `module.eval()`
   - 设置module为eval模式，对于Dropout，BatchNorm等有影响
   - 对于Dropout，BatchNormalization等，在训练时和测试时采取的策略不同
+  
+- `model.add_module(str,module)`
+
+  - 添加子module，与`__init__`中`self.str = module`等价
+  - 可以动态添加子模块
 
 # nn.Parameter
 
@@ -172,6 +207,10 @@ class net(torch.nn.Module):
   - kernel_size：卷积核尺寸
   - stride：步长
   - padding：填充像素数量
+- **`Depthwise conv + Pointwise conv`**
+  - `Depthwise conv `的groups 设为in_channels
+  - `Pointwise conv`的kernel size设为1，
+  - [参考](https://zhuanlan.zhihu.com/p/80041030)
 
 # 池化层
 

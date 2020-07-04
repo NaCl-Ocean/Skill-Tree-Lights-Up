@@ -130,7 +130,7 @@
     - 不能利用拷贝构造函数初始化匿名对象    `Person (obj)` 等价于  `Person obj`
   - `person p `  无参构造
 - 隐式转换法
-  - `Person p = arg`  等价于 `Person p = Person(arg)`
+  - `Person p = {args}`  等价于 `Person p = Person(arg)`
 
 ## 拷贝构造函数调用时机
 

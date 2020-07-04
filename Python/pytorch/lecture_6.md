@@ -48,7 +48,22 @@
 ## state_dict
 
 - `optimizer.state_dict()`
+
 - 当前优化器的状态，主要保存的是state(buffer)，不保存参数的值
+
+- ```
+  ’state':{orderdict}
+  'param_groups':[{'params':[address1,address2,....],'lr':..,....}]
+  param_groups 中params保存的是需要保存的buffer地址，真正的数据在'state'中，比如SGD中需要保存g(w_i)
+  ```
+
+- ![image-20200702163051170](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200702163051170.png)
+
+- ![image-20200702163117166](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200702163117166.png)
+
+- ![image-20200702163133627](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200702163133627.png)
+
+- 从上面三幅图中可以看到是params中保存的是地址，真正的buffer在state中
 
 ## load_state_dict
 

@@ -6,7 +6,6 @@
 
 - [ ] C++
 - [ ] 数据结构与算法
-- [ ] 统计学习方法
 
 ## Git
 
@@ -79,6 +78,7 @@
 - [lecture 8](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_8.md)：Tensorboard使用，`torch.utils.tensorboard`
 - [lecture 9](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_9.md)：Pytorch中的hook函数
 - [lecture 10](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_10.md)：pytorch中的正则化策略
+- [lecture 11](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/pytorch/lecture_11.md)：pytorch 并行训练（DistributedParallel）
 
 ## Docker
 
@@ -89,6 +89,7 @@
 - [lecture 0](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_0.md) ：基础语法，类似C，数组，指针，数据类型，程序流程等
 - [lecture 1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_1.md)：C++核心编程，函数提高与内存分区模型
 - [lecture 2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_2.md)：C++核心编程，面向对象
+- [lecture 3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_3.md)：文件操作
 
 ## 数据结构与算法
 

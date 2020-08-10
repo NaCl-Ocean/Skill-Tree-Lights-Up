@@ -84,6 +84,12 @@
 
 - [Docker基础命令](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Docker/notes.md)
 
+## 计算机网络
+
+- [lecture 0](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Computer_network/chapter_0.md)  : 计算机网络概述
+- [lecture 1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Computer_network/chapter_1.md)：物理层
+- [lecture 2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Computer_network/chapter_2.md)：数据链路层
+
 ## C++
 
 - [lecture 0](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_0.md) ：基础语法，类似C，数组，指针，数据类型，程序流程等
@@ -94,4 +100,7 @@
 ## 数据结构与算法
 
 - [lecture 1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Algorithms_and_data_structures/lecture_1.md)：array，linked list and Skip list
+
 - [lecture 2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Algorithms_and_data_structures/lecture_2.md)：stack，queue，deque and pirority queue
+
+  

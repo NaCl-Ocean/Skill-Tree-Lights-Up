@@ -4,7 +4,7 @@
 
 - 为什么需要初始化
 
-  - ![image-20200601142647262](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200601142647262.png)
+  - ![image-20200601142647262](images/image-20200601142647262.png)
 
   - 以上图为例，weight初始化为均值为0，方差为1，input 均值为0，方差为1
 

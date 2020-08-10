@@ -200,7 +200,7 @@ class Dataset(object):
 - **FiveCrop**
   - `FiveCrop(size)` 
   - 将原图裁剪为指定size的五张图
-  - ![image-20200530181109539](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200530181109539.png)
+  - ![image-20200530181109539](images/image-20200530181109539.png)
 
 
 
@@ -264,7 +264,7 @@ class Dataset(object):
   - degrees：旋转角度
   - translate：平移区间，如(a,b)，则在宽维度上平移的距离为$width_{img} \times a<dx<width_{img}\times a$
   - scale：缩放比例，(0，1]
-  - fill_color：填充颜色设置
+  - fill_color：填充颜色设置，(R,G,B)
   - shear：错切，水平错切和垂直错切
     - 若为a：仅在x轴错切，错切角度在(-a,a)之间
     - 若为(a,b)：仅在x轴错切，错切角度在(a,b)之间

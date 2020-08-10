@@ -56,7 +56,7 @@ tensor([-0.0101, -0.0287,  0.0274])
 
 # GroupNormalization
 
-![](https://pic4.zhimg.com/80/v2-fad3333df9a87c1c4f1db4b20557da6f_720w.jpg)
+![](images/v2-fad3333df9a87c1c4f1db4b20557da6f_720w.jpg)
 
 - 从上面这张图可以看出，Batch Norm是单独的一类归一化方法，其他三种是一类
 
@@ -129,7 +129,7 @@ G = self.num_groups
 # Weight decay
 
 - L2正则化
-- ![image-20200604145559445](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200604145559445.png)
+- ![image-20200604145559445](images/image-20200604145559445.png)
 
 - 具体实现：在优化器中指定正则化系数
 

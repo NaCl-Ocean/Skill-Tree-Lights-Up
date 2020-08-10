@@ -7,7 +7,7 @@
 
 # 叶节点
 
-- 用户创建的Tensor(通过lecture 0 中创建Tensor方法创建的Tensor)，叶节点的grad_fn为None
+- 用户创建的Tensor(通过lecture 0 中创建Tensor方法创建的Tensor)
   
   - 对应来说，就是我们输入的input data，权重参数
   

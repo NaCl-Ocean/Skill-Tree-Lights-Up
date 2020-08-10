@@ -88,7 +88,7 @@
 - `CosineAnnealingLR(optimizer,T_max,eta_min=0,last_epoch=-1)`
   - T_max ：余弦周期的一半
   - eta_min：学习率的最小值，最大值为optimizer的初始学习率
-- <img src="C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200603102801798.png" alt="image-20200603102801798" style="zoom:70%;" />
+- <img src="images/image-20200603102801798.png" alt="image-20200603102801798" style="zoom:70%;" />
 
 
 

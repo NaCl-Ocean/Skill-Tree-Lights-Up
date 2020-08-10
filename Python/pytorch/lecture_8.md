@@ -7,7 +7,7 @@
   - terminal中**运行tensorboard**，解析event file中的数据，进行可视化，转发到**6006端口**
 
     - ```
-      tensoboard --logdir='' -->terminal中运行tensorboard
+      tensorboard --logdir='' -->terminal中运行tensorboard
       ```
 
 
@@ -62,7 +62,7 @@
 - `add_histogram(tag,values,global_step=None,bins='tensorflow',walltime=None)`
   - values：要统计的矢量
   - global_step：相当于y轴
-- ![image-20200603140959385](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200603140959385.png)
+- ![image-20200603140959385](images/image-20200603140959385.png)
 
 - 上图中下面的是global_step=1绘制的，上面的是global_step=0绘制的，绘制代码如下
 

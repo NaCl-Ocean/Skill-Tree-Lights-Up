@@ -37,7 +37,7 @@
     torch.cuda.set_device(args.local_rank)  #利用torch.distribute.launch 传递的local_rank参数指定GPU
     ```
 
-- 初始化初始化GPU通信方式和参数的获取方式
+- 初始化GPU通信方式和参数的获取方式
 
   - ```
     torch.distributed.init_process_group(backend="nccl", init_method="env://")

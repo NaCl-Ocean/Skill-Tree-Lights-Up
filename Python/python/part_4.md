@@ -89,7 +89,7 @@
 
   - 格式化时间字符串
 
-    - ![](http://image.haiyang1218.cn/images/time_string.png)   
+    - ![](images/time_string.png)   
 
   - 元组（struct-time)
 

@@ -211,7 +211,7 @@
 
       
   
-  - <img src="http://image.haiyang1218.cn/images/python_copy.png" width="300px" />
+  - <img src="images/python_copy.png" width="300px" />
   
 - **引申到变量的删除**
   
@@ -275,7 +275,7 @@
 
   - `str.decode('utf-8 or gbk')`   解码为unicode
 
-  - ![编解码](http://image.haiyang1218.cn/images/python_coding.png)
+  - ![编解码](images/python_coding.png)
 
 - python执行代码的过程：
 

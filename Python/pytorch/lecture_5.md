@@ -145,7 +145,7 @@ $$ loss(x,class) = -log(exp[x[class]] / \sum_{j}exp[x[j]]) = -x[class]+log(\sum_
 
 - 同一个样本有多个标签，为MultiLabel
 
-- ![image-20200601192938515](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200601192938515.png)
+- ![image-20200601192938515](images/image-20200601192938515.png)
 
   - x 为 output，y 为label
 
@@ -195,6 +195,7 @@ $loss(x, y)=- \frac{1}{C} * \sum_{i} y[i] * \log \left((1+\exp (-x[i]))^{-1}\rig
 - 当样本中没有某个class时，利用后半部分计算该class的loss，$ \log \left(\frac{\exp (-x[i])}{(1+\exp (-x[i]))}\right)$
 
 - `MultiLabelSoftMarginLoss(weight=None,reduction='mean')`
+  
   - weight：各class的权重
 
 
@@ -216,15 +217,16 @@ $loss(x, y)=- \frac{1}{C} * \sum_{i} y[i] * \log \left((1+\exp (-x[i]))^{-1}\rig
 
   ​                       $L(a, p, n)=\max \left\{d\left(a_{i}, p_{i}\right)-d\left(a_{i}, n_{i}\right)+\text { margin, } 0\right\}$                				                        $a:anchor,p:positive,n:negitive$
 
-- ![image-20200601202018482](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200601202018482.png)
+- ![image-20200601202018482](images/image-20200601202018482.png)
 
 - `TripletMarginLoss(margin=1.0,p=2.0,eps=1e-06,swap=False,reduction='mean')`
+  
   - p：范数的阶，默认为2阶范数
 
 # HingeEmbeddingLoss
 
 - 计算两个输入的相似性，常用于非线性embedding和半监督学习
-- ![image-20200601203022033](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200601203022033.png)
+- ![image-20200601203022033](images/image-20200601203022033.png)
 
 - $margin = \Delta$
 - `HingeEmbeddingLoss(margin=1.0,reduction='mean')`
@@ -234,7 +236,7 @@ $loss(x, y)=- \frac{1}{C} * \sum_{i} y[i] * \log \left((1+\exp (-x[i]))^{-1}\rig
 # CosineEmbeddingLoss
 
 - 采用余弦相似度计算两个输入的相似性
-- ![image-20200601203620536](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200601203620536.png)
+- ![image-20200601203620536](images/image-20200601203620536.png)
 
 - `CosineEmbeddingLoss(margin=0.0,reduction='mean')`
   - margin:[-1,1]，推荐为[0,0.5]

@@ -3,7 +3,7 @@
 - 多维数组
 - 属性
   - `dtype`：数据类型，如`torch.FloatTensor`，`torch.cuda.FloatTensor`
-    - ![](https://pic1.zhimg.com/80/v2-95729ebb10269f807b0809fb09b125d0_720w.jpg)
+    - ![](images/v2-95729ebb10269f807b0809fb09b125d0_720w.jpg)
   - `shape`：张量的形状
   - `device`：张量所在设备，GPU/CPU，加速的关键
   - `requires_grad`：是否需要求导
@@ -34,8 +34,10 @@
   - 根据input的形状创建相同形状的全0张量
 - `torch.ones_like(input,dtype,layout,device,requires_grad)`
 - `torch.ones(size,out,dtype,layout,device,requires_grad)`
-- `torch.fill(size,fill_value,out,dtype,layout,device,requires_grad)`
+- `torch.full(size,fill_value,out,dtype,layout,device,requires_grad)`
   - 根据形状创建全为fill_value的张量
+- `torch.full_like(input,fill_value,out,dtype,device,requires_grad)`
+  - 根据input的shape创建全为fill_value的张量
 - `torch.arange(start=0,end,step=1,out,dtype,layout,device,requires_grad)`
   - 创建等差的一维张量，数值区间为[start,end) 
 - `torch.linspace(start=0,end,steps=1,out,dtype,layout,device,requires_grad)`
@@ -87,6 +89,26 @@
 
 
 
+
+
+# 广播机制
+
+当tensor需要进行element-wise操作时，当tensor size不一致时，自动触发广播机制，可以进行广播有2种情况
+
+- **A.ndim > B.ndim, 并且A.shape最后几个元素包含B.shape,** 比如下面三种情况, 注意不要混淆ndim和shape这两个基本概念
+  - A.shape=(2,3,4,5), B.shape=(3,4,5)
+  - A.shape=(2,3,4,5), B.shape=(4,5)
+  - A.shape=(2,3,4,5), B.shape=(5)
+- **A.ndim == B.ndim,** 并且A.shape和B.shape对应位置的元素要么相同要么其中一个是1, 比如
+  - A.shape=(1,9,4), B.shape=(15,1,4)
+  - A.shape=(1,9,4), B.shape=(15,1,1)
+
+
+
+那么所谓的广播机制，也就是沿着某一维度重复，可以参照下面 的repeat以及expand（实际上expand更符合广播机制）
+
+
+
 # 张量操作
 
 ## 张量拼接
@@ -118,16 +140,74 @@
   - split_size_or_sections：为int时，表示每一份的长度；为list时，按list元素切分，sum(list)等于该维度的长度
   - dim:要切分的维度
 
+## 张量判断
+
+- `torch.nonzero(input,out,as_tuple=False)`
+
+  - 查找tensor中不为0的元素，并返回这些元素在tensor中的坐标
+
+  - as_type 为 False , 返回张量的shape为（N,ndims)
+
+  - as_type为True，返回tuple，len(tuple)=ndims
+
+  - ```python
+    >>> torch.nonzero(torch.tensor([1, 1, 1, 0, 1]))
+    tensor([[ 0],
+            [ 1],
+            [ 2],
+            [ 4]])
+    >>> torch.nonzero(torch.tensor([[0.6, 0.0, 0.0, 0.0],
+                                    [0.0, 0.4, 0.0, 0.0],
+                                    [0.0, 0.0, 1.2, 0.0],
+                                    [0.0, 0.0, 0.0,-0.4]]))
+    tensor([[ 0,  0],
+            [ 1,  1],
+            [ 2,  2],
+            [ 3,  3]])
+    >>> torch.nonzero(torch.tensor([1, 1, 1, 0, 1]), as_tuple=True)
+    (tensor([0, 1, 2, 4]),)
+    >>> torch.nonzero(torch.tensor([[0.6, 0.0, 0.0, 0.0],
+                                    [0.0, 0.4, 0.0, 0.0],
+                                    [0.0, 0.0, 1.2, 0.0],
+                                    [0.0, 0.0, 0.0,-0.4]]), as_tuple=True)
+    (tensor([0, 1, 2, 3]), tensor([0, 1, 2, 3]))
+    >>> torch.nonzero(torch.tensor(5), as_tuple=True)
+    (tensor([0]),)
+    ```
+
+- `torch.topk(input, k, dim=None, largest=True, sorted=True, out=None)`
+
+  - 在指定维度上查找最大的k个值，返回其value 和 indices
+
+  - dim 默认为tensor最后的维度
+
+  - ```
+    a = torch.tensor([[1,2,3],[4,5,6]])
+    >>>tensor([[1, 2, 3],
+            [4, 5, 6]])
+    a.topk(2)
+    >>>torch.return_types.topk(
+    values=tensor([[3, 2],
+            [6, 5]]),
+    indices=tensor([[2, 1],
+            [2, 1]]))
+    ```
+
+    
+
 ## 张量索引
 
 - `torch.index_select(input,dim,index,out)`
   - 在维度dim上，按index索引数据，返回根据index索引得到数据拼接而成的张量 
-  - index 需要为int
+  - index type 需要为int
 - `torch.masked_selct(input,mask,out)`
   - 按照mask为True进行索引（Numpy中的布尔索引）
   - 返回一维张量
   - 布尔索引类似于Numpy中布尔索引，通过`tensor>10`类似即可获得一个布尔索引
 - 同样支持切片，切片得到的同样是一个视图，修改切片得到的张量同样会修改原张量
+- `tensor_a[tensor_b]`  花式索引
+
+  - [ ] 待补充
 
 ## 张量变换
 
@@ -136,14 +216,78 @@
   - shape 中某一维度为-1 表示该维度大小根据其他维度的大小进行推断
 
 - `torch.transpose(input,dim0,dim1)`
+  
   - 交换张量的两个维度，dim0 与 dim1即为要交换的维度
+  
 - `torch.t(input)`
+  
   - 二维张量的转置
+  
 - `torch.squeeze(input,dim=None,out)`
   - **压缩（移除）**长度为1的维度（轴）
   - 当dim为None时，移除所有长度为1的轴，若指定维度，当且仅当该轴长度为1时，可以被移除
+  
 - `torch.unsqueeze(input,dim,out)`
+  
   - 依据dim扩展维度，dim维度的长度为1
+  
+- `None`
+
+  - 类似于unsqueeze的做法，但是比较方便，返回view
+
+  - ```python
+    tensor = torch.randn(3, 4)
+    print('tensor size:', tensor.size())
+    tensor_1 = tensor[:, None]
+    print('tensor_1 size:', tensor_1.size())
+    tensor_2 = tensor[:, :, None]
+    print('tensor_2 size', tensor_2.size())
+    
+    tensor size: torch.Size([3, 4])
+    tensor_1 size: torch.Size([3, 1, 4])
+    tensor_2 size torch.Size([3, 4, 1])
+    ```
+
+    
+
+- `torch.permute(*dims)`
+
+  - 将张量的dim进行变换，返回其view
+
+  - ```python
+    >>> x = torch.randn(2, 3, 5)
+    >>> x.size()
+    torch.Size([2, 3, 5])
+    >>> x.permute(2, 0, 1).size()
+    torch.Size([5, 2, 3])
+    ```
+
+- `torch.repeat(*sizes)`
+
+  - 将张量重复，进而**扩展维度**
+
+  - *size(torch.Size or int) - The **number of times** to repeat this tensor along each dimension
+  
+  - ```python
+    >>> x = torch.tensor([1, 2, 3])
+    >>> x.repeat(4, 2)
+    tensor([[ 1,  2,  3,  1,  2,  3],
+            [ 1,  2,  3,  1,  2,  3],
+            [ 1,  2,  3,  1,  2,  3],
+            [ 1,  2,  3,  1,  2,  3]])
+    >>>x.repeat(4, 2).size()
+    torch.size([4,6]) # 6 = 2*3
+    >>> x.repeat(4, 2, 1).size()
+    torch.Size([4, 2, 3]) # 3=3*1
+    ```
+    
+  
+- `torch.expand`(*sizes)`
+
+  - *sizes(torch.Size or int) - the desired expanded **size**
+  - Returns a new **view** of the self tensor with singleton dimensions expanded to a larger size.
+  - 和repeat不同的是，这里的size需要和原size匹配，比如原size （1，3），那么expand size(n,3)
+    - 因为只沿着dim=1的维度进行扩展
 
 # 张量数学运算
 
@@ -223,6 +367,40 @@
 - `torch.tan(input,out)`
 - `torch.tanh(input.out)`
 
+## 比较大小
+
+- `torch.min`
+
+  - `torch.min(input)`  返回该张量中所有元素中最小的元素
+
+  - `torch.min(input,dim=0,keepdim=False)`   
+
+    - 返回一个namedtuple (value,indices)
+
+    - value为最小的元素值
+
+    - indices为其的索引，注意该索引不包括当前维度
+
+    - ```
+       >>> a = torch.randn(4, 4)
+       >>> a
+       tensor([[-0.6248,  1.1334, -1.1899, -0.2803],
+                      [-1.4644, -0.2635, -0.3651,  0.6134],
+                      [ 0.2457,  0.0384,  1.0128,  0.7015],
+                      [-0.1153,  2.9849,  2.1458,  0.5788]])
+      >>> torch.min(a, 1)
+      torch.return_types.min(
+      values=tensor([-1.1899, -1.4644,  0.0384, -0.1153]), 
+      indices=tensor([2, 0, 1, 0]))
+          
+      ```
+
+  - `torch.min(input,other)`
+
+    - 将input和other 按照elemnt-wise 的原则比较大小，取最小，返回value
+    - input 和 other 不需要size一致，但是需要满足广播机制
+    - 
+
 ## 其他
 
 - `torch.sigmoid(input, out=None)`
@@ -230,7 +408,33 @@
 
 
 
+# 张量属性相关
+
+- `torch.numel(input)`
+  - 返回input中所有元素的个数
+- `tensor.float()` or other types
+  - 转换tensor的dtype
+- `tensor.item()`  
+  - 当只有一个元素时，以python数据类型返回该值
+
  # 其他实用操作
 
 - `tensor.data.numpy`  tensor 转为ndarray
-- 
+
+- `tensor.new_tensor(input,dtype,device,require_grad)`
+
+  - Returns a new Tensor with `data` as the tensor data. By default, the returned Tensor has the same [`torch.dtype`](https://pytorch.org/docs/stable/tensor_attributes.html#torch.torch.dtype) and [`torch.device`](https://pytorch.org/docs/stable/tensor_attributes.html#torch.torch.device) as this tensor.
+
+  - 通常用来根据list或者tuple来构造tensor，十分简单
+
+  - ```
+    tensor = torch.tensor([2,3,4])
+    tensor.new_tensor([7,8])
+    >>>tensor([7,8])
+    ```
+
+    
+
+- `torch.clamp(input,min,max,out)`
+  
+  - 将input 的范围限制在[min,max]

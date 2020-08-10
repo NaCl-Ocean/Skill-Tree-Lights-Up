@@ -199,7 +199,13 @@ class net(torch.nn.Module):
   - padding：填充像素数量，int or (h,w)
   - diltation：空洞卷积间隔数
   - groups：分组卷积设置
-  - bias：是否需要偏置
+    - Group Convolution  : 假设输入的feature map shape 为(N,C,H,W)，该层进行Group Convolution，有n个kernel，G个分组
+      - 首先将输入的feature map分组 ， 分为G个组，每组的size为(N,C/G,H,W)
+      - 将kernel分组 ，每组n/G个kernel，kernel size (C/G,K,K)
+      - 每组分别进行利用kernel 进行卷积，每组输出的feature map 为(N,n/G,H',W')，每组的feature map  stack 得到最终的feature map （N,n,H',W')
+    - depthwise Convolution ： Group Convolution 分组数为C 
+      - 参考：[Depthwise Convolution and Pointwise Convolution](https://zhuanlan.zhihu.com/p/80041030)
+  - bias：是否需要偏置，bias 的shape 等于（out_channels），也就是说bias是加在output的每个channel上的
 - `ConvTranspose2d(in_channels,out_channels,kernel_size,stride=1,padding=0,output_padding=0,groups=1,bias=True,dilation=1,padding_mode='zero')`
   - 转置卷积，upsample
   - in_channels：输入通道数
@@ -221,7 +227,7 @@ class net(torch.nn.Module):
   - dilation：池化核间隔大小
   - ceil_mode：尺寸向上取整，计算输出的特征图大小时，当无法除整时，如何决定输出特征图的大小
   - return_indices：记录池化像素索引，也就是最大像素在原图中的位置，当设置为True时，返回indices
-  - <img src="C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200531182541998.png" alt="image-20200531182541998" style="zoom:70%;" />
+  - <img src="images/image-20200531182541998.png" alt="image-20200531182541998" style="zoom:70%;" />
 
 - `AvgPool2d(kernel_size,stride,padding=0,ceil_mode=False,count_include_pad=True,divisor_override=None)`
   - count_include_pad：填充值用于计算（若进行了填充）

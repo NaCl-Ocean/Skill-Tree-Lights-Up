@@ -104,7 +104,7 @@ PPP协议
 
 ## 以太网
 
-局域网
+**局域网**
 
 **CSMA/CD协议**（Carrier Sense Multiple Access/collision detection）
 

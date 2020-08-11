@@ -89,8 +89,8 @@
 
 名词解释：
 
-- ISO 国家标准化组织
-- OSI 互联网法律上的国际标准
+- ISO(International Organization for Standardization)  国家标准化组织
+- OSI(Open System Interconnection) 互联网法律上的国际标准
 - TCP/IP 因特网事实上的国际标准
 - Network Protocols 数据交换遵守的规则，标准或约定
 - 网络体系结构  计算机网络各层及其协议的集合

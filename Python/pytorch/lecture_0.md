@@ -1,4 +1,4 @@
-# 张量是什么
+# `张量是什么
 
 - 多维数组
 - 属性
@@ -96,12 +96,12 @@
 当tensor需要进行element-wise操作时，当tensor size不一致时，自动触发广播机制，可以进行广播有2种情况
 
 - **A.ndim > B.ndim, 并且A.shape最后几个元素包含B.shape,** 比如下面三种情况, 注意不要混淆ndim和shape这两个基本概念
-  - A.shape=(2,3,4,5), B.shape=(3,4,5)
-  - A.shape=(2,3,4,5), B.shape=(4,5)
-  - A.shape=(2,3,4,5), B.shape=(5)
+  - `A.shape=(2,3,4,5), B.shape=(3,4,5)`
+  - `A.shape=(2,3,4,5), B.shape=(4,5)`
+  - `A.shape=(2,3,4,5), B.shape=(5)`
 - **A.ndim == B.ndim,** 并且A.shape和B.shape对应位置的元素要么相同要么其中一个是1, 比如
-  - A.shape=(1,9,4), B.shape=(15,1,4)
-  - A.shape=(1,9,4), B.shape=(15,1,1)
+  - `A.shape=(1,9,4), B.shape=(15,1,4)`
+  - `A.shape=(1,9,4), B.shape=(15,1,1)`
 
 
 
@@ -191,6 +191,25 @@
             [6, 5]]),
     indices=tensor([[2, 1],
             [2, 1]]))
+    ```
+
+- `tensor.kthvalue(input, k, dim=None, keepdim=False, out=None)`
+
+  - 返回第k小元素的value与index，如果dim未指定，选定为最后一维
+
+  - ```
+    >>> x = torch.arange(1., 6.)
+    >>> x
+    tensor([ 1.,  2.,  3.,  4.,  5.])
+    >>> torch.kthvalue(x, 4)
+    torch.return_types.kthvalue(values=tensor(4.), indices=tensor(3))
+    
+    >>> x=torch.arange(1.,7.).resize_(2,3)
+    >>> x
+    tensor([[ 1.,  2.,  3.],
+            [ 4.,  5.,  6.]])
+    >>> torch.kthvalue(x, 2, 0, True)
+    torch.return_types.kthvalue(values=tensor([[4., 5., 6.]]), indices=tensor([[1, 1, 1]]))
     ```
 
     
@@ -416,6 +435,8 @@
   - 转换tensor的dtype
 - `tensor.item()`  
   - 当只有一个元素时，以python数据类型返回该值
+- `tensor.tolist()` 
+  - 将tensor转为列表，对于scalars等同于`item()`
 
  # 其他实用操作
 
@@ -432,8 +453,6 @@
     tensor.new_tensor([7,8])
     >>>tensor([7,8])
     ```
-
-    
 
 - `torch.clamp(input,min,max,out)`
   

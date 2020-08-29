@@ -48,18 +48,18 @@
 
   - ```
     eg:
-       	R1	R2	R3	R4	R5           	R1	R2	R3	R4	R5     R1  R2  R3  R4  R5
-    P1	0	1	0	0	1           P1	1	0	1	1	0      2   1   1   2   1
-    P2	0	0	1	0	1           P2	1	1	0	0	0        Resource Vector R
-    P3	0	0	0	0	1           P2	0	0	0	1	0      R1  R2  R3  R4  R5
-    P4	1	0	1	0	1           P4	0	0	0	0	0      0   0   0   0   1
-        Request matrix Q              Allocation matrix A       Available Vector V
+       	R1	R2	R3	R4	R5         R1 R2  R3  R4  R5     R1  R2  R3  R4  R5
+    P1	0	1	0	0	1       P1 1   0   1   1   0      2   1   1   2   1
+    P2	0	0	1	0	1       P2 1   1   0   0   0      Resource Vector R
+    P3	0	0	0	0	1       P3 0   0   0   1   0      R1  R2  R3  R4  R5
+    P4	1	0	1	0	1       P4 0   0   0   0   0      0   0   0   0   1
+        Request matrix Q        Allocation matrix A       Available Vector V
         （还需要申请的资源）
         
-    1. 首先P4没有申请资源，因此没有发生死锁
-    2. P3还需要申请1个R5，可以被剩余资源V满足，因此没有发生死锁
-    3. 将P3的资源释放出来，V=[0,0,0,0,1]+[0,0,0,1,0]=[0,0,0,1,1]
-    4. P1 和 P2 还需要申请的资源无法被剩余资源V=[0,0,0,1,1]满足，P1和P2发生死锁
+    
+    1. P3还需要申请1个R5，可以被剩余资源V满足，因此没有发生死锁
+    2. 将P3的资源释放出来，V=[0,0,0,0,1]+[0,0,0,1,0]=[0,0,0,1,1]
+    3. P1 和 P2 还需要申请的资源无法被剩余资源V=[0,0,0,1,1]满足，P1和P2发生死锁
     ```
 
     

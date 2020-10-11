@@ -10,3 +10,4 @@ Cpp/reference/
 Cpp/code/
 *.xmind
 *.exe
+.DS_Store

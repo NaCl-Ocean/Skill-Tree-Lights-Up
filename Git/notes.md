@@ -42,13 +42,19 @@
   - git add &lt;file&gt;:  提交单个文件
 - **git commit** 提交工作区的文件到本地库
   - git commit -m "commit message"
+  - git commit -am "commit message"    ==  git add + git commit 
 - **git log** : 查看所有commit 的信息
   - git log --pretty=oneline 每个commit 日志显示一行
   - git log --oneline 显示当前版本之前的版本
   - git refloq 有助于移动版本   HEAD@{移动到当前版本需要多少步}
 - **git diff**
   - git diff &lt;file&gt; 表示工作区的文件与暂存区进行比较
-  - git diff HEAD^ &lt;file&gt;  与本地库的某个版本进行比较
+  - git diff HEAD^ &lt;file&gt;  工作区的文件与本地库的某个版本进行比较
+  - git diff --staged 或者 git diff --cached filepath 暂存区域HEAD比较
+  - git diff branchName filepath  当前分支的文件与branchName 分支的文件进行比较
+  - git diff commitId filepath 与某一次提交进行比较
+- **git restore**
+  - git restore file 取消修改，相当于ctrl+z
 
 # 版本移动
 
@@ -75,6 +81,9 @@
     - 修改文件
     - git add &lt;文件名&gt;
     - git commit -m "commit message"(不带文件名)
+- **git stash** 临时保存和恢复修改
+  - 切换分支前，临时保存当前分支的内容
+  - git stash pop 切换回分支后，恢复之前保存的内容
 
 # git 工作原理
 
@@ -125,6 +134,8 @@
 - git  pull  &lt;远程库别名&gt;  &lt;分支名&gt;
 
 - 冲突的推送：当前本地库不是基于远程库的最新版进行修改，则不能推送，需要先拉取远程库的最新版，根据分支冲突的解决方法合并分支，之后进行提交
+
+- `git remote rm <远程库别名> `删除该远程库
 
   
 

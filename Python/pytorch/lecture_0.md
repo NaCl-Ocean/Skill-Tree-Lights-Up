@@ -1,4 +1,4 @@
-# `张量是什么
+# 张量是什么
 
 - 多维数组
 - 属性
@@ -10,6 +10,7 @@
   - `grad`：导数/梯度
   - `grad_fn`：创建该Tensor的Function，是反向传播的关键
   - `is_leaf`：是否是叶节点
+  - `ndim` : 有几维
 
 
 
@@ -88,6 +89,33 @@
   - 以input为概率，生成伯努利分布
 
 
+
+## new 创建
+
+- 创建一个和原tensor同`dtype`，同`device` ，但是`size`以及其中的值不同的tensor
+
+- `new_zeros(size, dtype=None, device=None, requires_grad=False)`
+
+- `new_ones(size, dtype=None, device=None, requires_grad=False)`
+
+- `new_full(size, fill_value, dtype=None, device=None, requires_grad=False)`
+
+- `new_empty(size, dtype=None, device=None, requires_grad=False) `
+
+- `tensor.new_tensor(input,dtype,device,require_grad)`
+
+  - Returns a new Tensor with `data` as the tensor data. By default, the returned Tensor has the same [`torch.dtype`](https://pytorch.org/docs/stable/tensor_attributes.html#torch.torch.dtype) and [`torch.device`](https://pytorch.org/docs/stable/tensor_attributes.html#torch.torch.device) as this tensor.
+
+  - 通常用来根据list或者tuple来构造tensor，十分简单
+
+  - ```
+    tensor = torch.tensor([2,3,4])
+    tensor.new_tensor([7,8])
+    
+    >>>tensor([7,8])
+    ```
+
+    
 
 
 
@@ -243,6 +271,7 @@
   - 二维张量的转置
   
 - `torch.squeeze(input,dim=None,out)`
+  
   - **压缩（移除）**长度为1的维度（轴）
   - 当dim为None时，移除所有长度为1的轴，若指定维度，当且仅当该轴长度为1时，可以被移除
   

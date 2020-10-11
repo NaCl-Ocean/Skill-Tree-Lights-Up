@@ -10,7 +10,7 @@
 
 # CrossEntropyLoss
 
-$H(P,Q)=-\sum_{i=1}^{N}P(x_i)log(Q(x_i))$，$P(x_i)$为label，只能为0或者1，退化为下式
+$H(P,Q)=-\sum_{i=1}^{N}P(x_i)log(Q(x_i))$，$P(x_i)$ 为label，只能为0或者1，退化为下式
 
 $$ loss(x,class) = -log(exp[x[class]] / \sum_{j}exp[x[j]]) = -x[class]+log(\sum_j exp(x[j]))$$
 

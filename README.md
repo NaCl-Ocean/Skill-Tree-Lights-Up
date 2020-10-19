@@ -6,6 +6,7 @@
 
 - [ ] C++
 - [ ] 数据结构与算法
+- [ ] Vscode
 
 ## Git
 
@@ -106,4 +107,9 @@
 
 - [lecture 2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Algorithms_and_data_structures/lecture_2.md)：stack，queue，deque and pirority queue
 
-  
+
+
+## Vscode
+
+- [vscode tutorial](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/vsocde/notes.md)
+- 

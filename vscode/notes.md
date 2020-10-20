@@ -1,4 +1,6 @@
+ 
 
+ 
 
 # 打开项目
 
@@ -83,7 +85,7 @@ Debug 界面概览
 
 
 
-Debug的作用
+**Debug的作用**
 
 - 程序出现 bug， 修复bug
 - 学习源代码，通过调试理清代码的逻辑
@@ -158,7 +160,63 @@ Launch.json中的内容
   - launch vscode 负责启动程序并给程序搭配一个调试器
   - attach  为一个已经在运行且不支持调试的程序加一个调试器（通常是远程调试，web开发）
 
+### 搜索本地变量
 
+当变量过多时，可以通过搜索变量来快速找到某个变量
+
+**单击local后（将光标定位到local区），输入想要查看变量的名称**
+
+
+
+### logpoints, conditional point
+
+在添加断点时，有3种断点
+
+- breakpoint
+- Logpoint  输出某些内容，通过`{}` 来获取某个变量的值，并输出
+- conditional point   添加一个条件，当该条件为true时，断点才会生效
+
+
+
+### inline breakpoint
+
+一行代码调用多个函数，可以在某个函数前打断点
+
+将光标定位到某个函数前，Run->New breakpoint ->inline breakpoint
+
+
+
+### Multi-target debugging
+
+一个项目里运行多个调试进程
+
+- 在launch.json中配置多个调试配置项，依次启动单个调试配置项
+
+- 使用compounds
+
+  - ```json
+    "compounds":[
+      {
+        "name":"java+node",
+        "configuration":["Java","Node"],
+      }
+    ],
+    "configuration":[
+      {
+        "type":"java",
+        "name":"Java",
+        "request":"launch",
+        "minClass":"Demo"
+      },
+      {
+        "type":"node",
+        "request":"launch",
+        "name":"Node"
+      }
+    ]
+    ```
+
+    
 
 ## Extension Tool
 
@@ -316,3 +374,131 @@ User Snippets
     - `+` 表示新增terminal，第二个符号表示新增terminal并与原terminal并列显示，第三个表示删除当前terminal
     - 可以通过下拉列表选择termianl
   - Move panel right 
+    - 右键`terminal` ，可以将pannel 移动到右侧，或者左侧
+
+
+
+# Status Bar
+
+ 显示两种信息
+
+- 当前项目
+- 当前正在被编辑的文件
+
+左侧表示当前项目的信息
+
+- 圆圈中一个叉表示Error，点击可查看Error的地方
+
+- 三角形中一个感叹号表示Warning，点击可查看Warning的地方
+- 以及git相关
+
+
+
+右侧表示当前文件的信息
+
+- 编码格式
+- 换行符：Line Feed(LF)-->macos + linux , Carriage Return Line Feed(CRLF)--> Windows
+- 文件类型 : python, ccs, ....
+
+
+
+使用vscode新建临时文件
+
+- Cmd + N
+- 选择合适的文件类型（status bar)：vscode新建的临时文件默认格式为Plain Text（纯文本）
+- 全选并格式化（shift+option+F)
+- 该临时文件不会包存在项目中
+
+
+
+Plain Text 和 Rich Text
+
+- Rich Text 带有格式
+- Plain Text 没有格式
+
+status bar 的背景色
+
+- 调试时为橙色
+- 打开folder时为蓝色
+- 其他情况下为紫色 
+
+
+
+
+
+# 文件及文件夹的使用
+
+## vscode文件及文件夹的特点
+
+- 不支持新建模版项目
+  - 使用命令行工具新建模版项目。比如开发vuejs的“vue”命令，开发dotnet core的“dotnet”命令等等
+  - 使用扩展新建模版项目。 比如“Web Template Studio”和“Spring Initializr Java Support”。
+- 不支持新建模版文件
+  - 手动输入文件后缀名--》 无法解决
+  - 创建的文件没有内容--》 借助user snippests
+- 不会对文件及文件夹的显示做重构
+  - Settings -> Exclude 设置隐藏显示某些文件及文件夹
+
+## 管理文件及文件夹
+
+- 增加文件及文件夹
+  - 通过顶部的新增功能键 `new file` `new foler`
+  - 右键唤起上下文菜单
+  - `cmd+c   cmd+v`    复制某个文件，之后粘贴，粘贴后文件带有copy
+- 删除文件及文件夹
+  - 右键唤起上下文菜单
+  - cmd + delete 
+- 重命名文件及文件夹
+  - 右键唤起上下文菜单
+  - enter 
+- 查找文件及文件夹
+  - 单击project 部分，可以看到蓝色框亮，此时输入想要查找的文件或者文件夹名称，对应的文件及文件及就会高亮
+  - <img src="images/截屏2020-10-20 下午5.02.16.png" alt="截屏2020-10-20 下午5.02.16" style="zoom:25%;" /> 
+- 上下文菜单的其他常用功能
+  - `open in integreated terminal`      快速在当前文件所在的目录下打开terminal
+  - `copy path`   获取文件的绝对路径
+  - `copy relative path`   获取文件的相对路径
+  - `Reveal in Finder`   将文件在finder中打开，在Win上叫“Reveal in File Explorer”，在Linux上叫“Open Containing Folder”
+
+
+
+## Dirty Write
+
+**出现的原因**
+
+- 在vscode 中 对某个文件进行了编辑，但是没有保存
+- 在除了vscode之外的其他进程对文件进行了修改，且保存到了磁盘中
+- 在vscode中对该文件进行保存，此时vscode会提示dirty write，无法保存
+
+
+
+**解决的方法**
+
+- Overwrite  删除其他进程对文件的修改，保存vscode对文件的修改
+- compare  打开差异视图，选择保存那个版本，或者手动merge
+
+
+
+## 选择合适的文件打开方式
+
+**preview mode**
+
+- 当单击文件打开文件时，vscode 默认以preview mode 打开，此时打开新的文件会复用掉当前的tab
+- <img src="images/截屏2020-10-20 下午5.05.06.png" alt="截屏2020-10-20 下午5.05.06" style="zoom:25%;" />
+
+**取消当前文件的preview mode**
+
+- 双击当前文件名
+- 双击当前tab
+- 对当前文件进行编辑
+
+
+
+## 寻找文件的方式
+
+- 知道文件名： **"Quick Open"  cmd+p**
+- 不记得文件名，但记得文件里的内容，且知道文件在哪个目录下：在所在目录右键唤起上下文菜单**"Find in folder"**，只在当前目录下查找有某内容的文件
+- 不记得文件名，不记得文件中的内容，但是知道该文件的“邻居”：通过**“Quick Open”**查找该邻居，即可找到该文件
+
+## 文件快速导航
+

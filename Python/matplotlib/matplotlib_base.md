@@ -39,7 +39,29 @@
     - 如何显示图形到屏幕
     - ![backend list](http://image.haiyang1218.cn/images/matplotlib_backend.png)
 
+- **rcparams**
 
+  - Matplotlib.pyplot 显示图形的默认属性
+
+  - 通过`pyplot.rcparams` 可以进行查看
+
+  - 修改
+
+    - `pyplot.rcParams['lines.linewidth'] = 2`
+
+    - ```
+      params = {'axes.titlesize':12}
+      pyplot.rcParams.update(params)
+      ```
+
+    - 也可以使用预设的风格
+
+      - ```python
+        pyplot.style.use('seaborn-whitegrid')
+        pyplot.style.available # 查看所有风格
+        ```
+
+        
 
 # Artist基本对象
 
@@ -71,7 +93,7 @@
 
 - **总体来说matplotlib中基本对象存在着层级关系。**
 
-  ![container object](http://image.haiyang1218.cn/images/matplotlib_container.png)
+  ![ ](http://image.haiyang1218.cn/images/matplotlib_container.png)
 
 ## Figure
 
@@ -165,6 +187,8 @@ line_1.set_label('test')
 yaxis = ax.yaxis
 xaxis = ax.xaxis
 # axis->tick
+# 在这里x轴显示1，2，3，因此得到了3个tick，
+# 这样设计的好处其实就是tick之间相互独立，可以分别去设置，互不影响 
 for tick in yaxis.get_major_ticks():
     tick.label1.set_visible(True)
     tick.label2.set_visible(True)
@@ -390,9 +414,9 @@ plt.show()
 
 - colormap实际上是一个table（or array），大小为N*4（or N\*3)，也就是通过索引将数值映射为颜色
 
-- colormap要做的事是输入一个[0,1]的值，然后插值为索引，找到对应的颜色
-
 - **Listedcolormap对象**
+
+  - 将color存储在`.colors` 属性中，可以通过该属性查看其包含的所有颜色
 
   - 创建listedcolormap
 
@@ -410,11 +434,22 @@ plt.show()
 
   - 操作listedcolormap
 
+    - 查找某一个颜色
+
     - 推荐通过numpy.array来操作
 
     - ```python
       (new_cmap(np.linspace(0,0.5,128)))   -->输出为list
       ```
+
+  - ```
+  cm = plt.cm.tab10  --> 一种built in的colormap，包含了10种颜色
+    cm(range(10))--> 获得包含的所有颜色
+  cm(5.2)  --> 本质上通过nearest-neighbor interpolation 得到的是cm(5)对应的颜色
+    cm(0.5)  --> 如果输入是一个0-1之间的浮点数，则将其映射到1-10之间，之后通过nearest-neighbor interpolation得到其对应的颜色，也就是cm(5)
+  ```
+    
+    
 
 - **linear segmented colormap对象**
 
@@ -445,9 +480,6 @@ plt.show()
       			channel = linearly interpolated between y1[i] and y0[i+1]
       eg: if z = 0.4,则'red'分量映射到[0.0,1.0],'green'分量映射到[0.5,1.0],'blue'分量映射到[0.0,0.0]
       ```
-    ```
-    
-    ```
   
 - 创建linear segmented colormap
   
@@ -458,6 +490,14 @@ plt.show()
       - ```
         LinearSegmentedColormap.from_list(['black','cyan','ivory'])
         ```
+
+- matplotlib中built in了许多colormap，可以通过`Matplotlib.cm.get_cmap` 去查看
+  - matplotlib将colormap分成了4种（可以来这里看不同colormap的效果   [colormap效果](https://matplotlib.org/3.2.1/tutorials/colors/colormaps.html#sphx-glr-tutorials-colors-colormaps-py)）:
+    - **sequential colormap** :在某种单一颜色的基础上，通过改变色彩的饱和度而形成的渐变色（通常是饱和度递增），适用于数值fenbu线性
+    - **diverging Colomap**: 由两种颜色构成，从一种颜色过渡到另一种颜色，先是饱和度减小，之后饱和度增大，适用于数据有中zhi和左右边界的情况
+    - **cyclic colormap**:起点和终点是相同的颜色，用于围绕中心对称的数据
+    - **qualitative colormap**: 由多个独立颜色组合而成的渐变色，适用于离散分布的情况
+- 如何使用colormap
 
 ##  Normalize
 
@@ -541,6 +581,11 @@ plt.show()
   - 也就是说formatter 将locator的内容按照定义的格式进行显示
   - Tick  有major tick和 minor tick
   - nbins ：axis显示多少个间隔，相邻两Tick间为一个bin
+  - 每个tick有4个重要的属性：tick1line，tick2line，label1，label2。
+    - 如果是xaxis上的tick，那么tick1line和label1表示top的tick，tick2line和label2表示bottom的tick
+    - 如果是yaxis上的tick，那么tick1line和label1表示left的tick，tick2line和label2表示right的tick
+    - tick1line和tick2line是line object，label1和label2是text object，可以用来设置fontsize等
+    - 
 -  **Tick locator**
    -  FixedLocator  `FixedLocator(locs,nbins=None) `  ，locs为array格式/list格式	
       - axis上的major tick是一个list，每个元素也就是一个tick，但是不一定会将这些tick都显示出来，若nbins为None，则会选择适合的tick进行显示，比如前6个tick已经包含了要显示的内容，那么就只会显示前6个tick

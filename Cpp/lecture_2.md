@@ -24,6 +24,8 @@
 
   - **私有权限 private：类内可以访问，类外不可以访问**
 
+    - 私有权限不可以被子类继承，保护权限可以被子类继承
+
   - **当不标记权限时，默认为私有权限**
 
   - ```C++
@@ -51,7 +53,7 @@
 
   - **struct 中的所有成员都是公共权限，struct中也可以定义方法**
 
-- 将属性设置为私有权限
+- **将属性设置为私有权限**
 
   - **一般而言，常用的设计思路是，将属性设置为私有`private`，而提供一系列公共`public`接口`get` `set`去读写属性**
 
@@ -69,7 +71,7 @@
   - 相当于python 的`__init__`
   - 没有返回值，不写void
   - 函数名与类名相同
-  - 构造函数可以有参数，可以发生重载
+  - **构造函数可以有参数，可以发生重载**
   - `类名(){}`
 
 - **析构函数**
@@ -96,27 +98,36 @@
 
 ## 构造函数的分类
 
-- 按照参数类型
+- **按照参数类型**
 
   - 有参构造
   - 无参构造：默认构造函数
 
-- 按照构造类型分类
+- **按照构造类型分类**
 
   - 拷贝构造
 
-    - 常量引用传递
+    - 常量引用传递：通过另一个对象初始化，往往需要和构造函数重载结合
 
-    - ```C++
-      class Person{
-      public:
-          Person(const Person &p){
-              Person.age = p.age;
-              ...
-          }
-      }
-      ```
-
+      - ```C++
+        class Person{
+        public:
+          // t
+            Person(const Person &p){
+                Person.age = p.age;
+                ...
+            }
+          	Person(int age){
+            	Person.age = age
+            }
+        }
+        
+        int main(){
+          Person p1 = Person(12);
+          Person p2 = Person(p1);
+        }
+        ```
+  
   - 普通构造
 
 ## 调用构造函数
@@ -124,11 +135,11 @@
 - 括号法
   - `Person p`  无参构造
   - `Person p(arg)`  有参构造
-- **显示法---》prefer**
-  - `Person p = person(arg)` 有参构造
-    - `person (arg)` 匿名对象
+- **显式法---》prefer**
+  - `Person p = Person(arg)` 有参构造
+    - `Person (arg)` 匿名对象
     - 不能利用拷贝构造函数初始化匿名对象    `Person (obj)` 等价于  `Person obj`
-  - `person p `  无参构造
+  - `Person p `  无参构造
 - 隐式转换法
   - `Person p = {args}`  等价于 `Person p = Person(arg)`
 
@@ -171,7 +182,7 @@
   	cube_1.set_l(20);
   	cout << cube_1.get_l() << endl;
   	Cube cube_2;
-      cube_2.set_l(50);
+    cube_2.set_l(50);
   	return cube_2;
   }
   
@@ -204,7 +215,7 @@
   0
   20
   using default construct
-  ----exit function----
+  ----exit function----      ---》vscode没有调用拷贝构造函数，而是直接将object返回
   50
   ```
   
@@ -212,12 +223,12 @@
 
 ## 构造函数调用规则
 
-- 默认情况下，C++编译器至少给一个类添加4个函数
+- **默认情况下，C++编译器至少给一个类添加4个函数**
   - 默认构造函数（无参，函数体为空）
   - 默认析构函数（无参，函数体为空）
   - 默认拷贝构造函数，对属性值进行拷贝
   - 赋值运算符，`operator=` 对属性进行值拷贝
-- 调用规则：
+- **调用规则：**
   - 如果用户定义了有参构造函数，c++不再提供默认无参构造，但是会提供默认拷贝构造
   - 如果用户定义拷贝构造函数，c++不再提供其他构造函数
 
@@ -229,7 +240,7 @@
 
 ## 深拷贝 与 浅拷贝
 
-- **c++ 提供的默认构造函数是浅拷贝，**也就是仅做一个简单的赋值操作
+- **c++ 提供的默认构造函数是浅拷贝，**也就是仅做一个简单的赋值操作，进行成员变量的拷贝
 
   - 如果对象在堆区开辟了数据，浅拷贝会导致堆区数据释放的冲突
 
@@ -287,18 +298,22 @@
 - ```C++
   class Person{
   public:  
-      Person(int a,int b,int c):name(a),age(b),car(c){
-          ....
-      }
-      //上述代码等价于
+      int name,age,car;
+      Person(int a,int b,int c):name(a),age(b),car(c){};
+     //上述代码等价于
       Person(int a,int b,int c){
           name = a;
           age = b;
           car = c;
       }
+  };
+  
+  int main(){
+    Person p = Person(10,20,30);
+      return 0;
   }
   ```
-
+  
 - **类对象作为类属性**
 
   - 构造时，先调用对象属性的构造方法，再调用本类的构造方法
@@ -334,11 +349,14 @@
 
   - **所有对象都共享同一份数据**
 
-  - 类内声明，类外初始化
+  - **类内声明，类外初始化**
 
   - 编译阶段分配内存
 
   - **可以通过对象进行访问，可以通过类名进行访问**
+
+    - 通过对象访问：`obj.属性名`
+    - 通过类名访问：`cls::属性名`
 
   - ```C++
     class man{
@@ -380,21 +398,24 @@
   - **所有对象共享同一个静态方法**
   - **静态成员函数只能访问静态成员变量**
 
-- 静态方法与静态属性同样有访问权限
+- 静态方法与静态属性同样可以设置访问权限
 
 
 
 ## 属性和方法存储
 
 - 属性和方法 分开存储
+
 - 每个空对象占1个字节
+
+- [更详细的解释](https://www.cnblogs.com/HPAHPA/p/8339931.html)
 
 - ```C++
   class man{
   public:
       int name;
       static int sex;   --》静态成员变量不在对象开辟的空间中存储
-  	void func(){      --》非静态方法不在对象开辟的空间中存储
+  	void func(){      --》方法不在对象开辟的空间中存储
           
       }
   };
@@ -462,15 +483,51 @@
 
 - **常函数**
   - 方法后加const称为常函数
+  
   - 被调用方法所属的对象不可以进行修改属性
+  
   - 本质上是让this 指针 成为**指针常量+常量指针**
+    
     - 也就是使得所属的对象的属性无法修改
+    
+    
+  
 - **常对象**
   - 在对象前加const关键字修饰，成为常对象
   - **常对象只能调用常函数**
   - 常对象的 属性 无法修改
+  
 - 关键字`mutable`
+  
   - 属性在声明时利用`mutable`修饰，则该属性可以在常函数中修改，常对象也可以进行修改
+  
+- ```c++
+  class man{
+  public:
+      mutable int name; --> 利用mutable声明属性
+      int sex;  
+  		void func() const {      
+          this->sex = 2; --> 报错，无法修改
+      }
+      void func2() const{
+          this -> name = 3;--> 可以修改
+      }
+  };
+  int man::sex = 1;
+  int main(){
+      man m = man();
+      m.func2();
+      cout << m.name<<endl;
+  }
+  ```
+
+  
+
+- **指针**
+
+  - 指针常量 `int * const ref = &a`    指针的指向不可以修改，但是指针指向的值可以修改
+  - 常量指针 `const int * ref = &a`    指针的指向可以修改，但是指针指向的值不可以修改，也就是不能通过指针来修改指向的值
+  - 常指针常量 `const int * const ref = &a`   指针的指向不可以修改，指针指向的值也不可以修改
 
 # 友元
 
@@ -562,7 +619,7 @@ int main() {
 - 全局函数重载
   - `obj_a + obj_b` 等价于调用`operator(obj_1,obj_b)`
 - **运算符重载同样可以发生函数重载**
-- **对于内置的数据类型的表达式不可以进行运算符重载**
+- **对于built in的数据类型的表达式不可以进行运算符重载**
 
 
 
@@ -597,13 +654,15 @@ int main() {
   p<<cout;
   ```
 
+
+
 ## 链式编程
 
 - `cout << "test_1"<<"test_2"<<endl`
 
 - 本质上链式操作的可行是因为调用 `cout<<"test_1"`  时（也就是重载的operator<<)时，又返回了一个`cout`对象，这样就可以重复下去
 
-- 所以实现链式操作的核心是一定要返回对应的类型，不能返回void
+- **所以实现链式操作的核心是一定要返回对应的类型，不能返回void**
 
 - ```C++
   ostream & operator<<(ostream &cout,Person &p){  --》当返回void时，无法链式编程
@@ -624,7 +683,7 @@ int main() {
 
 - 前置递增
 
-  - `operator()`
+  - `operator++()`
 
 - 后置递增
 
@@ -677,9 +736,20 @@ int main() {
 ## 函数调用运算符重载
 
 - `()` 运算符重载，仿函数
+
 - `operator()`
+
 - **重载之后，通过`obj()` 调用，相当于python的`__call__`方法**
+
 - 可以通过**匿名函数对象**直接调用  `class()()`调用
+
+- ```c++
+  void operator()(){
+    code ....
+  }
+  ```
+
+  
 
 # 继承
 
@@ -687,14 +757,14 @@ int main() {
 
 ## 继承方式
 
--  公共继承 public
+-  **公共继承 public**
   - 父类中公共权限子类仍然是公共权限
   - 父类中保护权限子类仍然是保护权限
-- 保护继承 protected
+- **保护继承 protected**
   - 父类中公共权限与保护权限在子类中都变为保护权限
-- 私有继承 private
+- **私有继承 private**
   - 父类中公共权限与保护权限在子类中都变为私有权限
-- 父类私有权限 无论哪种继承方式都不可以访问，自然也就继承不了
+- **父类私有权限 无论哪种继承方式都不可以访问，自然也就继承不了**
 
 
 
@@ -716,13 +786,56 @@ int main() {
 
 ## 继承中同名成员
 
-- 继承同名属性
+- **继承同名属性**
+  
   - 子类访问子类属性 直接利用`.` 操作符即可
   - 子类访问父类属性：需要加作用域 `子类.父类::属性`
-- 继承同名方法
+  
+- **继承同名方法**
+  
   - 子类调用子类方法 直接利用`.` 操作符即可
   - 子类调用父类方法：需要加作用域 `子类.父类::方法`
+  
 - 当子类通过`.` 调用方法时，所有父类同名方法被隐藏（所有重载的方法）
+
+- ```c++
+  class Base{
+  public:
+      int m_a = 0;
+    	void test(){
+          cout << Base::m_a << endl;
+      }
+  };
+  
+  class Son: public Base{
+  public:
+      int m_a = 1;
+  
+      void test(){
+          cout << Base::m_a<<endl;  --> 通过类名::属性可以访问
+          cout << Son::m_a << endl;
+      }
+  };
+  
+  
+  int main(){
+      Son s = Son();
+      cout << s.m_a <<endl;  --> 子类访问子类属性
+      cout << s.Base::m_a <<endl;  --> 子类访问父类属性
+      s.test(); --> 子类访问子类方法
+    	s.Base::test();  --> 子类访问父类方法
+      return 0;
+  }
+  
+  输出：
+  1
+  0
+  0
+  1
+  0
+  ```
+
+  
 
 ## 继承中同名静态成员
 
@@ -824,15 +937,16 @@ int main() {
 - 静态多态：函数重载 运算符重载
 - 动态多态：派生类 和 虚函数
 
-动态多态条件：
+**动态多态条件：**
 
-- 有继承关系
-- 子类重写父类的虚函数
-  - 重写：函数返回值类型  函数名 参数列表 完全一致称为重写
+- **有继承关系**
+- **子类重写父类的虚函数**
+  - **重写：函数返回值类型  函数名 参数列表 完全一致称为重写**
 
-动态多态使用条件
+**动态多态使用条件**
 
-- 父类指针或引用指向子类对象
+- **父类指针或引用指向子类对象，之后该父类可以访问子类重写的虚函数**
+- *需要区别于子类继承父类同名方法*
 
 ```C++
 class father{
@@ -862,6 +976,8 @@ int main(){
 son function
 ```
 
+
+
 ## 纯虚函数和抽象类
 
 - **纯虚函数**
@@ -870,7 +986,7 @@ son function
 
 - **抽象类**
 
-  - 只要定义了纯虚函数，即为抽象类
+  - **只要定义了纯虚函数，即为抽象类**
   - **无法实例化对象**
   - **抽象类的子类，必须要重写父类中的纯虚函数**
 
@@ -879,7 +995,7 @@ son function
   - 在实际工程实现中，往往会先抽象出一个基类，这个基类会定义一些子类会用到的通用函数
   - 但是不会在基类中实现这些函数，而是要在子类中根据每个子类的具体特点进行实现
   - 这样的好处是 抽象化，便于理解
-  - 对于python 来说 ，往往在基类的这些函数中加一个`raise "not implement "` 
+  - 对于python 来说 ，往往在基类的这些函数中加一个`raise NotimplementError` 
   - 而在C++中，更为强大，通过虚函数，抽象类调用所有的这些子类接口
 
 - ```C++
@@ -908,11 +1024,11 @@ son function
   };
   int main(){
       /* 通过一个 抽象类 来访问所有的子类接口 */
-      abstract_elevator * base =new addelevator;
-      cout<<base->get_result(10,20)<<endl;
+      abstract_elevator * base = new addelevator;
+      cout <<base->get_result(10,20) <<endl;
       delete base;
       base = new subelevator;
-      cout <<base->get_result(20,10)<<endl;
+      cout <<base->get_result(20,10) <<endl;
       delete base;
   }
   ```
@@ -937,6 +1053,48 @@ son function
   * 可以解决父类指针释放子类对象
   * 都需要有具体的函数实现
 
-  虚析构和纯虚析构区别：
-
+- 虚析构和纯虚析构区别：
   * 如果是纯虚析构，该类属于抽象类，无法实例化对象
+
+```C++
+class Base{
+public:
+    virtual ~ Base(){
+        cout << "virtual father func" << endl;
+    }
+};
+
+class Son: public Base{
+public:
+    ~Son(){
+        cout << "virtual son function" << endl;
+    }
+};
+
+class Base2{
+public:
+    ~Base2(){
+        cout << "father func" << endl;
+    }
+};
+class Son2:public Base2{
+public:
+    ~Son2(){
+        cout << "son function" << endl;
+    }
+};
+
+int main(){
+    Base *p = new Son();
+    delete p;
+    Base2 *p2 = new Son2();
+    delete p2;
+    return 0;
+}
+
+输出：
+virtual son function
+virtual father func
+father func
+```
+

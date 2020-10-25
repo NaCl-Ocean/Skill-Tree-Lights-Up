@@ -1098,3 +1098,10 @@ virtual father func
 father func
 ```
 
+
+
+# `::`
+
+`::`的作用
+
+- 作用域

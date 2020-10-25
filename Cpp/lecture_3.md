@@ -83,7 +83,7 @@ int main(){
     char buf[1024]={0};
     
     /* method 1*/
-    while(ifs >> buf){   --》ifs >> buf 的作用是 每次读一行传入buf中，并返回是否读到文件末尾，若读到末尾，则返回False
+    while(ifs >> buf){   --》ifs >> buf 的作用是 每次读一行(或者读到空格）传入buf中，并返回是否读到文件末尾，若读到末尾，则返回False
         cout<<buf<<endl;
     }
     

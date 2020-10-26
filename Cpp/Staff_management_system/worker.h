@@ -22,6 +22,10 @@ public:
         return this->m_dept_id;
     }
 
+    void set_id(int id){
+        this->m_id = id;
+    }
+
 protected:
     int m_id;
     string m_name;

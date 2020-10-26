@@ -103,8 +103,8 @@ void WorkerManager::save(){
     if(this->m_empnum==0){
         return;
     }
+    ofs << endl;
     for (int i=0; i< this->m_empnum; i++){
-        ofs << endl;
         ofs << this -> m_emparray[i] -> get_id() << " "
             << this -> m_emparray[i] -> get_name() << " "
             << this -> m_emparray[i] -> get_dept_id() << endl ;
@@ -299,6 +299,10 @@ void WorkerManager::modify_worker(){
 }
 
 void WorkerManager::search_worker_wrapper(){
+    if (this->m_empnum == 0){
+        cout << "当前系统中未记录员工信息" << endl;
+        return;
+    }
     cout << "请输入要查找的方式" << endl;
     cout << "1. 按照编号进行查找" << endl;
     cout << "2. 按照姓名进行查找" << endl;
@@ -308,10 +312,12 @@ void WorkerManager::search_worker_wrapper(){
     if (select == 1){
         cout << "请输入要查找的员工编号" << endl;
         int id;
+        cin >>id;
         this->search_worker(id);
     }else{
         cout << "请输入要查找的员工姓名" << endl;
         string name;
+        cin >> name;
         this->search_worker(name);
     }
 
@@ -319,8 +325,79 @@ void WorkerManager::search_worker_wrapper(){
 
 void WorkerManager::search_worker(int id){
 
+    bool is_exist = false;
+    for (int i=0; i<this->m_empnum; i++){
+        if (this->m_emparray[i]->get_id() == id){
+            this->m_emparray[i]->show_info();
+            is_exist = true;
+        }
+    }
+
+    if (!is_exist){
+        cout << "不存在该编号的职工" << endl;
+    }
+
 }
 
 void WorkerManager::search_worker(string name){
+    bool is_exist = false;
+    for (int i=0; i<this->m_empnum; i++){
+        if (this->m_emparray[i]->get_name() == name){
+            this->m_emparray[i]->show_info();
+            is_exist = true;
+        }
+    }
 
+    if (!is_exist){
+        cout << "不存在该姓名的职工" << endl;
+    }
+}
+
+void WorkerManager::sort_worker(){
+    if (this->m_empnum == 0){
+        cout << "当前系统中未记录员工信息" << endl;
+        return;
+    }
+
+    cout << "请选择排序的方式" << endl;
+    cout << "1. 按照编号升序" << endl;
+    cout << "2. 按照编号降序" << endl;
+    int select;
+    cin >> select;
+    for (int i = 0; i < m_empnum; i++)
+	{
+		int minOrMax = i;
+		for (int j = i + 1; j < m_empnum; j++)
+		{
+			if (select == 1) 
+			{
+				if (m_emparray[minOrMax]->get_id() > m_emparray[j]->get_id())
+				{
+					minOrMax = j;
+				}
+			}
+			else  
+			{
+				if (m_emparray[minOrMax]->get_id() < m_emparray[j]->get_id())
+				{
+					minOrMax = j;
+				}
+			}
+		}
+
+		if (i != minOrMax)
+		{
+			int temp = m_emparray[i]->get_id();
+			m_emparray[i]->set_id(m_emparray[minOrMax]->get_id());
+			m_emparray[minOrMax]->set_id(temp);
+		}
+
+	}
+}
+
+void WorkerManager::reset(){
+    this ->m_empnum = 0;
+    delete[] this->m_emparray;
+    this->FileIsEmpty = true;
+    this->save();
 }

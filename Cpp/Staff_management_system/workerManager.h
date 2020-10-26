@@ -23,6 +23,7 @@ public:
     void search_worker(string name);
     void search_worker(int id);
     void sort_worker();
+    void reset();
 protected:
     int m_empnum;
     Worker ** m_emparray;

@@ -34,12 +34,14 @@ int main()
             wm.modify_worker();
             break;
         case 5:
-            wm.search_worker();
+            wm.search_worker_wrapper();
             break;
         case 6:
-            
+            wm.sort_worker();
+            wm.save();
             break;
         case 7:
+            wm.reset();
             break;
         default:
             cout << "输入错误，请重新输入" << endl;

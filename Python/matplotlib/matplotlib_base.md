@@ -10,8 +10,9 @@
   - 坐标轴
   - 设置边界，并生成tick(刻度)和ticklabe(标记刻度的字符串)
 - Artist
-  - 所有可以在axes上画的都是Artist，比如line，point，text等，实际上figure，axes也是Artist对象，但是比较特殊，单列出来
-
+  
+- 所有可以在axes上画的都是Artist，比如line，point，text等，实际上figure，axes也是Artist对象，但是比较特殊，单列出来
+  
 - 输入最好为`numpy.array`
 - 画图有两种方式
   - 创建figure对象和axes对象，进行面向对象的操作(prefer)
@@ -447,9 +448,11 @@ plt.show()
     cm(range(10))--> 获得包含的所有颜色
   cm(5.2)  --> 本质上通过nearest-neighbor interpolation 得到的是cm(5)对应的颜色
     cm(0.5)  --> 如果输入是一个0-1之间的浮点数，则将其映射到1-10之间，之后通过nearest-neighbor interpolation得到其对应的颜色，也就是cm(5)
+    ```
   ```
     
     
+  ```
 
 - **linear segmented colormap对象**
 
@@ -552,7 +555,9 @@ plt.show()
   | text  | string                                 |
   | color | 符合color格式要求的任意string 或者其他 |
 
-- `text(x,y,str,*kwargs)`可以在axes的任何地方加上text，kwargs接收任意text的属性
+- `text(x,y,str,fontdict,*kwargs)`可以在axes的任何地方加上text，kwargs接收任意text的属性，也可以通过fontdict传入属性
+
+  - `text(0,0,'test',fontdict={'fontsize':10,'horizontalalignment':'center'})`
 
 ## xlabel/ylabel
 

@@ -70,7 +70,7 @@
 - ```C++
   void swap(int &a,int &b){
       int temp;
-      a = temp;
+      temp = a;
       a = b;
       b = temp;
   }

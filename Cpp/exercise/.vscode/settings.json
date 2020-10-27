@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "vector": "cpp",
+        "__functional_03": "cpp",
+        "__string": "cpp",
+        "functional": "cpp",
+        "string": "cpp",
+        "system_error": "cpp",
+        "ostream": "cpp"
+    }
+}

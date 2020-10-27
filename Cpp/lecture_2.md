@@ -1,4 +1,4 @@
-# 封装
+# l封装
 
 - 定义类
 
@@ -615,7 +615,8 @@ int main() {
 - `operator*`：具体函数定义形式根据数据类型不同而不同，可以返回也可以不返回
 - 类方法重载
   - `obj_a + obj_b`  等价于调用`obj_a.operator+(obj_b)`
-
+- `obj_a = obj_b` 等价于调用`obj_a.operator=(obj_b)`
+  
 - 全局函数重载
   - `obj_a + obj_b` 等价于调用`operator(obj_1,obj_b)`
 - **运算符重载同样可以发生函数重载**
@@ -628,6 +629,8 @@ int main() {
 - 可以输出自定义数据类型
 
 - **利用全局函数来重载**
+
+  - 如果是利用类方法重载的话，无法达到`cout << class_a` 的效果 
 
 - `operator<<(Class_a &class_a,Class_b &class_b)` 
 
@@ -780,9 +783,118 @@ int main() {
 
 ## 继承中构造和析构顺序
 
-- 先构造父类，后构造子类，默认执行的是父类的无参构造函数
-- 先析构子类，后析构父类
-- [子类调用父类构造函数规则](https://www.cnblogs.com/fenghuan/p/4800199.html)
+- **先构造父类，后构造子类**
+
+- **先析构子类，后析构父类**
+
+- 调用构造函数原则
+
+  - 父类没有声明构造函数
+    - 子类也没有声明自己的构造函数，则父类和子类均由编译器生成默认的构造函数
+    - 子类中声明了构造函数(无参或者带参)，则子类的构造函数可以写成任何形式，不用顾忌父类的构造函数。在创建子类对象时，先调用父类默认的构造函数，再调用子类的构造函数。
+  - 父类只声明了无参构造函数
+    - 先调用父类声明的无参构造函数，之后调用子类的构造函数(有参 or 无参)
+  - 父类只声明了有参构造函数
+    - 会先调用父类的有参构造函数，之后调用子类的构造函数(有参 or 无参) 
+    - *如果子类中的构造函数没有显示调用父类的有参构造函数，则会报错*
+  - 父类有参构造和无参构造都声明
+    - 只有子类的构造函数显示调用父类的有参构造方法时，才会调用父类的有参构造方法，默认情况下调用父类的无参构造方法
+
+  ```c++
+  // 父类没有声明构造函数
+  class Base{
+  public:
+      int age;
+  };
+  class Son1:public Base{
+  public:
+      Son1(){
+          cout << "son no parameter construction function" << endl;
+      }
+  };
+  class Son2:public Base{
+  public:
+      Son2(int age){
+          this-> age = age;
+          cout << "son parameter construction function" << endl;
+      }
+  };
+  int main(){
+      Son1 s1 = Son1();
+      Son2 s2 = Son2(2);
+      return 0;
+  }
+  输出：
+  son no parameter construction function
+  son parameter construction function
+    
+    
+  // 父类声明了无参构造函数
+  class Base{
+  public:
+      int age;
+      Base(){
+          cout << "father no parameter cnostruction function" << endl;
+      } 
+  };
+  class Son1:public Base{
+  public:
+      Son1(){
+          cout << "son no parameter construction function" << endl;
+      }
+  };
+  class Son2:public Base{
+  public:
+      Son2(int age){
+          this-> age = age;
+          cout << "son parameter construction function" << endl;
+      }
+  };
+  int main(){
+      Son1 s1 = Son1();
+      Son2 s2 = Son2(2);
+      return 0;
+  }
+  输出：
+  father no parameter cnostruction function
+  son no parameter construction function
+  father no parameter cnostruction function
+  son parameter construction function
+    
+  // 父类声明有参构造函数
+  class Base{
+  public:
+      int age;
+      Base(int age){
+          this->age = age;
+          cout << "father parameter cnostruction function" << endl;
+      }   
+  };
+  class Son1:public Base{
+  public:
+      Son1(int age):Base(age){
+          cout << "son parameter construction function" << endl;
+      }
+  };
+  class Son2:public Base{
+  public:
+      Son2():Base(5){
+          cout << "son no parameter construction function" << endl;
+      }
+  };
+  int main(){
+      Son1 s1 = Son1(5);
+      Son2 s2 = Son2();
+      return 0;
+  }
+  输出:
+  father parameter cnostruction function
+  son parameter construction function
+  father parameter cnostruction function
+  son no parameter construction function
+  ```
+
+  
 
 ## 继承中同名成员
 

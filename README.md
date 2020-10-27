@@ -96,10 +96,13 @@
 
 ## C++
 
-- [lecture 0](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_0.md) ：基础语法，类似C，数组，指针，数据类型，程序流程等
+- [lecture 0](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_0.md) ：C++基础入门，基础语法，类似C，数组，指针，数据类型，程序流程等
 - [lecture 1](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_1.md)：C++核心编程，函数提高与内存分区模型
 - [lecture 2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_2.md)：C++核心编程，面向对象
-- [lecture 3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_3.md)：文件操作
+- [lecture 3](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_3.md)：C++核心编程，文件操作
+- [职工管理系统](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/tree/master/Cpp/Staff_management_system)
+- [lecture 4](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_4.md)：C++提高编程，模板
+- [lecture 5](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_5.md)：C++提高编程，STL，数据结构部分
 
 ## 数据结构与算法
 
@@ -112,4 +115,3 @@
 ## Vscode
 
 - [vscode tutorial](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/vsocde/notes.md)
-- 

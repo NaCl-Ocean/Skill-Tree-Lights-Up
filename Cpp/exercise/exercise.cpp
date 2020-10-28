@@ -1,34 +1,33 @@
 #include <iostream>
-using namespace std;
 #include <string>
-#include "myarray.hpp"
-#include <vector>
-#include <algorithm>
-#include <deque>
+#include <map>
+#include <set>
+using namespace std;
+ 
 
-class Person{
+
+class MyCompare
+{
+ 
 public:
-    int age;
-    string name;
-    Person(string name,int age){
-        this->age = age;
-        this->name = name;
+    bool operator()(string s1, string s2)
+    {
+        return s1 > s2;
     }
+ 
 };
 
-void print(vector<int> &p){
-    for(vector<int>::iterator it = p.begin();it!=p.end();it++){
-        cout << *it << " ";
-    }
 
-    for (int i=0;i<10;i++){
-
-    }
-    cout << endl;
-}
-
-int main(){
-    deque<int> d1;
+int main()
+{
+    
+    map<string, int, MyCompare> m;
+ 
+    // map容器默认排序
+    m.insert(make_pair("Tom", 18));
+    m.insert(make_pair("Anthony", 23));
+    m.insert(make_pair("Bob", 24));
+    m.insert(make_pair("Sunny", 19))；
     
     return 0;
 }

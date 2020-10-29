@@ -136,6 +136,8 @@ int main()
 
 ### 关系仿函数
 
+- 二元运算
+
 - `template<class T> bool equal <T> ` 等于
 
 - `template<class T> bool not_equal <T> ` 不等于
@@ -179,3 +181,4 @@ int main()
 - `template<class T> bool logical_or <T> `或
 
 - `template<class T> bool logical_not <T> `非
+- 一元运算

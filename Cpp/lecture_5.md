@@ -518,7 +518,7 @@ v2.swap(v1);
 
 ![deque](images/deque.png)
 
-- 双端数组，可以对头端进行插入和删除
+- **双端数组**，可以对头端进行插入和删除
 - 内部工作原理
   - 内部有一个中控器，维护每段缓冲区中的内容，缓冲区中存放真实数据
   - 中控器维护的是每个缓冲区的地址，使得使用deque时像一片连续的内存空间
@@ -587,7 +587,7 @@ v2.swap(v1);
 # stack 容器
 
 - **先进后出(First In Last Out;FILO) 数据结构**
-- 栈不允许有遍历行为，只有栈顶元素可以被访问
+- 栈不允许有遍历行为，只有栈顶元素可以被访问，也就没有迭代器
 - ![](images/stack-3869496.png)
 
 - `#include <stack>`
@@ -637,7 +637,7 @@ cout << "栈是否为空:" << stk.empty() << endl;
 
 - 队首只能出数据，队尾只能入数据
 
-- 只有队尾和队首可以访问数据
+- 只有队尾和队首可以访问数据，同样没有迭代器
 - `#include <queue>`
 
 
@@ -1065,6 +1065,24 @@ int main(){
   - 对于map而言，为1或者0
   - multimap 可能大于1
 
+```c++
+multimap<string,int> m;
+m.insert(make_pair("tom",12));
+m.insert(make_pair("jack",30));
+m.insert(make_pair("tom",15));
+multimap<string,int>::iterator it = m.find("tom");
+while (it!=m.end()){
+  cout << (*it).first << " " << (*it).second << endl;
+  it++;
+}
+
+输出:
+tom 12
+tom 15
+```
+
+
+
 ## map 排序
 
 - 默认排序是从小到大
@@ -1073,7 +1091,7 @@ int main(){
   class MyCompare
   {
   public:
-      bool operator()(string s1, string s2)
+      bool operator()(string s1, string s2) const
       {
           return s1 > s2;
       }
@@ -1081,9 +1099,10 @@ int main(){
   
   int main()
   {
+    	// 更改排序为从大到小
       map<string, int, MyCompare> m;
    
-      // map容器默认排序
+   
       m.insert(make_pair("Tom", 18));
       m.insert(make_pair("Anthony", 23));
       m.insert(make_pair("Bob", 24));
@@ -1091,8 +1110,8 @@ int main(){
       
       return 0;
   }
-  ```
-
+```
+  
   
 
 # 案例

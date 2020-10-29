@@ -105,7 +105,7 @@
 - [lecture 4](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_4.md)：C++提高编程，模板
 - [lecture 5](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_5.md)：C++提高编程，STL，数据结构部分
 - [lecture 6](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_6.md)：C++提高编程，STL，仿函数部分
-- [lecture 7](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_7.md)：算法部分
+- [lecture 7](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_7.md)：C++提高编程，STL，算法部分
 
 ## 数据结构与算法
 

@@ -36,7 +36,8 @@
 - [Argparse](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/argparse.md)
 - [Pillow](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/Pillow.md)
 - Matplotlib：笔记来源于官方文档
-  - [基础部分](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib/matplotlib_base.md)，主要内容为matplotlib中的基本对象，Figure，Axes，Axis，Legend以及Text等。
+  - [base](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib/matplotlib_base.md)，主要内容为matplotlib中的基本对象，Figure，Axes，Axis，Legend以及Text等。
+  - [50-figure](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib/50-figure.md)
 
 ## 操作系统
 
@@ -103,6 +104,8 @@
 - [职工管理系统](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/tree/master/Cpp/Staff_management_system)
 - [lecture 4](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_4.md)：C++提高编程，模板
 - [lecture 5](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_5.md)：C++提高编程，STL，数据结构部分
+- [lecture 6](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_6.md)：C++提高编程，STL，仿函数部分
+- [lecture 7](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Cpp/lecture_7.md)：算法部分
 
 ## 数据结构与算法
 
@@ -114,4 +117,4 @@
 
 ## Vscode
 
-- [vscode tutorial](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/vsocde/notes.md)
+- [vscode tutorial](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/vscode/notes.md)

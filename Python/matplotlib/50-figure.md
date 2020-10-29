@@ -58,7 +58,15 @@
 - 凸边形：没有任何一个内角是**优角**（Reflexive Angle）
   - 优角：大于180 ，小于360
 
+- 绘制凸包主要用到了`plt.polygon()`函数
 
-
-- ​	
+- `ply.polygon(xy,alpha,color,facecolor,edgecolor,linewidth,linestyle)` 
+  - xy 为多边形的点，为N*2的array
+  - alpha 透明度
+  - color 可以同时设置edgecolor和facecolor 
+  - facecolor 多边形颜色(内部)
+  - edgecolor 多边形边界线颜色
+  - linewidth  多边形边框宽度
+  - linestyle 多边形边框样式，{'-', '--', '-.', ':', '', (offset, on-off-seq), ...}
+- 
 

@@ -182,7 +182,7 @@ STL 容器将**运用最广泛的一些数据结构**实现出来
 
 
 
-## string 类
+# string 类
 
 - `string` 是 c++风格的字符串，而`string`本质上是一个类
 - `string ` 和` char* `的区别
@@ -197,7 +197,7 @@ STL 容器将**运用最广泛的一些数据结构**实现出来
 
 
 
-### 构造函数
+## 构造函数
 
 - `string() ` 创建一个空的字符串，例如：string str
 - `string(const char* s) `  使用字符串s初始化
@@ -217,7 +217,7 @@ STL 容器将**运用最广泛的一些数据结构**实现出来
 
 
 
-### 赋值操作
+## 赋值操作
 
 - `string& operator=(const char* s)`  char* 类型的字符串赋值给当前的字符串
 - `string& operator=(const string &s)`   把字符串s赋给当前的字符串
@@ -231,7 +231,7 @@ STL 容器将**运用最广泛的一些数据结构**实现出来
 
 
 
-### 字符串拼接
+## 字符串拼接
 
 - `string& operator+=(const char* s)`
 - `string& operator=(const string &s)`
@@ -243,7 +243,7 @@ STL 容器将**运用最广泛的一些数据结构**实现出来
 
 
 
-### string 查找和替换
+## string 查找和替换
 
 - `int find(const string& str, int pos=0)`  查找str第一次出现位置，从pos开始查找
 - `int find(const char* s, int pos=0)`   查找s第一次出现的位置，从pos开始查找
@@ -258,7 +258,7 @@ STL 容器将**运用最广泛的一些数据结构**实现出来
 - `string& replace(int pos, int n, const string& str) ` 替换从pos开始n个字符为字符串str
 - `string& replace(int pos, int n, const char* s)`替换从pos开始的n个字符为字符串s
 
-### string 字符串比较
+## string 字符串比较
 
 - 按照字符的ASCII码进行比较，主要用来判断字符串是否相等
 - `int compare(const string &s)`  与字符串s比较，相等返回0
@@ -266,7 +266,7 @@ STL 容器将**运用最广泛的一些数据结构**实现出来
 
 
 
-### string 字符存取
+## string 字符存取
 
 - 通过[] 来访问或者修改单个字符
 - 通过at 方式来访问或者修改单个字符
@@ -290,7 +290,7 @@ cout << s1<< endl;
 
 
 
-### 字符串插入和删除
+## 字符串插入和删除
 
 - 插入字符串
   - `string& insert(int pos, const char* s)`  在pos处插入字符串s
@@ -301,7 +301,7 @@ cout << s1<< endl;
 
 
 
-### string 子串
+## string 子串
 
 - 从一个字符串中截取一部分作为另一个字符串
 - `string substr(int pos=0, int n = npos)`   返回从pos开始的n个字符组成的字符串
@@ -319,7 +319,7 @@ cout << s1<< endl;
 - `#include <vector>`
 - ![vector](images/vector.png)
 
-### 构造函数
+## 构造函数
 
 - `vector<T> v`   默认构造，无参构造 
 
@@ -345,7 +345,7 @@ cout << s1<< endl;
 
   
 
-### 赋值操作
+## 赋值操作
 
 - `vector& operator=(const vector &vec)`
 
@@ -371,7 +371,7 @@ cout << s1<< endl;
 
   
 
-### vector 容量和大小
+## vector 容量和大小
 
 - `empty()` 判断容器是否为空
 - `capacity()`    容器的容量
@@ -410,7 +410,7 @@ v1的容量：16
 
 
 
-### vector 插入和删除
+## vector 插入和删除
 
 - `push_back(T elem)`  尾部插入元素 elem
 - `pop_back()`   删除最后一个元素
@@ -454,7 +454,7 @@ print(v1);
 
 
 
-### vectot 数据存取
+## Vector 数据存取
 
 - `at(int idx)` 返回索引为idx所指的数据
 - `operator[]` 返回索引为idx所指的数据
@@ -490,7 +490,7 @@ cout << v1.back() << endl;
 
 
 
-### vector 互换容器
+## vector 互换容器
 
 - `swap(vector &vec)`  实现两个容器的互换
 - 实际用途
@@ -508,13 +508,13 @@ v2.swap(v1);
 
 
 
-### vector 预留空间
+## vector 预留空间
 
 - `reserve(int len) `容器预留len个元素长度，预留位置不初始化，不可访问，写入元素后可以访问
 
 
 
-## deque 容器
+# deque 容器
 
 ![deque](images/deque.png)
 
@@ -528,7 +528,7 @@ v2.swap(v1);
 
 
 
-### deque 构造函数
+## deque 构造函数
 
 - `deque<T> v`   默认构造，无参构造 
 
@@ -538,7 +538,7 @@ v2.swap(v1);
 
 
 
-### deque 赋值操作
+## deque 赋值操作
 
 - `vector& operator=(const deque &deq)`
 - `void assign(begin,end)`
@@ -546,7 +546,7 @@ v2.swap(v1);
 
 
 
-### deque 大小操作
+## deque 大小操作
 
 - `deque.empty()` 是否为空
 - `deque.size() ` 容器中元素的个数
@@ -561,7 +561,7 @@ v2.swap(v1);
 
 
 
-### deque 插入和删除
+## deque 插入删除
 
 - 两端操作
   - `deque.push_back(T elem) `   尾插
@@ -578,13 +578,13 @@ v2.swap(v1);
   - `deque.erase(const_iterator start, const_iterator end) `  删除迭代器从start到end之间的元素，相当于`clear()`
   - `deque.clear()`   删除容器中所有的元素
 
-### deque 数据存取
+## deque 数据存取
 
 - 同vector
 
 
 
-## stack 容器
+# stack 容器
 
 - **先进后出(First In Last Out;FILO) 数据结构**
 - 栈不允许有遍历行为，只有栈顶元素可以被访问
@@ -592,16 +592,16 @@ v2.swap(v1);
 
 - `#include <stack>`
 
-### stack 构造函数
+## stack 构造函数
 
 - `stack<T>()` 无参构造函数
 - `stack<T>(const stack & stk)` 拷贝构造
 
-### stack 赋值操作
+## stack 赋值操作
 
 - `stack& operator=(const stack & stk)`  重载等号操作符
 
-### stack 数据存取
+## stack 数据存取
 
 - `push(T elem)` 入栈
 - `void pop()`  出栈
@@ -609,7 +609,7 @@ v2.swap(v1);
 
 
 
-### stack 大小操作
+## stack 大小操作
 
 - `int empty()` 栈是否为空，为空返回1
 - `int size()` 栈的大小
@@ -629,7 +629,7 @@ cout << "栈是否为空:" << stk.empty() << endl;
 
 
 
-## queue 容器
+# queue 容器
 
 - **先进先出(Firrst In First Out;FIFO) 数据结构**
 
@@ -642,23 +642,23 @@ cout << "栈是否为空:" << stk.empty() << endl;
 
 
 
-### queue 构造函数
+## queue 构造函数
 
 - `queue<T>()` 默认构造函数
 - `queue<T>(const queue &que)` 拷贝构造函数
 
-### queue 赋值操作
+## queue 赋值操作
 
 - `queue& operator=(const queue & que)`  重载等号操作符
 
-### queue 数据存取
+## queue 数据存取
 
 - `void push(T elem)` 队尾添加元素
 - `void pop()`  队首移除元素
 - `T back()` 查看队尾元素
 - `T front()` 查看队首元素
 
-### queue 大小操作
+## queue 大小操作
 
 - `int empty()` 栈是否为空
 - `int size()` 栈的大小
@@ -688,7 +688,7 @@ cout << "队列是否为空:" << que.empty() << endl;
 
 
 
-## list 容器
+# list 容器
 
 - **双向链表** ，可以对任意位置进行快速插入或者删除元素
 - **数据域 + 指针域**，双向链表的指针域包括前向指针和后向指针
@@ -706,7 +706,7 @@ cout << "队列是否为空:" << que.empty() << endl;
 
 
 
-### list 构造函数
+## list 构造函数
 
 - 类似于vector的构造函数
 - `list<T> v`   默认构造，无参构造 
@@ -725,7 +725,7 @@ list l4 = list<int>(l3);
 
 
 
-### list 赋值操作
+## list 赋值操作
 
 - `list& operator=(const list &list)`
 - `void assign(begin,end)`
@@ -733,11 +733,11 @@ list l4 = list<int>(l3);
 
 
 
-### list 交换
+## list 交换
 
 - `swap(list &l)`  实现两个容器的互换
 
-### list 大小操作
+## list 大小操作
 
 - `empty()` 判断容器是否为空
 - `size()`  返回容器中元素的个数
@@ -751,7 +751,7 @@ list l4 = list<int>(l3);
 
 
 
-### list 插入删除
+## list 插入删除
 
 - 两端插入和删除
 
@@ -776,13 +776,13 @@ list l4 = list<int>(l3);
 
 
 
-### list 数据存取
+## list 数据存取
 
 - `front()` 
 - `back()`
 - 只能访问链表头和尾的元素
 
-### list 排序和反转
+## list 排序和反转
 
 - 所有不支持随机访问迭代器的容器，都不可以使用标准算法
 
@@ -808,7 +808,7 @@ list l4 = list<int>(l3);
 
 
 
-## set/multiset 容器
+# set/multiset 容器
 
 - **所有元素都会在插入时自动排序**
 - set/multiset 容器属于**关联式容器**，**底层结构用二叉树实现**
@@ -819,21 +819,21 @@ list l4 = list<int>(l3);
 
 
 
-### set 构造方法
+## set 构造方法
 
 - `set<T>() ` 默认构造
 - `set<T>(const set & s)`
 
 
 
-### set 大小和交换
+## set 大小和交换
 
 - `size()`
 - `empty()`
 - `swap(const set &s)`
 - 不允许resize，没有capacity
 
-### set 插入和删除
+## set 插入和删除
 
 - `insert(T elem)` set容器中插入元素
   - set 容器会返回插入是否成功
@@ -856,7 +856,7 @@ cout << ret.second << endl;
 
 
 
-### set 查找和统计
+## set 查找和统计
 
 - `find(T key)` 查找key是否存在
   - 若存在，返回该键的元素的迭代器
@@ -865,7 +865,7 @@ cout << ret.second << endl;
 
 
 
-### set容器排序
+## set容器排序
 
 - set容器排序规则默认为从小到大
 
@@ -939,15 +939,14 @@ cout << ret.second << endl;
 
     
 
-## pair
+# pair
 
 - 成对出现的数据，利用对组可以返回两个数据
 - pair中第一个元素为key，起到索引作用，第二个元素成为value
-- 
 
+  
 
-
-### pair 构造函数
+## pair 构造函数
 
 - `pair<T1,T2> (T1 value1, T2 value2)`
 - `make_pair(T1 value1, T2 value2)`
@@ -968,7 +967,7 @@ pair p2 = make_pair<string,int>("tom", 20);
 
 
 
-## map/multimap 容器
+# map/multimap 容器
 
 - map中所有元素都是pair
 - 所有元素会根据键值自动排序
@@ -984,7 +983,7 @@ pair p2 = make_pair<string,int>("tom", 20);
 
 
 
-### map 构造函数
+## map 构造函数
 
 - `map<T1,T1>()` 默认构造
 
@@ -1000,7 +999,7 @@ pair p2 = make_pair<string,int>("tom", 20);
 
 
 
-### map 插入删除
+## map 插入删除
 
 - `insert(pair<T1,T1>(key,value))` 插入的元素需要为pair
 - `clear()` 清空容器
@@ -1048,7 +1047,7 @@ int main(){
 
 
 
-### map 大小和交换
+## map 大小和交换
 
 - `size()`  容器的大小
 - `empty() ` 判断容器是否为空
@@ -1056,16 +1055,17 @@ int main(){
 
 
 
-### map 查找统计
+## map 查找统计
 
 - `find(key)` 查找键为key的元素是否存在
-  - 若存在，返回该键的元素的迭代器
+  - 若存在，返回指向该键的元素的迭代器
+    - 若为multimap，该迭代器通过++操作可以指向所有该键的元素
   - 若不存在，返回`map.end()`
 - `count(key)`  统计键为key的元素的个数
   - 对于map而言，为1或者0
   - multimap 可能大于1
 
-### map 排序
+## map 排序
 
 - 默认排序是从小到大
 
@@ -1094,4 +1094,60 @@ int main(){
   ```
 
   
+
+# 案例
+
+* 公司今天招聘了10个员工（ABCDEFGHIJ），10名员工进入公司之后，需要指派员工在那个部门工作
+* 员工信息有: 姓名  工资组成；部门分为：策划、美术、研发
+* 随机给10名员工分配部门和工资
+* 通过multimap进行信息的插入  key(部门编号) value(员工)
+* 分部门显示员工信息
+
+```c++
+class Person{
+public:
+    string name;
+    int sallary;
+    string depart;
+    Person(string name, int sallary,string depart){
+        this->name = name;
+        this->sallary = sallary;
+        this->depart = depart;
+    }
+};
+
+
+int main()
+{
+    vector<Person> persons;
+    string name;
+    int sallary,depart_num;
+    map<int,string> depart_map;
+    depart_map.insert(make_pair(0,"策划"));
+    depart_map.insert(make_pair(1,"美术"));
+    depart_map.insert(make_pair(2,"研发"));
+    for (int i=0;i<10;i++){
+        cout << "请输入姓名:"<< endl;
+        cin>> name;
+        cout << "请输入薪水:" << endl;
+        cin>>sallary;
+        depart_num = rand()%3;
+        persons.push_back(Person(name,sallary,depart_map[depart_num]));
+    }
+    map<string,vector<Person>> depart;
+    depart.insert(make_pair("策划",vector<Person>()));
+    depart.insert(make_pair("美术",vector<Person>()));
+    depart.insert(make_pair("研发",vector<Person>()));
+    for(vector<Person>::iterator it=persons.begin();it!=persons.end();it++){
+        depart[it->depart].push_back(*it);
+    }
+    for(map<string,vector<Person>>::iterator it=depart.begin();it!=depart.end();it++){
+        cout<<(*it).first<< ": "<< endl;
+        for(vector<Person>::iterator it2=(*it).second.begin();it2!=(*it).second.end();it2++){
+            cout << it2->name << " "<< it2->sallary<< endl;
+        }
+    }
+    return 0;
+}
+```
 

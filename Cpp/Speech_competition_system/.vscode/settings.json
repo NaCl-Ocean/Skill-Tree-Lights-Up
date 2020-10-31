@@ -15,6 +15,6 @@
         "map": "cpp",
         "set": "cpp",
         "algorithm": "cpp",
-        "iterator": "cpp"
+        "iostream": "cpp"
     }
 }

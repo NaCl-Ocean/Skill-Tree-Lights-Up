@@ -14,6 +14,11 @@ public:
     string name;
     int sex;
     int age;
+    Person(){
+        this->name = "test";
+        this->sex = 10;
+        this->age = 5;
+    }
     Person(string name, int sex, int age){
         this -> name = name;
         this -> sex = sex;
@@ -24,14 +29,10 @@ public:
         this->sex = p.sex;
         this->age = p.age;
     }
-public:
-    bool operator<(const Person &person) const{
-        if (age<person.age){
-            return true;
-        }else{
-            return false;
-        }
+    string get_name(){
+        return name;
     }
+
 };
 
 class Myreplace{
@@ -44,40 +45,23 @@ public:
         }
     }
 };
-bool Mycompare2(const Person &p1, const Person p2){
-    if (p1.age < p2.age){
-            return false;
-        }else{
-            return false;
-        }
-}
-void print(int v){
-    cout<< v << " ";
-}
+
 int main()
 {   
+    map<int,Person> m1;
+    m1.insert(make_pair(12,Person("tom",10,23)));
+    m1.insert(make_pair(13,Person("jack",10,23)));
+    map<int,Person> *m2 = &m1;
+    cout << (*m2)[12].get_name() << endl;
     vector<int> v1;
-    vector<int> v2;
-    for(int i=0;i<10;i++){
-        v1.push_back(i+1);
-        v2.push_back(i+5);
-    }
-    vector<int> v3;
-    v3.resize(10);
-    vector<int>::iterator end1 = set_intersection(v1.begin(),v1.end(),v2.begin(),v2.end(),v3.begin());
-    for_each(v3.begin(),end1,print);
-    cout<<endl;
-
-    vector<int> v4;
-    v4.resize(20);
-    vector<int>::iterator end2 = set_union(v1.begin(),v1.end(),v2.begin(),v2.end(),v4.begin());
-    for_each(v4.begin(),end2,print);
-    cout<<endl;
-    vector<int> v5;
-    v5.resize(10);
-    vector<int>::iterator end3 = set_difference(v1.begin(),v1.end(),v2.begin(),v2.end(),v5.begin());
-    for_each(v5.begin(),end3,print);
-    cout<<endl;
-
+    v1.push_back(10);
+    srand(10);
+    
+    // //v2.resize(3,Person("tom",2,23));
+    // //replace_if(v1.begin(),v1.end(),Myreplace(),Person("jack",1,18));
+    // copy(m1.begin(),m1.end(),m2.begin());
+    // for (vector<Person>::iterator it=v2.begin(); it!= v2.end(); it++){
+    //     cout << "姓名：" << it->name << " 年龄:" << it->age << "性别:" << it->sex << endl;
+    // }
     return 0;
 }

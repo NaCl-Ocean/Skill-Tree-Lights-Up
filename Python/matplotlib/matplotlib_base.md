@@ -104,6 +104,8 @@
 - ![Figure attribute](http://image.haiyang1218.cn/images/matplotlib_figure_pro.png)
 - 背景是Rectangle对象
 
+- `pat.gcf()` 获取当前figure
+
 ## Axes
 
 - 创建的Axes对象以列表的形式存放在`figure.axes`中
@@ -111,6 +113,8 @@
 - 背景是Rentangle对象或者Circle对象
 
 - 通常更关注的是通过helper function来创建Artist对象，之后通过该Artist对象来具体设置该对象的一些性质
+
+- `plt.gca()`   获取当前axes
 
 - | Helper method                    | Artist               | Container                 |
   | -------------------------------- | -------------------- | ------------------------- |
@@ -227,6 +231,8 @@ plt.show()
 - **创建Legend对象的方法**
 
   - `axes.legend()` 不传参数，会寻找axes中可以生成legend entry的所有handler（需要有label），并转为legend entry进行显示
+
+  - `axes.legend(['label1','label2',...]) ` label需要与ax.artist中的对象相对应
 
   - 指定要显示的handler，如上所示
 

@@ -68,5 +68,41 @@
   - edgecolor 多边形边界线颜色
   - linewidth  多边形边框宽度
   - linestyle 多边形边框样式，{'-', '--', '-.', ':', '', (offset, on-off-seq), ...}
-- 
+
+
+
+## 最佳拟合线(the line of the best fit)
+
+- `seaboard.lmplot(x,y,data,hue,height,aspect,legend,palette,col,col_wrap,scatter_kws)`
+  - Datas 是 dataframe对象
+  - x,y,hue 为string，hue为scatter的label，也就是dataframe中对应列的名字
+  - height 图像的高度
+  - aspect 图像的纵横比，也就是长度/高度
+  - legend 是否显示图例
+  - palette colormap，matplotlib内建的colormap，通过string传入
+  - Scatter_kws 对于scatter的设置，dict，比如`{s=12,linewidths=12,edgecolors='b'}`
+  - col : string，按照dataframe中该string对应的列进行分类绘制图像，一个类别使用一张图，一张图绘制一条最佳拟合线
+  - col_wrap 当分类(使用col)绘制时，限制每行绘制的图像数目
+
+
+
+## 抖动图
+
+- x,y位置相同的点，在绘图时，会被覆盖
+- 抖动图可以让点产生一定的抖动，从而解决掉覆盖问题
+- `seaboard.stripplot(x,y,jitter,size,ax,linewidth,palette)`
+  - x,y 点的x,y坐标
+  - Jitter 抖动幅度
+  - size 点的尺寸
+  - ax 在哪张图上画
+  - linewidth 点的外围线宽
+  - palette colormap
+
+
+
+## 计数图
+
+- 同样为了解决绘图时相同位置的点的覆盖问题
+- 相同位置上点的数目越多，点越大
+-  
 

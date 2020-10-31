@@ -394,6 +394,7 @@
   - end 源容器的结束迭代器
   - dest 目标容器的开始迭代器
   - 同样需要给目标容器提前开辟空间(resize)
+  - **容器必须要有push_back接口**
 
 - `replace(iterator begin, iterator end,oldvalue,newvalue)` 将指定范围内的所有old value替换为new value
 

@@ -245,7 +245,7 @@ STL 容器将**运用最广泛的一些数据结构**实现出来
 
 ## string 查找和替换
 
-- `int find(const string& str, int pos=0)`  查找str第一次出现位置，从pos开始查找
+- `int find(const string& str, int pos=0)`  查找str第一次出现位置，从pos开始查找，没有找到返回-1
 - `int find(const char* s, int pos=0)`   查找s第一次出现的位置，从pos开始查找
 
 - `int find(const char* s, int pos, int n)` 从pos位置查找s的前n个字符第一次出现的位置
@@ -976,6 +976,7 @@ pair p2 = make_pair<string,int>("tom", 20);
 - 优点
   - **可以根据key快速找到value值**
   - `map[key]` 返回对应的value
+    - 通过此方式取值，如果是自定义对象，需要提供无参构造函数
 - Map/multimap 的区别
   - map 不允许容器中重复key值的元素
   - multimap 允许容器中有重复key值的元素
@@ -1110,6 +1111,7 @@ tom 15
       
       return 0;
   }
+  ```
 ```
   
   
@@ -1122,7 +1124,7 @@ tom 15
 * 通过multimap进行信息的插入  key(部门编号) value(员工)
 * 分部门显示员工信息
 
-```c++
+​```c++
 class Person{
 public:
     string name;

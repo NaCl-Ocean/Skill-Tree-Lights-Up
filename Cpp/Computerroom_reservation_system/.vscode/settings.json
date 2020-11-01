@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "vector": "cpp",
+        "__functional_03": "cpp",
+        "__string": "cpp",
+        "functional": "cpp",
+        "string": "cpp",
+        "system_error": "cpp",
+        "ostream": "cpp",
+        "deque": "cpp",
+        "stack": "cpp",
+        "list": "cpp",
+        "iosfwd": "cpp",
+        "__tree": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "algorithm": "cpp",
+        "iostream": "cpp",
+        "string_view": "cpp",
+        "unordered_map": "cpp"
+    }
+}

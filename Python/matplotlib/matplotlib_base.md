@@ -606,8 +606,8 @@ plt.show()
       -    `axis.set_major_locator(locator)` 
       -  `axis.set_ticks(array or list)` array中所有的元素（tick）都强制显示
 -  **Tick formatter**
-   - `matplotlib.ticker.StrMethodFormatter({x:...})`  str.format的格式化用法相似，注意必须有**x**
-     - [format格式化](https://www.runoob.com/python/att-string-format.html)
+   - `matplotlib.ticker.StrMethodFormatter('{x:...}')`  str.format的格式化用法相似，注意必须有**x**
+     - [format格式化](toi)
    - `matplotlib.ticker.FormatStrFormatter(str)`  与`%`格式化用法相似
    -  设置Formatter
       - `axis.set_major_formatter(formatter)`

@@ -4,7 +4,8 @@
 
 ## To do
 
-- [ ] C++
+- [x] C++
+- [ ] Matplotlib 可视化
 - [ ] 数据结构与算法
 - [ ] Vscode
 
@@ -39,6 +40,10 @@
   - [base](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib/matplotlib_base.md)，主要内容为matplotlib中的基本对象，Figure，Axes，Axis，Legend以及Text等。
   - [50-figure](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib/50-figure.md)
     - [关联图](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib/关联图.ipynb)
+    - [偏差图](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib/偏差图.ipynb)
+    - [排序图](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib/排序图.ipynb)
+    - [分布图](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib/分布图.ipynb)
+    - [组成图](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Python/matplotlib/组成图.ipynb)
 
 ## 操作系统
 

@@ -105,6 +105,7 @@
 - 同样为了解决绘图时相同位置的点的覆盖问题
 - 相同位置上点的数目越多，点越大
 - 实际上，就是计数一下处于同一位置的点的数目，将size设置为数目
+- `pat.scatter`
 
 
 
@@ -188,3 +189,112 @@
   - Kind :reg or scatter，reg是带有回归线的，scatter不带回归线
 - 当希望探索不同分类下的特征之间的相关性时，用成对分析图
 - 当特征很多的时候，使用相关性矩阵图，当特征比较少或者数据较少的时候，使用成对分析图
+
+
+
+# 偏差图
+
+- 单个特征中的所有值与特定值之间的关系图，反映的是所有值偏离特定值的距离
+- 什么时候需要
+  - 探索某一特征的分布，探索该特征偏离某个特定值（均值，方差）的程度
+
+
+
+## 发散型条形图
+
+- `plt.hlines(y,xmin,xmax,colors='k',linestyles='solid',label='',*,data=None,**kwargs,)`
+  - y : y轴的索引，指定每一个条的位置（这里的条实际上就是line）
+  - xmin : 每行的开头
+  - xmax：每行的结尾
+  - colors: array like（独立指定每一个条的颜色） or scalar（指定所有条的颜色）
+  - linestyle: 线条的类型 {'solid', 'dashed', 'dashdot', 'dotted'}
+  - **kwargs：指定线条（line)的其他参数，比如alpha，linewidth等等
+- 同样有`plt.vlines` 用法相同
+
+
+
+## 发散型文本图
+
+- 在发散型条形图上写上对应的num
+- `plt.hlines` + `plt.text`
+
+
+
+## 发散型包点图
+
+- 本质上是scatter
+- `plt.text` + `plt.scatter`
+
+
+
+## 带标记的发散型棒棒糖图
+
+-  `plt.hlines` +  `plt.scatter` + `ax.annotate` + `patches.Rectangle` + `plt.text`
+-  只画棒棒糖图
+   -  `plt.hlines` +`plt.scatter` + `plt.text`
+
+
+
+## 面积图
+
+- 对轴和线之间的区域进行着色
+
+- `ax.fill_between(x,y1,y2,where,interpolate,**kwargs) ` 对两条曲线之间的区域进行着色
+
+  - x 曲线的x坐标
+
+  - y1,y2  两条曲线的y坐标
+
+  - where：筛选要填充的区域
+
+  - interpolate:交叉点位置的填充
+
+  - **kwargs ：任何patches.polygon对象可以设置的属性都可以传进来
+
+
+# 排序图
+
+- 比较变量的大小
+
+
+
+## 柱状图
+
+- `ax.vlines(x,ymin,ymax,colors,linestyles,label,**kwargs)`
+  - x 横坐标
+  - ymin 条形图在y轴上的起点
+  - ymax 条形图在y轴上的最上边
+  - colors: array-like(length = len(x))  or scalar-like
+  - linestyles: {'solid', 'dashed', 'dashdot', 'dotted'} 画柱状图一般用`solid`
+  - **kwargs：本质上仍然画的是线，所以可以设置line2d的属性都可以传进来
+    - 在画柱状图时常用linewidth
+
+
+
+## 棒棒糖图
+
+- 实质上和上面所说的发散型棒棒糖图是一个东西，只不过是移动一下
+
+## 包点图
+
+- 实际上和上面说的发散型包点图是一个东西，只不过是移动一下
+
+
+
+## 坡度图
+
+- 对比两种不同类型下取值，适合比较给定的人/项目/数据的“之前”和“之后”的位置和变化
+
+- `matplotlib.lines.Line2D(x,y,marker, markestyle,.....)` 用于连接一连串的点
+
+  - x 要连接的点的横坐标，array-like
+  - y 要连接的点的纵坐标,，array-like
+  - 其余的参数为为设置line2d的属性，比如color，linestyle，linewidth等，[更多的看这里](https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.lines.Line2D.html?highlight=line2d#matplotlib.lines.Line2D)
+  - 本质上和`plt.plot`没有区别
+
+  - marker和markersize用来设置连接两点的线段的两个端点的marker style
+    - 如果要连接多个点，那么连接每相邻两个点的线段都会有marker
+    - 无论连接多少点，始终是一条线
+  - **注意：想要连接两个点，必须先用scatter绘制出这两个点**
+  - 返回一个`matplotlib.lines.Line2D`对象
+  - 之后通过`ax.add_line(l)` 来显示该line

@@ -116,6 +116,15 @@
 
 - `plt.gca()`   获取当前axes
 
+- `ax.grid(which,axis,**kwargs)`  划分grid，根据x轴和y轴的tick将axes划分为网格
+
+  - which : {'major', 'minor', 'both'} 根据x轴和y轴上的哪种tick去划分网格
+  - Axis: {'both', 'x', 'y'}  
+    - 如果是‘x'，只根据x轴上的tick去划分网格
+    - 如果是'y'，只根据y轴的tick去划分网格
+    - 如果是`both`，那么根据x轴和y轴上的tick去划分网格
+  - **kwargs：设置 line2d 的属性，比如linestyle，alpha，color等
+
 - | Helper method                    | Artist               | Container                 |
   | -------------------------------- | -------------------- | ------------------------- |
   | ax\.annotate \- text annotations | Annotate             | ax\.texts                 |
@@ -141,6 +150,7 @@
   | texts          | A list of Text instances               |
   | xaxis          | matplotlib\.axis\. XAxis instance      |
   | yaxis          | matplotilib\.axis\. YAxis instance     |
+  | spines         | axes的四条轴                           |
 
 ## Axis
 
@@ -165,6 +175,14 @@
   | grid                  | Turn the grid on or off for the major or minor ticks       |
 
 - 从上面看，可以看到一个层级关系，每一层都相当于为一层提供一个接口，用来返回相应的对象。
+
+- `ax.invert_yaxis()` 反转y轴，上下反转，也就是说如果原来y轴是在下面的话，反转以后，y轴在上面
+
+- `ax.invert_xaxis()` 反转x轴，左右反转，x轴同理
+
+- `ax.set_ylim(bottom.top)` 设置y轴显示范围
+
+- `ax.set_xlim(bottom,top)`设置x轴显示范围
 
 ## Tick
 
@@ -209,6 +227,23 @@ plt.show()
 ```
 
 
+
+# Spines
+
+- 实质上也就是xaxis和yaxis，但是可以用spines去设置xaxis和yaxis的alpha，color等等
+
+- `ax.spines`
+
+  - 是一个orderdict对象
+
+  - ```python
+    OrderedDict([('left', <matplotlib.spines.Spine at 0x7fbadb3d6160>),
+                 ('right', <matplotlib.spines.Spine at 0x7fbadd348ba8>),
+                 ('bottom', <matplotlib.spines.Spine at 0x7fbadd348ef0>),
+                 ('top', <matplotlib.spines.Spine at 0x7fbadd348860>)])
+    ```
+
+  - 可以很明显看出，分别代表四条边，分别对4个Spine对象进行独立设置，即可以改变图像轴的特点
 
 # Legend
 
@@ -535,7 +570,7 @@ plt.show()
   | fontsize    | { 'xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large' }或者数字（整数大于0） |
   | fontstyle   | {'normal', 'italic' , 'oblique'} 正常or斜体                  |
   | fontfamily  | ['serif', 'sans-serif', 'cursive', 'fantasy', 'monospace']，一个列表，[参考释义](https://baike.baidu.com/item/font-family/7529050?fr=aladdin) |
-  | fontweight  | {'ultralight', 'light', 'normal', 'regular', 'book', 'medium', 'roman', 'semibold', 'demibold', 'demi', 'bold', 'heavy', 'extra bold', 'black'}或者大于的整数 |
+  | fontweight  | {'ultralight', 'light', 'normal', 'regular', 'book', 'medium', 'roman', 'semibold', 'demibold', 'demi', 'bold', 'heavy', 'extra bold', 'black'}或者大于的整数 字体的粗细 |
   | fontvariant | {'normal','small-caps'}，'small-caps'所有字母为大写字母，'normal'设置首字母大写 |
 
   - **注意：设置字体的familt或者name时，需要先将字体添加到rcParams中**
@@ -560,7 +595,9 @@ plt.show()
   | ----- | -------------------------------------- |
   | text  | string                                 |
   | color | 符合color格式要求的任意string 或者其他 |
-
+| alpha | 透明度                                 |
+  | bbox  | 在text外包一个框                       |
+  
 - `text(x,y,str,fontdict,*kwargs)`可以在axes的任何地方加上text，kwargs接收任意text的属性，也可以通过fontdict传入属性
 
   - `text(0,0,'test',fontdict={'fontsize':10,'horizontalalignment':'center'})`
@@ -611,10 +648,58 @@ plt.show()
    - `matplotlib.ticker.FormatStrFormatter(str)`  与`%`格式化用法相似
    -  设置Formatter
       - `axis.set_major_formatter(formatter)`
+   - 设置label
+     - `axis.set_ticklabels(list)`
+       - list其中的元素为string
 
 ## annotations
 
 - annotations与text方法不同，会多一个箭头，用以指向要标记的地方
+
+- `ax.annotate(s, xy, xytext,xycoords,arrowprops,annotation_clip,**kwargs)`
+
+  - s 要注释的文本内容 string
+
+  - xy  : tuple (float, float) 注释点的x坐标和y坐标（也就是要标记的地方）
+
+  - xytext : tuple (float, float) 文本内容的x坐标和y坐标
+
+  - xycoords :  对于注释点的transform的方式
+
+    - 输入为str：`figure points` `figure piexls `  `figure fraction` `axes points` `axes pixels` `axes fraction`  `data` `polar`
+    - 输入为transform对象
+
+  - arrowpops 箭头的样式
+
+    - 可以通过dict的方式来设置（这里着重看这种方式，还有其他方式）
+
+      - `{width:_, head width:_,headlength:_,shrink:_ ,？}`
+      - width 箭身的宽度
+      - headwidth 箭头的宽度
+      - headlength 箭头的长度
+      - shrink :text 离箭头的距离
+      - ？:实质上箭头是`matplotlib.patches.FancyArrowPatch` class，因此FancyArrowPatch可以设置的属性都可以传进来
+
+    - 也可以通过arrowstyle来设置，如果arrowpops的dict中有`arrowstyle`这个key，那么上面的key（除了**？**）设置的内容被forbidden。arrowstyle支持的str类型有这些：
+
+      - | Name       | Attrs                                         |
+        | ---------- | --------------------------------------------- |
+        | `'-'`      | None                                          |
+        | `'->'`     | head_length=0.4,head_width=0.2                |
+        | `'-['`     | widthB=1.0,lengthB=0.2,angleB=None            |
+        | `'|-|'`    | widthA=1.0,widthB=1.0                         |
+        | `'-|>'`    | head_length=0.4,head_width=0.2                |
+        | `'<-'`     | head_length=0.4,head_width=0.2                |
+        | `'<->'`    | head_length=0.4,head_width=0.2                |
+        | `'<|-'`    | head_length=0.4,head_width=0.2                |
+        | `'<|-|>'`  | head_length=0.4,head_width=0.2                |
+        | `'fancy'`  | head_length=0.4,head_width=0.4,tail_width=0.4 |
+        | `'simple'` | head_length=0.5,head_width=0.5,tail_width=0.2 |
+        | `'wedge'`  | tail_width=0.3,shrink_factor=0.5              |
+
+  - **kwargs 用来设置注释的文本内容的属性，任何text可以设置的属性都可以传进去
+
+  - [更多的看这里](https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.axes.Axes.annotate.html?highlight=annotate#matplotlib.axes.Axes.annotate)
 
 # 参考
 

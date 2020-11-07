@@ -374,7 +374,82 @@
 ## 分布式包点图
 
 - 可以显示按组划分的点的分布情况，点的颜色越暗说明该区域的点集中度越高
-
 - `plt.scatter` + `plt.hlines`
 
-  
+
+
+# 组成图
+
+## 华夫饼图
+
+- `pip install pywaffle`
+
+- pywaffle包： 配合matplotlib绘制华夫饼图
+
+- ```python
+  from pywaffle import Waffle
+  data = {'Democratic': 50, 'Republican':30, "Libertarian":10}
+  fig = plt.figure(
+          figsize=(8,3),
+          values=data, 
+          FigureClass=Waffle, # 绘制华夫饼图
+          rows = 5, # 华夫饼图有多少行
+          colors=("#E22882", "#983D3D", "#DCB732"), # 每一类的颜色
+          legend = {'loc':'upper left',  # 控制legend的位置
+                   'bbox_to_anchor':(1,1)
+                   }
+  )
+  ```
+
+- *这里着重看一下ipynd文件里的用法示例*
+
+- 二分类华夫饼图：KPI
+
+  - ![](images/Waffle-Chart-in-Excel-Example.png)
+
+- 什么时候不建议使用华夫饼图
+
+  - 当对整体有贡献的类别太多的时候，华夫饼图能够展现的组成情况有限  
+  - 测量的KPI或者总贡献可以超过100%时  
+  - 华夫饼展现出“大概的比例”，当精确的占比（比如百分比数量）非常重要的时候，必须借助文字帮助
+
+## 饼图
+
+- `ax.pie(x,autopct,explode,colors,startangle)`
+  - x 绘制饼图的数据，每个类别的计数
+  - autopct 设定写在扇叶上的百分比，默认为None，可以输入字符串，函数或者None
+  - explode  scalar or array-like ,表示扇叶之间的距离
+  - colors  array-like 扇叶的颜色
+  - startangle 第一瓣扇叶从什么角度开始，float or int
+  - 返回
+    - wedges ：list of `patches.wedge` 代表扇形图中的所有扇叶对象
+    - texts 扇叶的位置
+    - autotexts：当autopct不为None时，表示扇叶上的text对象
+
+## 树形图
+
+- `pip install squarify`
+- `scarify.plot(sizes, color, label, ax, text_kwargs, bar_kwargs,**kwargs)`
+  - sizes 也就是要绘图的数据
+  - color ：color string or array-like 表示每一块的颜色
+  - label  ：array-like 表示在每一块上加的text 
+  - text_kwargs  设置text的属性
+  - bar_kwargs 设置bar的属性
+  - **kwagrs : Any additional kwargs are merged into `bar_kwargs`.
+
+
+
+## 条形图
+
+- 可以对比多类别下各种类别的数量关系
+
+- 无法看到各个类别占总量的类别关系
+
+- `plt.bar(x, height, width, bottom, align,color)`
+  - x 横坐标
+  - height 实际上也就是纵坐标（bar的高度
+  - width scalar or array-like bar的宽度 , 0~1
+  - align : {'center', 'edge'}
+  - color : scalar or array-like 每个bar的颜色
+  - 
+

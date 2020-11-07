@@ -303,6 +303,11 @@ plt.show()
 
   - bbox_to_anchor：默认为axes.bbox，也就是整个axes的背景，2-tuple为(x,y)，4-tuple为(x,y,width,height)
 
+    - 当输入为2-tuple时，表示legend的bbox的loc的坐标等于该tuple，比如loc='upper left' ，Bbox_to_anchor=(0.5,0.5)，表示legend的bbox的左上角位于axes的(0.5，0.5)这个位置
+    - ![](images/bbox_to_anchor用法2.png)
+    - 当输入为4-tuple时，可以通过该tuple在axes中绘制出一个rectangle，此时legend的bbox的loc的坐标等于该rectangle的loc的坐标，比如'upper left'，表示legend的左上角的坐标等于rectangle的左上角的坐标
+    - ![](images/bbox_to_anchor用法1.png)
+
   - ```python
     legend = ax.legend([line_1,line_2],['test_1','test_2'],
                        loc='upperright',bbox_to_anchor=(0.6,1))
@@ -445,6 +450,7 @@ plt.show()
 - an RGB or RGBA (red, green, blue, alpha) **tuple** of **float** values in closed interval `[0, 1]`，eg:`(0.5,0.5,0.5)`
 - a hex RGB or RGBA **string** ，eg：'0f0f0f'
 - one of {'b'(blue), 'g'(gray), 'r'(red), 'c'(cyan), 'm'(magenta), 'y'(yellow), 'k'(black), 'w'(white)}
+  - `plt.cm.colors.cname.keys()` 预定义的所有颜色名称
 - css4/x11 color name（**string**)
 - xkcd color name（**string**)  eg：'xkcd:gold'
   - 上述两种实际上是对于颜色的一个命名

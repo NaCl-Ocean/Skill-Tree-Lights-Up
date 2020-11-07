@@ -120,30 +120,28 @@
   - 直方图的横坐标一般是**某个连续型变量上不同的取值空间**，纵坐标是**这一取值范围内样本的个数之和**
   - 条形图表示不同类别下的取值，核心是对比不同类别下的取值的差异；直方图表示不同取值区间内含有的样本个数，核心是查看某个变量的分布
 
-- `plt.hist(x,bins,orientation,histtype,color)`
-
+- `plt.hist(x,bins,range,density,weights,cumulative,orientation,histtype,color)`
   - x 变量
-
   - bins 将变量分成多少段，也就是有多少个柱子的分布，根据变量的值将其进行分段
-
+  - range： 直方图横坐标显示的范围
+  - density ：True表示纵坐标为概率密度的值，False表示纵坐标为计数
+  - cumulative： True表示直方图进行累积显示，也就是相当于累积分布图
   - orientation : 直方图的方向 'vertical' or 'horizontal'
-
   - histtype：直方图的类型
+  - 'bar' 传统类型的直方图，如果给出多个数据，则条并排排列
 
-    - 'bar' 传统类型的直方图，如果给出多个数据，则条并排排列
-
-    - 'barstacked' : 条形直方图，其中多个数据堆叠在一起
+  - 'barstacked' : 堆叠直方图，其中多个数据堆叠在一起
     - 'step'：生成一个默认未填充的线条轮廓
     - 'stepfilled'：生成一个默认填充的线条轮廓
-
-  - color 柱子的颜色
-
+  - color 柱子的颜色，如果是堆叠的，color可以是array-like
   - 返回n(shape = bins)，bins(shape=bins+1)
-
-    - n 表示在每个bin内的计数
+  - n 表示在每个bin内的计数
     - bins 表示每个bin的起止点
-    - patches  a list of patch objects
+  - patches  a list of patch objects
       - 实际上直方图是有许多patch构成的，每一个柱子都是一个patch
+  - orientation 直方图的方向 'vertical' 'horizontal'
+  - stacked: 设置是否堆叠
+  - align 'mid' 'left' 'right' 每个柱子与底部坐标的对齐方式
 
 ## 箱线图
 
@@ -298,3 +296,85 @@
   - **注意：想要连接两个点，必须先用scatter绘制出这两个点**
   - 返回一个`matplotlib.lines.Line2D`对象
   - 之后通过`ax.add_line(l)` 来显示该line
+
+# 分布图
+
+- 查看多组数据分布之间的不同
+
+
+
+## 连续变量直方图
+
+- 显示一个给定变量的频率分布
+- 堆积变量直方图：显示多个变量的频率分布
+  - `plt.hist  `设置 stacked=True，传入的data是一个二维list，其中的每一个元素代表一个变量的分布，color可以设置为array-like
+
+
+
+## 分类变量直方图
+
+- 显示每个变量的频率分布
+
+
+
+# 密度图
+
+- 对于连续变量，显示其概率密度分布
+- 实际上和直方图很像，只不过密度图更光滑
+- 大多数密度图使用的是核密度估计
+- `sns.kdeplot(data,shade,vertical, bw, kernel,color,alpha,**kwargs)`
+  - data 数据集 可以是一个也可以是两个
+  - shade 在密度曲线下加上阴影
+  - vertical 控制密度曲线的轴向，为true时为水平轴向
+  - bw 类似于直方图中的binwidth，用于确定核的大小
+  - kernel 核函数（双变量只能用高斯核）
+    - gau 高斯核
+    - cos cosine 余弦核
+    - biw biweight 四次核
+    - epa 抛物线
+    - tri 三角
+    - triw 三次
+  - **kwargs 可以传入line2d的属性
+  - 本质上画的还是一条线，只不过可以设置是否填充和轴之间的部分
+
+## 直方密度曲线图
+
+- `sns.displot(data, bins, hist, kde, hist_kws, kde_kws)`
+  - data 绘制图形的数据
+  - bins 直方图参数，把数据分成多少个bin
+  - hist 控制直方图是否显示 True or False
+  - kde 控制密度图是否显示 True or False
+  - hist_kws 直方图的其他控制参数 dict
+  - kde_kws 密度图的其他控制参数 dict
+- 同时显示密度图和直方图
+
+
+
+## Joyplot
+
+- 允许不同组的密度曲线重叠，可视化大量分组数据的彼此关系分布的方法
+- `pip install joypy`
+- `joypy.joyplot(data, column=None, by=None, grid=False, xlabelsize=None, ylabelsize=None, xrot=None,yrot=None,hist=False, fade=False, ylim=max, fill=True, linecolor=None,title)`
+  - data 绘图的数据集 pd.dataframe 或者 其他嵌套集合
+  - column 使用data中的有限(某些)列进行绘图
+  - by 分组列
+  - grid 添加网格线
+  - xlabelsize x轴标签大小
+  - ylabelsize y轴标签大小
+  - xrot x轴刻度标签旋转角度
+  - yrot y轴刻度标签旋转角度
+  - hist 是否显示直方图
+  - fade True表示显示渐变色
+  - ylim 共享y轴刻度
+  - fill 曲线下的填充颜色
+  - linecolor 曲线颜色
+  - overlap 控制y轴刻度之间的重叠部分，值越小重叠越大
+  - title 图形的标题
+
+## 分布式包点图
+
+- 可以显示按组划分的点的分布情况，点的颜色越暗说明该区域的点集中度越高
+
+- `plt.scatter` + `plt.hlines`
+
+  

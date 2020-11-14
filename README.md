@@ -7,8 +7,8 @@
 - [x] C++
 - [x] Matplotlib 可视化
 - [ ] 数据结构与算法
-- [ ] Vscode
 - [ ] 统计学习方法
+- [ ] Vscode
 
 ## Git
 
@@ -126,9 +126,11 @@
 
 ## 统计学习方法
 
-- chapter 1 概论
-- chapter 2 感知机
-- chapter 3 KNN
+- chapter 1 概论  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/统计学习及监督学习概论.pdf)
+- chapter 2 感知机 [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/perceptron.md)    [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/Perceptron.ipynb)
+- chapter 3 KNN  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/knn.md)  [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/kdtree.py)
+- chapter 4 朴素贝叶斯  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/naive_bayes.pdf)   [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/naive_bayes.py)
+- chapter 5 决策树
 
 ## Vscode
 

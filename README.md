@@ -130,7 +130,7 @@
 - chapter 2 感知机 [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/perceptron.md)    [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/Perceptron.ipynb)
 - chapter 3 KNN  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/knn.md)  [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/kdtree.py)
 - chapter 4 朴素贝叶斯  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/naive_bayes.pdf)   [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/naive_bayes.py)
-- chapter 5 决策树
+- chapter 5 决策树  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/decision_tree.md)   [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/decision_tree.py)
 
 ## Vscode
 

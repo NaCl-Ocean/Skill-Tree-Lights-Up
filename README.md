@@ -5,9 +5,10 @@
 ## To do
 
 - [x] C++
-- [ ] Matplotlib 可视化
+- [x] Matplotlib 可视化
 - [ ] 数据结构与算法
 - [ ] Vscode
+- [ ] 统计学习方法
 
 ## Git
 
@@ -122,6 +123,12 @@
 - [lecture 2](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Algorithms_and_data_structures/lecture_2.md)：stack，queue，deque and pirority queue
 
 
+
+## 统计学习方法
+
+- chapter 1 概论
+- chapter 2 感知机
+- chapter 3 KNN
 
 ## Vscode
 

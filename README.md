@@ -131,6 +131,7 @@
 - chapter 3 KNN  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/knn.md)  [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/kdtree.py)
 - chapter 4 朴素贝叶斯  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/naive_bayes.pdf)   [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/naive_bayes.py)
 - chapter 5 决策树  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/decision_tree.md)   [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/decision_tree.py)
+- chapter 6 logistic 回归和最大熵模型 [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/logistic_regression.md)   [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/logistic_regression.py)
 
 ## Vscode
 

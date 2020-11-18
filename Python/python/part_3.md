@@ -305,6 +305,7 @@ half_search(a,9)
 
 - `a = [i+1 for i in range(10)]`     `a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`
 - `a = [i for i in range(10) if i%2==0]`    `a = [0, 2, 4, 6, 8]`
+- `a = [i  if i%2==0 else False for i in range(10)]` `a = [0,False,2,False,4,False,6,False,8,False]`
 
 # 生成器
 

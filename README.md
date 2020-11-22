@@ -134,6 +134,7 @@
 - chapter 6 logistic 回归和最大熵模型 [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/logistic_regression.pdf)   [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/logistic_regression.py)
 - chapter 7 支持向量机  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/svm.pdf)   [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/svm.py)
 - chapter 8 提升方法 [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/boost.md)   [Adaboost code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/adaboost.py)  [BoostingTree code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/boosting_tree.py)
+- chapter 9 EM算法  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/EM.md)   [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/GMM.py) 
 
 ## Vscode
 

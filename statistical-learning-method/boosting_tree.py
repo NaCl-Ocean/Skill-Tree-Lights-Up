@@ -84,4 +84,3 @@ class BoostTree:
         output_ = np.sum(output)
         return output_
 
-if __name__ == '__main__'

@@ -352,6 +352,79 @@
 
  
 
+## 环境变量
+
+### 环境变量分类
+
+按照生命周期来分
+
+- 永久的：需要用户**修改相关的配置文件**，**变量永久生效**。
+- 临时的：用户利用**export命令**，**在当前终端下声明环境变量，关闭Shell终端失效。**
+
+按照作用域来分：
+
+- 系统环境变量：系统环境变量对该系统中所有用户都有效
+- 用户环境变量：顾名思义，这种类型的环境变量只对特定的用户有效
+
+
+
+
+
+### 设置环境变量的方法
+
+- 系统环境变量 + 永久环境变量
+
+  - 编辑 `/etc/profile`文件
+
+  - ```shell
+    # 添加CLASSPATH环境变量
+    vim /etc/profile
+    export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib
+    ```
+
+- 用户环境变量 + 永久环境变量
+
+  - 编辑`./bash.profile` 文件，改变近对当前用户有效
+
+  - ```she
+    vim ~/.bash.profile
+    export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib
+    ```
+
+- 临时环境变量
+
+  - export命令 仅在当前的shell和其子shell下是有效的
+  - `export 变量名=变量值`
+
+### 常见的环境变量
+
+- `PATH`：**指定命令的搜索路径，可以加多个路径**
+  - `PATH=$PATH:<PATH 1>:<PATH 2>:<PATH 3>:--------:< PATH n >`
+  - macos下 格式是这样的`PATH=<PATH 1>:<PATH 2>:<PATH 3>:--------:< PATH n >:$PATH`
+- `HOME` : 指定用户的主工作目录（即用户登陆到Linux系统中时，默认的目录)
+- `HISTSIZE`：指保存历史命令记录的条数。
+- `LOGNAME`：指当前用户的登录名。
+- `HOSTNAME`：指主机的名称，许多应用程序如果要用到主机名的话，通常是从这个环境变量中来取得的
+- `SHELL`：指当前用户用的是哪种Shell。
+- `LANG/LANGUGE`：和语言相关的环境变量，使用多种语言的用户可以修改此环境变量。
+- `MAIL`：指当前用户的邮件存放目录。
+
+
+
+### 常用的修改和查看环境变量的操作
+
+- `echo` 显示某个环境变量值 echo $PATH
+
+- `export` 设置一个新的环境变量 export HELLO="hello" (可以无引号)
+
+- `env `显示所有环境变量
+
+- `set` 显示本地定义的shell变量
+
+- `unset` 清除环境变量 unset HELLO
+
+- `readonly` 设置只读环境变量 readonly HELLO
+
 # 参考
 
 [vi vim 快捷键](https://www.runoob.com/linux/linux-vim.html)
@@ -360,5 +433,5 @@
 
 [网课地址](https://www.bilibili.com/video/BV1dW411M7xL?p=29)
 
-
+[linux环境变量](https://www.jianshu.com/p/ac2bc0ad3d74)
 

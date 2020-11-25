@@ -159,6 +159,11 @@ Launch.json中的内容
 
   - launch vscode 负责启动程序并给程序搭配一个调试器
   - attach  为一个已经在运行且不支持调试的程序加一个调试器（通常是远程调试，web开发）
+  
+- prelaunchtask: 在调试前，需要执行的任务
+
+  - 这里是有**tasks.json**指定的
+  - tasks.json可以指定一系列label，而prelauntask可以设置为这些label，从而在调试前完成指定的动作。
 
 ### 搜索本地变量
 

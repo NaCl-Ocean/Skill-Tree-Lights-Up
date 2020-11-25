@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/manager.h
+iostream
+-
+string
+-
+vector
+-
+map
+-
+speaker.h
+../include/speaker.h
+
+../include/speaker.h
+iostream
+-
+
+/Users/haiyang/Documents/Skill-Tree-Lights-Up/Cpp/Speech_competition_system的副本/src/manager.cpp
+iostream
+-
+manager.h
+/Users/haiyang/Documents/Skill-Tree-Lights-Up/Cpp/Speech_competition_system的副本/src/manager.h
+random
+-
+algorithm
+-
+deque
+-
+fstream
+-
+

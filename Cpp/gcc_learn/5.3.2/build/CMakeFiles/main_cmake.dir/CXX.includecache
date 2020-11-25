@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/swap.h
+iostream
+-
+
+/Users/haiyang/Documents/Skill-Tree-Lights-Up/Cpp/gcc_learn/5.3.2/main.cpp
+iostream
+-
+swap.h
+/Users/haiyang/Documents/Skill-Tree-Lights-Up/Cpp/gcc_learn/5.3.2/swap.h
+
+/Users/haiyang/Documents/Skill-Tree-Lights-Up/Cpp/gcc_learn/5.3.2/src/swap.cpp
+swap.h
+/Users/haiyang/Documents/Skill-Tree-Lights-Up/Cpp/gcc_learn/5.3.2/src/swap.h
+

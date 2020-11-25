@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/haiyang/Documents/Skill-Tree-Lights-Up/Cpp/gcc_learn/5.3.1/helloworld.cpp
+iostream
+-
+

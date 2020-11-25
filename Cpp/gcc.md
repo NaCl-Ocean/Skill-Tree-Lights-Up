@@ -154,7 +154,7 @@
 
 ## 练习
 
-编译 GCC_LEARN下的工程
+编译 GCC_LEARN下5.3.1 的工程
 
 - 因为头文件`swap.h` 在`/include`目录下，所以需要指定头文件所在的目录
 
@@ -486,6 +486,97 @@ clean :
   ```
 
 - `aux_source_directory` 发现一个目录下所有的源代码文件并将列表存储在一个变量中，这个指令临时被用来自动构建源文件列表
+
+  - `aux_source_directory(dir VARIABLE)`
+
+  ```cmake
+  # 定义SRC变量，其值为当前目录下的所有源代码文件
+  aux_source_directory(. SRC)
+  # 编译SRC变量代表的源码文件，生成main可执行文件
+  add_exectuable(main ${SRC})
+  ```
+
+## CMake常用变量
+
+- `CMAKE_C_FLAGS` gcc编译选项
+
+- `CMAKE_CXX_FLAGS` g++编译选项
+
+  ```cmake
+  # 在CMAKE_C_FLAGS编译选项后追加-std=c++11
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c++11")
+  ```
+
+- `CMAKE_BUILD_TYPE` 编译类型(Debug, Release)
+
+  ```cmake
+  # 设定编译类型为debug，调试时
+  set(CMAKE_BUILD_TYPE Debug)
+  # 设定编译类型为release，发布时
+  set(CMAKE_BUILD_TYPE Release)
+  ```
+
+- `CMAKE_BINARY_DIR`  `PROJECT_BINARY_DIR` `<projectname>_SOURCE_DIR`
+
+  - 三个变量指代的内容是一致的
+  - 如果是`in source build` ，指的就是工程顶层目录
+  - 如果是`out-of-source` ，指的就是工程编译发生的目录
+  - `PROJECT_BINARY_DIR`和其他指令稍有不同，但是现阶段可以理解为是一致的
+
+- `CMAKE_C_COMPILER` 指定C编译器
+
+- `CMAKE_CXX_COMPILER` 指定C++编译器
+
+- `EXECUTABLE_OUTPUT_PATH` 可执行文件输出的存放路径
+
+- `LIBRARY_OUTPUT_PATH` 库文件的输出存放路径
+
+
+
+## CMake编译工程
+
+一般地，项目主目录存在一个CMakeLists.txt文件
+
+**两种方式设置编译规则：**
+
+- 包含源文件的子文件夹包含CMakeLists.txt文件，主目录的CMakeLists.txt通过add_subdirectory添加子目录
+- 包含源文件的子文件夹不包含CMakeLists.txt文件，子目录的编译规则需要体现在主目录的CMakeLists.txt中
+
+**编译流程：**
+
+- 手动编写CMakeLists.txt
+- 执行命令`cmake PATH` **生成 makefile** 
+  - `PATH`是CMakeLists.txt所在的目录
+- 执行命令`make` 编译
+
+## 两种构建方式
+
+- **内部构建（in-source build）**
+
+  - 不推荐，会污染源代码
+  - 在源代码目录下进行编译
+
+  ```shell
+  # 在源代码目录（也就是有CMakeLists.txt）的目录下编译，会产生很多中间文件以及makefile
+  # 这样会污染源代码
+  cmake .
+  make
+  ```
+
+  
+
+- **外部构建（out-of-source build)**
+
+  - 在源代码之外的一个目录下进行编译，这样编译的输出文件就会输出到这个单独的目录下，不会污染源代码
+
+  ```shell
+  mkdir build
+  cd build
+  cmake ..
+  make
+  ```
+
+  
 
 # 参考资料
 

@@ -1,0 +1,13 @@
+# 统计学习方法
+
+- chapter 1 概论：  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/统计学习及监督学习概论.pdf)
+- chapter 2 感知机： [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/perceptron.md)    [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/Perceptron.ipynb)
+- chapter 3 KNN：  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/knn.md)  [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/kdtree.py)
+- chapter 4 朴素贝叶斯：  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/naive_bayes.pdf)   [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/naive_bayes.py)
+- chapter 5 决策树：  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/decision_tree.md)   [classifytree_code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/decision_tree.py)   [regresssiontree_code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/decision_tree_reg.py) 
+- chapter 6 logistic 回归和最大熵模型： [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/logistic_regression.pdf)   [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/logistic_regression.py)
+- chapter 7 支持向量机：  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/svm.pdf)   [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/svm.py)
+- chapter 8 提升方法： [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/boost.md)   [Adaboost code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/adaboost.py)  [BoostingTree code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/boosting_tree.py)
+- chapter 9 EM算法：  [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/EM.md)   [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/GMM.py) 
+- chapter 10 马尔可夫模型： [notes](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/markov_chain.md)   [code](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/statistical-learning-method/HMM.py) 
+

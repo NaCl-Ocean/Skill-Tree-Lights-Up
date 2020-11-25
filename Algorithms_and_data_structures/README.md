@@ -1,8 +1,8 @@
 # 数据结构与算法
 
 - [数据结构概览](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Algorithms_and_data_structures/data_structure.png)
-- [算法概览](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Algorithms_and_data_structures/algorithm.md)
-- [数据结构](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Algorithms_and_data_structures/data_strcture.md)
+- [算法概览](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Algorithms_and_data_structures/algorithm.png)
+- [数据结构](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Algorithms_and_data_structures/data_structure.md)
 - [算法](https://github.com/NaCl-Ocean/Skill-Tree-Lights-Up/blob/master/Algorithms_and_data_structures/algorithm.md)
 
 # Leetcode 刷题

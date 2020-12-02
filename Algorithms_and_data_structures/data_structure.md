@@ -64,7 +64,7 @@
 
 
 
-# stack
+# Stack
 
 - First in - Last out
 - Pop O(1)
@@ -196,3 +196,119 @@
   - 同样需要查找节点，如果删除的是叶节点，那么直接删，没有影响
   - 如果删除的不是叶节点，那么在该节点的右子树中遍历寻找第一个大于该节点的元素，要删除的节点替换为该节点
 - 遍历 O(N)
+
+
+
+# Trie
+
+- 字典树，又称单词查找树或键树，是一种树形结构。典型应用是用于统计和排序大量的字符串，所以经常被搜索引擎系统用于文本词频统计
+- 优点
+  - 最大限度减少无谓的字符串比较，查询效率高于哈希表
+- Trie树不是二叉树，而是n叉树
+- <img src="images/image-20201201214841374.png" alt="image-20201201214841374" style="zoom:25%;" />
+
+- 特点
+
+  - 节点不存完整单词，节点本省存的是额外信息，比如频次
+  - 从根节点道某一节点，路径上经过的字符连接起来，即为该节点对应的字符串
+  - 每个节点的所有子节点路径代表的字符不同
+
+  
+
+- <img src="images/image-20201201215219064.png" alt="image-20201201215219064" style="zoom:25%;" />
+
+  
+  - 在英文里，也就是26叉树
+
+- 查询复杂度 O(n) n为要查找的单词的长度，因此比哈希表查找的速度快
+
+- 核心思想：空间换时间
+
+
+
+# DisjointSet
+
+- Makeset(s)：建立一个新的并查集，其中包含s个蛋元素集合
+- Unionist(x,y)：把元素x和元素y所在的集合合并，要求x和y所在的集合不相交，如果相交则不合并
+- Find(x)：找到元素x所在集合的代表，该操作也可以用于判断两个元素是否位于同一个集合，只要将它们各自的代表比较一下就可以
+
+- [一个通俗易懂的例子](https://blog.csdn.net/liujian20150808/article/details/50848646)
+
+- 代码模版
+
+  ```python
+  class DisjointSet:
+      def __init__(self, n):
+          self.p = [i for i in range(n)]
+      
+      def find(self, x):
+          r = x
+          while self.p[r] != r:
+              r = self.p[r]
+          # path compression
+          i = x
+          while i != r:
+              j = self.p[i]
+              self.p[i] = r
+              i = j
+          return r
+      
+      def union(self, x, y):
+          rootx = self.find(x)
+          rooty = self.find(y)
+          if rootx != rooty:
+              self.p[rootx] = rooty
+  ```
+
+
+
+# 平衡二叉树
+
+- 二叉搜索树如果维护不好的话，会导致退化为链表，导致查询效率降低，**保证查询效率的关键是二维的维度平衡**
+- <img src="images/image-20201202130819212.png" alt="image-20201202130819212" style="zoom:25%;" />
+
+
+
+
+
+## AVL Tree
+
+- **平衡因子 Balance Factor**
+  - 右子树的高度 减去 左子树的高度
+  - 保证 所有节点的balance factor = {-1,0,1}
+  - 所有叶节点的平衡因子为0
+- 旋转操作来实现平衡
+  - **左旋：右右子树**
+    - <img src="images/image-20201202131703946.png" alt="image-20201202131703946" style="zoom:25%;" />
+  - **右旋：左左子树**
+    - <img src="images/image-20201202131824183.png" alt="image-20201202131824183" style="zoom:25%;" />
+  - **左右旋：左右子树**
+    - <img src="images/image-20201202132028086.png" alt="image-20201202132028086" style="zoom:25%;" />
+  - **右左旋：右左子树**
+    - <img src="images/image-20201202132110827.png" alt="image-20201202132110827" style="zoom:25%;" />
+  - **带有子树的情况**
+    - <img src="images/image-20201202133102533.png" alt="image-20201202133102533" style="zoom:50%;" />
+
+- 不足
+  - 节点需要存储额外信息，且调整次数频繁
+
+
+
+## 红黑树
+
+- **近似平衡**的二叉搜索树，能够确保任何一个节点的左右子树的**高度差小于2倍**
+  - 每个节点要么是红色，要么是黑色
+  - 根节点是黑色
+  - 每个叶节点（NIL节点，空节点）是黑色的
+  - 不能有相邻接的两个红色节点
+  - 从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点
+
+**红黑树和AVL的对比**
+
+- AVL tree provides **faster lookups** than Red Black Trees because they are **more strictly balanced**
+- Red Black Trees provide **faster insertion and removal** operations than AVL trees as fewer rotations are done due to relatively relaxed balancing
+- AVL trees store balance **factors or heights** with each node, thus requires storage for an integar per node whereas Red Black Tree requires only 1 bit of information pre node
+-  Red Black Trees are used in most of the **lanuage libiaries like map, multi map, multiset in C++** whereas AVL Trees are used in **databases** where faster retrieval are required.
+
+
+

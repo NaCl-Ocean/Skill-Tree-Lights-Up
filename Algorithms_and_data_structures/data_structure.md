@@ -203,6 +203,7 @@
 
 - 字典树，又称单词查找树或键树，是一种树形结构。典型应用是用于统计和排序大量的字符串，所以经常被搜索引擎系统用于文本词频统计
 - 优点
+  
   - 最大限度减少无谓的字符串比较，查询效率高于哈希表
 - Trie树不是二叉树，而是n叉树
 - <img src="images/image-20201201214841374.png" alt="image-20201201214841374" style="zoom:25%;" />
@@ -311,4 +312,51 @@
 -  Red Black Trees are used in most of the **lanuage libiaries like map, multi map, multiset in C++** whereas AVL Trees are used in **databases** where faster retrieval are required.
 
 
+
+# Bloom Filter
+
+- 一个很长的二进制向量和一系列随机映射函数
+- **可以用于检索一个元素是否在一个集合中**
+- 优点：空间效率和查询时间远远超过一般的算法
+- 缺点：有一定的误识别率和删除困难
+- <img src="images/image-20201202215550269.png" alt="image-20201202215550269" style="zoom:50%;" />
+
+- 如果查找元素不在bloom filter中，那么一定不在
+
+- 如果查找元素在bloom filter中，那么可能存在
+
+- 代码模版
+
+- ```python
+  from bitarray import bitarray
+  import mmh3
+  
+  class BloomFilter:
+      def __init__(self, size, hash_num):
+          self.size = size
+          self.hash_num = hash_num
+          self.bit_array = bitarray(size)
+          self.bit_array.setall(0)
+      
+      def add(self, s):
+          for seed in range(self.hash_num):
+              result = mmh3.hash(s, seed) % self.size
+              self.bit_array[result] = 1
+      def lookup(self, s):
+          for seed in range(self.hash_num):
+              result = mmh3.hash(s, seed) % self.size
+              if self.bit_array[result] == 0:
+                  return False
+          return True
+  ```
+
+
+
+# LRU Cache
+
+- 两个要素
+  - 大小
+  - 替换策略
+- LRU  最近最少使用（操作系统）
+- <img src="images/image-20201202222257622.png" alt="image-20201202222257622" style="zoom:50%;" />
 

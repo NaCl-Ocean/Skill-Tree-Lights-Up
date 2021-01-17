@@ -329,6 +329,8 @@ cout << s1<< endl;
 
 - `vector<T>(vector<T> & v)`   无参构造
 
+- `vector<T> v{elem1, elem2, elem3...} ` 适用于快速构造
+
 - ```c++
   //vector<T> v
   vector<int> v1;
@@ -341,8 +343,9 @@ cout << s1<< endl;
   vector v3 = vector<int>(10,5);
   //vector<T>(vector<T> & v)
   vector v4 = vector<int>(v3);
-  ```
-
+  //vector<T> v{elem1,elem2,elem3,...}
+```
+  
   
 
 ## 赋值操作

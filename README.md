@@ -10,11 +10,12 @@
 
 - [x] C++
 - [x] Matplotlib 可视化
-- [ ] 数据结构与算法
+- [x] 数据结构与算法
 - [ ] 统计学习方法
 - [ ] Vscode
-- [ ] GCC
+- [x] GCC
 - [ ] Pytorch调用cpp extension
+- [ ] Leetcode ing....
 
 ## Contents
 

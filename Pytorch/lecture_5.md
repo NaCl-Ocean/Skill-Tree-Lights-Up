@@ -67,14 +67,18 @@ $$ loss(x,class) = -log(exp[x[class]] / \sum_{j}exp[x[j]]) = -x[class]+log(\sum_
 - L1Loss
   - $loss = |x - y|$
   - `L1Loss(reduction='mean')`
-
-- MSELoss
+- MSELoss(L2 Loss)
   - $loss = (x - y)^2$
   - `MSELoss(reduction='mean')`
-
 - SmoothLoss
   - ![image-20200601181009308](C:\Users\26401\AppData\Roaming\Typora\typora-user-images\image-20200601181009308.png)
   - `SmoothLoss(reduction='None')`
+- [what's the difference between L1 loss, L2 loss and smooth l1 loss](https://zhuanlan.zhihu.com/p/48426076)
+  - L1 loss 的导数一直为1
+  - L2的导数=f(x)，当f(x)很大时，导数会很大，对离群点比较敏感
+- 目标检测中回归为什么一般用smooth l1 loss
+  - 当预测框与 ground truth 差别过大时，梯度值不至于过大；
+  - 当预测框与 ground truth 差别很小时，梯度值足够小。
 
 # PossionNLLLoss
 

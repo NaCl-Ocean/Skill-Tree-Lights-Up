@@ -171,10 +171,10 @@ cd src
 g++ swap.cpp -c -I../include -o swap.o
 # 创建静态库
 ar rs libswap.a swap.o
-# 使用静态库（在编译时链接静态库）
+# 链接静态库编译
 cd ..
 # -l表示要链接的库名为swap -L表示库文件所在路径为src/，-I表示有头文件在include/目录下
-g++ main.cpp -lswap -Lsrc -Iinclude -o static_main
+g++ main.cpp -l swap -L src -I include -o static_main
 ```
 
 
@@ -420,7 +420,7 @@ clean :
 
 - `include_directories` 向工程添加多个特定的头文件搜索路径
 
-  - 相当于指定gcc编译时的`-I`参数
+  - 相当于指定gcc编译时的**`-I`**参数
   - `include_directories(dir1 dir2 ...)`
 
   ```cmake
@@ -430,7 +430,7 @@ clean :
 
 - `link_directories` 向工程添加多个特定的库文件搜索路径
 
-  - 相当于指定gcc编译时的`-L`参数
+  - 相当于指定gcc编译时的**`-L`**参数
   - `link_directories(dir1 dir2 ...)`
 
   ```cmake
@@ -468,7 +468,7 @@ clean :
 
 - `target_link_libraries` 为target添加需要链接的共享库
 
-  - 相当于g++的`-l`参数
+  - 相当于指定g++编译的**`-l`**参数
   - `target_link_libraries(target libaray1 <debug|optimized> library2 ...)`
 
   ```cmake

@@ -92,6 +92,7 @@ def divide_conquer(problem, data1, data2,...):
   - **分解重复子问题**
   - **定义状态数组**
   - **DP方程**
+  - ***basecase 的确定***
 
 # 搜索
 
@@ -163,6 +164,34 @@ def BFS(graph, start, end):
 - 可以看到深度优先搜索的非遍历写法和广度优先搜索的写法是比较相似的，只不过一个是stack，一个queue
 
 
+
+## 双向BFS
+
+- 适用于知道root节点和终端节点的情况
+  - 典型：word ladder
+
+
+
+## 启发式搜索
+
+代码模版
+
+```python
+def AstarSearch(graph, start, end):
+  pd = collections.priority_queue()
+  pd.append([start])
+  visited.add(start)
+  while pq:
+    node = pq.pop()
+    visited.add(node)
+    
+    process(node)
+    nodes = generate_related_nodes(node)
+    unvisited = [node for node in nodes if node not in visited]
+    pq.push(unvisited)
+```
+
+启发式函数：h(n)，用来评价哪些节点最有希望的是一个我们要找的节点，h(n)会返回一个非负实数，也可以认为是从节点n 的目标节点路径的估计成本。
 
 # 贪心
 
@@ -337,4 +366,50 @@ while left<=right:
   - x = x&(x-1) 清零最低位的1
   - x & -x = 得到最低位的1
   - x & ~x = 0
-- 
+
+
+
+# 字符串匹配
+
+暴力法
+
+```python
+def forcesearch(sting, pat):
+  len_pat = len(pat)
+  for i in range(len(string)-len_pat):
+    substring = string[i:i+len_pat]
+    for j in range(len_pat):
+      if pat[j] != substring[j]:
+        break
+    if j == len_pat - 1:
+      return i
+```
+
+## Robin-Karp
+
+预先比较子串的哈希值是否与pat的hash相等，如果不相等，不需要进一步一个一个字符的判断子串和pat是否相等，也就是先进行模糊比较，之后再进行精细的比较。
+
+```python
+def forcesearch(sting, pat):
+  len_pat = len(pat)
+  for i in range(len(string)-len_pat):
+    substring = string[i:i+len_pat]
+    if hash(substring) == hash(pat):
+      equal_flag = False
+      for j in range(len_pat):
+        if pat[j] != substring[j]:
+          equal_flag = True
+          break
+      if equal_flag:
+        return i
+```
+
+
+
+## KMP
+
+[阮一峰](http://www.ruanyifeng.com/blog/)
+
+[video](https://www.bilibili.com/video/BV1Px411z7Yo)
+
+- 关键点：计算前缀表

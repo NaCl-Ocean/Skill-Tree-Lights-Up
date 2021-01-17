@@ -71,7 +71,7 @@ class Dataset(object):
         # 在生成sampler_iter的时候执行下面的iter方法，iter中定义了yield，此时也就是初始化一个generator，返回该generator
         self._sampler_iter = iter(self._index_sampler)
         ........
-        # sampler 的 __iter__方法
+        # _index_sampler 的 __iter__方法
         def __iter__(self):
             batch = []
             for idx in self.sampler:
@@ -110,7 +110,16 @@ class Dataset(object):
             ([image_1+image_2+image_3]('+'代表stack),[target_1+target_2+target_3])
             ```
       
-            
+    
+  - 几个关键点：
+  
+    - sampler  也就是dataloader中的`_index_sampler`，按照某种规则产生index
+    - dataset 拿到了index后，调用`dataset[index[0]]，dataset[index[1]],....`（产生的index是一个list，长度也就是batch_size）
+    - Collate_fn 拿到了各个index对应的数据，组织成我们想要的数据格式。
+
+
+
+
 
 # Transforms
 

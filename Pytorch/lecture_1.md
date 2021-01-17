@@ -23,9 +23,9 @@
 
 - **叶节点与requires_grad的区别与关联**
 
-  - 叶节点当requires_grad为False时，不会对其进行自动求导，backward之后，grad自然为None
+  - 叶节点当requires_grad为False时，不会对其进行自动求导，backward之后，grad自然为None，这里也就是我们的input data
 
-  - 叶节点requires_grad为True时，会对其进行自动求导，backward之后，grad为Tensor，也就是对应的梯度
+  - 叶节点requires_grad为True时，会对其进行自动求导，backward之后，grad为Tensor，也就是对应的梯度，这里也就是我们的weight
   - 非叶节点requires_grad必然为True，但是反向传播后，grad为None
 
 

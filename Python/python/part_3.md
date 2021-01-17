@@ -352,7 +352,7 @@ half_search(a,9)
       for i in a:  ===> for i in iter(a)
       ```
   
-    - 通过for循环对一个可迭代对象进行迭代时，for循环内部机制会自动通过调用iter()方法执行可迭代对象内部定义的__iter__()方法来获取一个迭代器，然后一次又一次的迭代过程中通过调用next()方法执行迭代器内部定义的__next__()方法获取下一个元素，在抛出StopIteration之前停止循环
+    - 通过for循环对一个可迭代对象进行迭代时，for循环内部机制会自动通过调用iter()方法执行可迭代对象内部定义的`__iter__()`方法来获取一个迭代器，然后一次又一次的迭代过程中通过调用next()方法执行迭代器内部定义的`__next__()`方法获取下一个元素，在抛出StopIteration之前停止循环
   
   - 提供了`__iter__` 方法或者`__getitem__`方法的对象都是可迭代对象
   
@@ -384,8 +384,12 @@ half_search(a,9)
 - **迭代器（Iterator)**
   - 可以调用next方法
   - Iterator都是Iterbale
-  - 实现了`__iter__`和`__next__`都是迭代器
-  
+  - 实现了`__next__`方法的对象都是迭代器
+  - 生成器也是迭代器，也就是在`__iter__`方法中返回的是`yield`
+
 - `iter(Iterable)`   将Iterable转换为Iterator
 
   - 实际上调用了`__iter__`方法
+
+![preview](images/v2-95b4076d30e55da078045cdade28cea3_r.jpg)
+
